@@ -11,7 +11,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 ## Install
 
 - [**Chrome** extension](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
-- **Firefox** add-on: [Install it manually](https://support.mozilla.org/en-US/questions/785686) *[(Not interested in publishing it to AMO)](https://github.com/sindresorhus/merge-windows/issues/4#issuecomment-336848043)*
+- **Firefox** add-on: Use [this Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/chrome-store-foxified/) to enable installing Chrome extensions and install [Chrome extension](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 - **Opera** extension: Use [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to install the Chrome version.
 
 
