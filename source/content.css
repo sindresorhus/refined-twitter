@@ -14,6 +14,10 @@ body {
 	display: none !important;
 }
 
+/* Remove "Moments" tab */
+#global-actions .moments {
+	display: none !important;
+}
 
 
 /**
