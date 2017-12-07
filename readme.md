@@ -23,6 +23,8 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Replaces the Twitter emoji with native ones.
 - Hides "Notifications" activity for new followers and being added to a list.
 
+Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10).
+
 <img src="media/screenshot.gif" width="1272">
 
 
