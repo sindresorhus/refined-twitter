@@ -1,0 +1,58 @@
+/**
+
+Global
+
+*/
+
+/* Use system fonts */
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+}
+
+/* Remove navbar logo */
+.bird-topbar-etched {
+	display: none !important;
+}
+
+
+
+/**
+
+Dashboard
+
+*/
+
+/* Remove the profile box */
+.module.DashboardProfileCard {
+	display: none !important;
+}
+
+/* Remove the "Trends for you" box */
+.module.trends {
+	display: none !important;
+}
+
+/* Remove the "Who to follow" box */
+.module.wtf-module {
+	display: none !important;
+}
+
+/* Remove the footer box */
+.module.Footer {
+	display: none !important;
+}
+
+/* Remove sidebars */
+.dashboard-left,
+.dashboard-right {
+	display: none !important;
+}
+
+/* Center the tweet stream */
+#page-container {
+	width: unset !important;
+}
+#page-container .content-main {
+	float: unset !important;
+	margin: 0 auto !important;
+}

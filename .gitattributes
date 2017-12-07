@@ -1,0 +1,5 @@
+* text=auto
+*.js text eol=lf
+*.ai binary
+readme.md merge=union
+src/content.css merge=union
