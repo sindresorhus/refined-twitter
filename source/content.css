@@ -19,6 +19,11 @@ body {
 	display: none !important;
 }
 
+/* Promote layers to fix repaints */
+#permalink-overlay,
+.RichEditor-tempTextArea {
+	will-change: transform;
+}
 
 /**
 
