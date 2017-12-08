@@ -6,6 +6,10 @@ import autoLoadNewTweets from './features/auto-load-new-tweets';
 // Add global for easier debugging
 window.$ = $;
 
+function cleanPromotedTweets() {
+	$('#stream-items-id .promoted-tweet').remove();
+}
+
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().remove();
 }
@@ -55,6 +59,7 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
+			safely(cleanPromotedTweets);
 		});
 	});
 }
