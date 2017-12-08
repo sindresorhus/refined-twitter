@@ -74,3 +74,8 @@ Dashboard
 	float: unset !important;
 	margin: 0 auto !important;
 }
+
+/* Custom Inline Image Element */
+.AdaptiveMedia .refined-instagram-inline {
+	max-width: 100%
+}
