@@ -2,6 +2,7 @@ import 'webext-dynamic-content-scripts';
 import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
+import codeHighlight from './features/code-highlight';
 
 // Add global for easier debugging
 window.$ = $;
@@ -55,6 +56,7 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
+			safely(codeHighlight);
 		});
 	});
 }
