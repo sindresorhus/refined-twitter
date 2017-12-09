@@ -37,6 +37,7 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 	 margin: .5em 0;
 	 overflow: auto;
 	 border-radius: 0.3em;
+	 line-height: 0;
  }
 
  :not(pre) > code[class*="language-"],
