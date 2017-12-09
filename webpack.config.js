@@ -15,7 +15,7 @@ module.exports = {
 		}),
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new CopyWebpackPlugin([{
-			from: "*",
+			from: '*',
 			context: 'source',
 			ignore: '*.js$'
 		}, {

@@ -26,5 +26,4 @@ export default function() {
 			$(el).html(newContent)
 		}
 	});
-
 }
