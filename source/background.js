@@ -7,3 +7,10 @@ new OptionsSync().define({
 		OptionsSync.migrations.removeUnused
 	]
 });
+
+// Fix the extension when right-click saving a tweet image
+browser.downloads.onDeterminingFilename.addListener((item, suggest) => {
+	suggest({
+		filename: item.filename.replace(/\.(jpg|png)_(large|orig)$/, '.$1')
+	});
+});
