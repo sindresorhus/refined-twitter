@@ -29,8 +29,8 @@
 				"https://twitter.com/*"
 			],
 			"css": [
-				"./style/content.css",
-				"./style/code-highlight.css"
+				"style/content.css",
+				"style/code-highlight.css"
 			],
 			"js": [
 				"jquery.slim.min.js",
