@@ -24,12 +24,6 @@ function hideListAddActivity() {
 	$('#stream-items-id .js-activity-list_member_added').css('display', 'none');
 }
 
-function useOriginalImageInGallery() {
-	$('.media-image[src$=":large"]').each(function () {
-		$(this).attr('src', $(this).attr('src').replace(/:large$/, ':orig'));
-	});
-}
-
 async function init() {
 	await safeElementReady('body');
 
@@ -51,10 +45,6 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
-function onGalleryOpen(cb) {
-	observeEl('.Gallery-media', cb, {attributes: true});
-}
-
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 
@@ -65,10 +55,6 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
-		});
-
-		onGalleryOpen(() => {
-			safely(useOriginalImageInGallery);
 		});
 	});
 }
