@@ -15,7 +15,6 @@
 		"jquery": "^3.2.1",
 		"prismjs": "^1.9.0",
 		"select-dom": "^4.1.1",
-		"webext-dynamic-content-scripts": "^5.0.0-2",
 		"webext-options-sync": "^0.12.0",
 		"webextension-polyfill": "^0.2.1"
 	},
