@@ -1,10 +1,6 @@
-import 'webext-dynamic-content-scripts';
 import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
-
-// Add global for easier debugging
-window.$ = $;
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().remove();
