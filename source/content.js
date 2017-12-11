@@ -29,43 +29,6 @@ function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
 
-function inlineInstagramPosts() {
-	$('a.twitter-timeline-link[data-expanded-url*="//www.instagram.com').each((idx, instagramAnchor) => {
-		const tweetElement = $(instagramAnchor).parents('.js-tweet-text-container');
-		// Don't do anything else if the image is already embedded
-		if ($(tweetElement).siblings('.AdaptiveMedia').length > 0) {
-			return true;
-		}
-		const instagramPostUrl = instagramAnchor.dataset.expandedUrl;
-		const imageRegex = /"display_url": ?"([^"]+)"/g;
-		fetchInstagramPhoto(instagramPostUrl)
-			.then(postHtml => {
-				const matches = imageRegex.exec(postHtml);
-				const instagramImageUrl = matches[1] || null;
-				if (instagramImageUrl) {
-					insertInstagramPhotoInto(tweetElement, instagramImageUrl, instagramPostUrl);
-				}
-			});
-	});
-}
-
-function insertInstagramPhotoInto(element, imageUrl, postUrl) {
-	const tweetImageTemplate = `
-	<div class="AdaptiveMedia">
-		<a href="${postUrl}" target="_blank">
-			<img class="refined-instagram-inline" src="${imageUrl}" />
-		</a>
-	</div>
-	`;
-	element.after(tweetImageTemplate);
-}
-
-async function fetchInstagramPhoto(postUrl) {
-	const response = await fetch(postUrl);
-	const html = response.text();
-	return html;
-}
-
 async function init() {
 	await safeElementReady('body');
 
