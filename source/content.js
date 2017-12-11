@@ -64,6 +64,7 @@ function onDomReady() {
 		});
 
 		onSingleTweet(() => {
+			safely(useNativeEmoji);
 			safely(inlineInstagramPhotos);
 		});
 	});
