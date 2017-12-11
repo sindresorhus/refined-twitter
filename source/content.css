@@ -25,6 +25,15 @@ body {
 	will-change: transform;
 }
 
+/* Remove annoying suggestions in the Search popover */
+#typeahead-dropdown-1 .typeahead-topics {
+	display: none !important;
+}
+#typeahead-dropdown-1 .typeahead-topics + ul {
+	border: none !important;
+}
+
+
 /**
 
 Dashboard
