@@ -11,10 +11,10 @@ function cleanNavbarDropdown() {
 }
 
 function useNativeEmoji() {
-	$('#stream-items-id .Emoji--forText').replaceWith(function () {
+	$('.Emoji--forText').replaceWith(function () {
 		return $(this).attr('alt');
 	});
-	$('.Emoji.Emoji--forLinks').replaceWith(function () {
+	$('.Emoji--forLinks').replaceWith(function () {
 		return $(this).siblings('span.visuallyhidden').text();
 	});
 }
