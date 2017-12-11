@@ -19,6 +19,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 
 - Simplified and improved UI.
 - Uses the system font (San Francisco on macOS).
+- Improves the scrolling performance of twitter.com
 - Auto-loads new tweets in the stream if you're scrolled to the top. No more clicking "See 3 new Tweets"!
 - Replaces the Twitter emoji with native ones.
 - Hides "Notifications" activity for new followers and being added to a list.
