@@ -19,6 +19,12 @@ body {
 	display: none !important;
 }
 
+/* Promote layers to fix repaints */
+#permalink-overlay,
+.RichEditor-tempTextArea {
+	will-change: transform;
+}
+
 /* Remove annoying suggestions in the Search popover */
 #typeahead-dropdown-1 .typeahead-topics {
 	display: none !important;
