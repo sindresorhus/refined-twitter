@@ -25,6 +25,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Removes the annoying suggestions in the search popover](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Fixes the file extension when saving images in tweets. No more `foo.jpg_large`!
 - Uses the original image in tweet image galleries.
+- Syntax highlighting in code blocks with [PrismJS](http://prismjs.com)
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10).
 

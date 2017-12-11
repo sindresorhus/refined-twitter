@@ -7,9 +7,22 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-scss';
 
 const supportedLang = new Set(['javascript', 'jsx', 'bash', 'git', 'typescript', 'html', 'css', 'scss']);
+const aliases = {
+	javascript: new Set([ "js" ]),
+	jsx: new Set([ "react", "reactjsx" ]),
+	bash: new Set([ "zsh", "sh", "shell" ])
+};
 
-function isSupportedLanguage(lang) {
-	return supportedLang.has(lang);
+function correctLanguage(lang) {
+	if (supportedLang.has(lang)) {
+		return lang;
+	} else {
+		for(let key in aliases) {
+			if (aliases[key].has(lang)) {
+				return key
+			}
+		}
+	}
 }
 
 function string2dom(domString) {
@@ -22,22 +35,24 @@ export default function () {
 	const postsContent = $('.tweet-text');
 
 	postsContent.each((i, el) => {
-		const regex = /```(\w.*)([^```]+)```/g;
+		console.log(i, el)
+		const regex = /```(\w.*)([^.*]+)```/g;
 		const postContent = $(el).text();
 		const capturingGroup = regex.exec(postContent);
 
 		if (capturingGroup && capturingGroup.length === 3) {
 			const code = capturingGroup[2];
-			const selectedLang = capturingGroup[1].toLowerCase();
+			console.log(capturingGroup[1].toLowerCase())
+			const selectedLang = correctLanguage( capturingGroup[1].toLowerCase() );
 			const tweetText = postContent.replace(regex, '');
 
-			if (isSupportedLanguage(selectedLang)) {
+			if (selectedLang) {
 				const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
 				const updatedHtml = (
 					<div>
 						<p>{tweetText}</p>
-						<div class="RT_highlight">
-							<div class="RT_highlight__lang">
+						<div class="refined-twitter_highlight">
+							<div class="refined-twitter_highlight-lang">
 								{selectedLang}
 							</div>
 							<pre class={`language-${selectedLang}`}>
