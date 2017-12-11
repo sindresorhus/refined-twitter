@@ -34,7 +34,7 @@ export default function () {
 	const postsContent = $('.tweet-text');
 
 	postsContent.each((i, el) => {
-		const regex = /```(\w.*)([^.*]+)```/g;
+		const regex = /```(\w.*)([\s\S]+)```/g;
 		const postContent = $(el).text();
 		const capturingGroup = regex.exec(postContent);
 
