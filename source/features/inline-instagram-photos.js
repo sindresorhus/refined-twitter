@@ -1,6 +1,6 @@
 import {h} from 'dom-chef';
 
-const instagramUrlsCollection = {};
+const instagramUrlsCollection = new Map();
 
 function createPhotoElement(imageUrl, postUrl) {
 	return <div class="AdaptiveMediaOuterContainer">
@@ -12,13 +12,12 @@ function createPhotoElement(imageUrl, postUrl) {
 		</div>;
 }
 
-async function downloadInstagramPhoto(postUrl) {
+async function getInstagramPhotoUrl(postUrl) {
 	instagramUrlsCollection[postUrl] = '';
 	const imageRegex = /"display_url": ?"([^"]+)"/;
 	const response = await fetch(postUrl);
 	const html = await response.text();
 	const [, instagramImageUrl] = imageRegex.exec(html) || [];
-	instagramUrlsCollection[postUrl] = instagramImageUrl;
 	return instagramImageUrl;
 }
 
@@ -27,12 +26,13 @@ export default function () {
 		const tweetElement = $(instagramAnchor).parents('.js-tweet-text-container');
 		const instagramPostUrl = instagramAnchor.dataset.expandedUrl;
 		const hasMediaSibling = (tweetElement.siblings('.AdaptiveMediaOuterContainer').length > 0);
-		const hasImageDownload = (instagramUrlsCollection[instagramPostUrl] !== undefined);
+		const hasImageDownload = (instagramUrlsCollection.get(instagramPostUrl) !== undefined);
 		let imageUrl = '';
 		if (hasImageDownload === false) {
-			imageUrl = await downloadInstagramPhoto(instagramPostUrl);
+			imageUrl = await getInstagramPhotoUrl(instagramPostUrl);
+			instagramUrlsCollection.set(instagramPostUrl, imageUrl);
 		} else {
-			imageUrl = instagramUrlsCollection[instagramPostUrl];
+			imageUrl = instagramUrlsCollection.get(instagramPostUrl);
 		}
 		if (hasMediaSibling === false) {
 			const photoElement = createPhotoElement(imageUrl, instagramPostUrl);

@@ -1,5 +1,4 @@
 import domLoaded from 'dom-loaded';
-import elementReady from 'element-ready';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
@@ -46,8 +45,15 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
-function onSingleTweet(cb) {
-	elementReady('.permalink-tweet-container').then(cb);
+function onSingleTweetOpen(cb) {
+	observeEl('body', mutations => {
+		for (let i = 0; i < mutations.length; i++) {
+			if (mutations[i].target.classList.contains('overlay-enabled')) {
+				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
 }
 
 function onDomReady() {
@@ -62,11 +68,11 @@ function onDomReady() {
 			safely(hideListAddActivity);
 			safely(inlineInstagramPhotos);
 		});
+	});
 
-		onSingleTweet(() => {
-			safely(useNativeEmoji);
-			safely(inlineInstagramPhotos);
-		});
+	onSingleTweetOpen(() => {
+		safely(useNativeEmoji);
+		safely(inlineInstagramPhotos);
 	});
 }
 
