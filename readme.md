@@ -96,6 +96,7 @@ Once built, load it in the browser of your choice:
 ## Maintainers
 
 - [Sindre Sorhus](https://github.com/sindresorhus)
+- [Filipe Kiss](https://github.com/filipekiss)
 
 
 ## License
