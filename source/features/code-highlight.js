@@ -10,15 +10,15 @@ const supportedLang = {
 	javascript: new Set(['js']),
 	jsx: new Set(['react', 'reactjsx']),
 	bash: new Set(['zsh', 'sh', 'shell']),
-	git:[],
-	typescript:[],
-	html:[],
-	css:[],
-	scss:[]
+	git: [],
+	typescript: [],
+	html: [],
+	css: [],
+	scss: []
 };
 
 function correctLanguage(lang) {
-	if (supportedLang.hasOwnProperty(lang)) {
+	if (Object.keys(supportedLang).includes(lang)) {
 		return lang;
 	}
 	for (const key in supportedLang) {
