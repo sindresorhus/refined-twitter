@@ -24,7 +24,7 @@ function hideListAddActivity() {
 }
 
 function hideLikeTweets() {
-	$(".tweet-context .Icon--heartBadge").parents('.js-stream-item').css('display', 'none');
+	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').css('display', 'none');
 }
 
 async function init() {
