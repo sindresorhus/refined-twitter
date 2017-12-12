@@ -23,6 +23,10 @@ function hideListAddActivity() {
 	$('#stream-items-id .js-activity-list_member_added').css('display', 'none');
 }
 
+function hideLikeTweets() {
+	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').css('display', 'none');
+}
+
 async function init() {
 	await safeElementReady('body');
 
@@ -54,6 +58,7 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
+			safely(hideLikeTweets);
 		});
 	});
 }
