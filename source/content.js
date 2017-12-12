@@ -4,28 +4,29 @@ import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 
 function cleanNavbarDropdown() {
-	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().remove();
+	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
 }
 
 function useNativeEmoji() {
 	$('.Emoji--forText').replaceWith(function () {
 		return $(this).attr('alt');
 	});
+
 	$('.Emoji--forLinks').replaceWith(function () {
 		return $(this).siblings('span.visuallyhidden').text();
 	});
 }
 
 function hideFollowersActivity() {
-	$('#stream-items-id .js-activity-follow').css('display', 'none');
+	$('#stream-items-id .js-activity-follow').hide();
 }
 
 function hideListAddActivity() {
-	$('#stream-items-id .js-activity-list_member_added').css('display', 'none');
+	$('#stream-items-id .js-activity-list_member_added').hide();
 }
 
 function hideLikeTweets() {
-	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').css('display', 'none');
+	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
 
 async function init() {
