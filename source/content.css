@@ -80,5 +80,5 @@ Dashboard
 	pointer-events: none;
 }
 #dm_dialog-dialog {
-	pointer-events: unset;
+	pointer-events: auto;
 }
