@@ -74,3 +74,11 @@ Dashboard
 	float: unset !important;
 	margin: 0 auto !important;
 }
+
+/* Prevent DM Modal from closing when clicking the overlay */
+#dm_dialog {
+	pointer-events: none;
+}
+#dm_dialog-dialog {
+	pointer-events: auto;
+}
