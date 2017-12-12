@@ -6,19 +6,23 @@ import 'prismjs/components/prism-git';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-scss';
 
-const supportedLang = new Set(['javascript', 'jsx', 'bash', 'git', 'typescript', 'html', 'css', 'scss']);
-const aliases = {
+const supportedLang = {
 	javascript: new Set(['js']),
 	jsx: new Set(['react', 'reactjsx']),
-	bash: new Set(['zsh', 'sh', 'shell'])
+	bash: new Set(['zsh', 'sh', 'shell']),
+	git:[],
+	typescript:[],
+	html:[],
+	css:[],
+	scss:[]
 };
 
 function correctLanguage(lang) {
-	if (supportedLang.has(lang)) {
+	if (supportedLang.hasOwnProperty(lang)) {
 		return lang;
 	}
-	for (const key in aliases) {
-		if (aliases[key].has(lang)) {
+	for (const key in supportedLang) {
+		if (supportedLang[key].has && supportedLang[key].has(lang)) {
 			return key;
 		}
 	}
