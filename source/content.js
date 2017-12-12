@@ -1,5 +1,4 @@
 import domLoaded from 'dom-loaded';
-import elementReady from 'element-ready';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
@@ -73,10 +72,6 @@ function onDomReady() {
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
 			safely(hideLikeTweets);
-			safely(inlineInstagramPhotos);
-		});
-
-		onSingleTweet(() => {
 			safely(inlineInstagramPhotos);
 		});
 	});
