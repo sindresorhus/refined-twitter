@@ -52,8 +52,8 @@ function onNewTweets(cb) {
 
 function onSingleTweetOpen(cb) {
 	observeEl('body', mutations => {
-		for (let i = 0; i < mutations.length; i++) {
-			if (mutations[i].target.classList.contains('overlay-enabled')) {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('overlay-enabled')) {
 				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
 				break;
 			}
