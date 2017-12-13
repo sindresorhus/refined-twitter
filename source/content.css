@@ -87,8 +87,3 @@ Dashboard
 #dm_dialog-dialog {
 	pointer-events: auto;
 }
-
-/* Custom Inline Image Element */
-.AdaptiveMedia .refined-twitter_instagram-inline {
-	max-width: 100%
-}
