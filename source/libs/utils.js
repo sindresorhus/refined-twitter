@@ -44,5 +44,5 @@ export const observeEl = (el, listener, options = {childList: true}) => {
 export const isModalOpen = () => {
 	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
 	const isDMModalOpen = $('#dm_dialog').is(':visible');
-	return (hasPermalinkOverlay || isDMModalOpen);
+	return hasPermalinkOverlay || isDMModalOpen;
 };
