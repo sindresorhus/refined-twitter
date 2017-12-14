@@ -40,3 +40,9 @@ export const observeEl = (el, listener, options = {childList: true}) => {
 	observer.observe(el, options);
 	return observer;
 };
+
+export const domify = html => {
+	const div = document.createElement('div');
+	div.innerHTML = html;
+	return div;
+};

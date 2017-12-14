@@ -1,4 +1,5 @@
 import {h} from 'dom-chef';
+import {domify} from '../libs/utils';
 import prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-bash';
@@ -6,46 +7,43 @@ import 'prismjs/components/prism-git';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-scss';
 
-const supportedLang = {
-	javascript: new Set(['js']),
-	jsx: new Set(['react', 'reactjsx']),
-	bash: new Set(['zsh', 'sh', 'shell']),
-	git: [],
-	typescript: [],
-	html: [],
-	css: [],
-	scss: []
-};
+const supportedLang = new Set([
+	'javascript',
+	'jsx',
+	'bash',
+	'git',
+	'typescript',
+	'html',
+	'css',
+	'scss',
+]);
+
+const aliases = new Map([
+	['js', 'javascript'],
+	['shell', 'bash'],
+	['sh', 'bash'],
+	['zsh', 'bash']
+]);
 
 function correctLanguage(lang) {
-	if (Object.keys(supportedLang).includes(lang)) {
+	if (supportedLang.has(lang)) {
 		return lang;
 	}
-	for (const key in supportedLang) {
-		if (supportedLang[key].has && supportedLang[key].has(lang)) {
-			return key;
-		}
-	}
-}
-
-function string2dom(domString) {
-	const dom = document.createElement('div');
-	dom.innerHTML = domString;
-	return dom;
+	return aliases.get(lang);
 }
 
 export default function () {
 	const postsContent = $('.tweet-text');
 
 	postsContent.each((i, el) => {
-		const regex = /```(\w.*)([\s\S]+)```/g;
+		const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
 		const postContent = $(el).text();
-		const capturingGroup = regex.exec(postContent);
+		const capturingGroup = codeBlockRegex.exec(postContent);
 
 		if (capturingGroup && capturingGroup.length === 3) {
 			const code = capturingGroup[2];
 			const selectedLang = correctLanguage(capturingGroup[1].toLowerCase());
-			const tweetText = postContent.replace(regex, '');
+			const tweetText = postContent.replace(codeBlockRegex, '');
 
 			if (selectedLang) {
 				const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
@@ -58,7 +56,7 @@ export default function () {
 							</div>
 							<pre class={`language-${selectedLang}`}>
 								<code class={`language-${selectedLang}`}>
-									{string2dom(highlightedCode)}
+									{domify(highlightedCode)}
 								</code>
 							</pre>
 						</div>
