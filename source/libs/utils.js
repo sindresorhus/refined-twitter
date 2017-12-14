@@ -46,3 +46,9 @@ export const domify = html => {
 	div.innerHTML = html;
 	return div;
 };
+
+export const isModalOpen = () => {
+	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
+	const isDMModalOpen = $('#dm_dialog').is(':visible');
+	return hasPermalinkOverlay || isDMModalOpen;
+};
