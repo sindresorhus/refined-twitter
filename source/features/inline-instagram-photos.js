@@ -24,7 +24,12 @@ export default function () {
 	$('a.twitter-timeline-link[data-expanded-url*="//www.instagram.com').each(async (idx, instagramAnchor) => {
 		const tweetElement = $(instagramAnchor).parents('.js-tweet-text-container');
 		const instagramPostUrl = instagramAnchor.dataset.expandedUrl;
-		const hasMediaSibling = tweetElement.siblings('.AdaptiveMediaOuterContainer').length > 0;
+		const shouldInlinePhoto = tweetElement.attr('data-refined-twitter-inlined-instagram') === undefined;
+		if (shouldInlinePhoto) {
+			tweetElement.attr('data-refined-twitter-inlined-instagram', 'waiting');
+		} else {
+			return;
+		}
 		let imageUrl = '';
 		if (instagramUrls.has(instagramPostUrl) === false) {
 			imageUrl = await getInstagramPhotoUrl(instagramPostUrl);
@@ -32,9 +37,10 @@ export default function () {
 		} else {
 			imageUrl = instagramUrls.get(instagramPostUrl);
 		}
-		if (hasMediaSibling === false) {
+		if (shouldInlinePhoto) {
 			const photoElement = createPhotoElement(imageUrl, instagramPostUrl);
 			tweetElement.after(photoElement);
+			tweetElement.attr('data-refined-twitter-inlined-instagram', 'done');
 		}
 	});
 }
