@@ -1,6 +1,6 @@
 import {h} from 'dom-chef';
-import {domify} from '../libs/utils';
 import prism from 'prismjs';
+import {domify} from '../libs/utils';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-git';
@@ -15,7 +15,7 @@ const supportedLang = new Set([
 	'typescript',
 	'html',
 	'css',
-	'scss',
+	'scss'
 ]);
 
 const aliases = new Map([
