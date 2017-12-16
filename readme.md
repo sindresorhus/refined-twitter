@@ -18,6 +18,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 ## Highlights
 
 - Simplified and improved UI.
+- Hides promoted tweets.
 - Auto-loads new tweets in the stream if you're scrolled to the top. No more clicking `See 3 new Tweets`!
 - Fixes the file extension when saving images in tweets. No more `foo.jpg_large`!
 - Uses the system font.

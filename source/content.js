@@ -28,6 +28,10 @@ function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
 
+function hidePromotedTweets() {
+	$('.promoted-tweet').parent().remove();
+}
+
 async function init() {
 	await safeElementReady('body');
 
@@ -60,6 +64,7 @@ function onDomReady() {
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
 			safely(hideLikeTweets);
+			safely(hidePromotedTweets);
 		});
 	});
 }
