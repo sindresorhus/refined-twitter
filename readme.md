@@ -18,6 +18,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 ## Highlights
 
 - Simplified and improved UI.
+- Hides promoted tweets.
 - Auto-loads new tweets in the stream if you're scrolled to the top. No more clicking `See 3 new Tweets`!
 - Fixes the file extension when saving images in tweets. No more `foo.jpg_large`!
 - Uses the system font.
@@ -28,7 +29,6 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Removes the annoying suggestions in the search popover](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.
 - Prevents DM modal from closing when (accidentally) clicking outside the modal.
-- Hides promoted tweets.
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10). And press <kbd>Command/Ctrl</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 
