@@ -6,7 +6,11 @@
 	"manifest_version": 2,
 	"minimum_chrome_version": "62",
 	"permissions": [
-		"storage"
+		"storage",
+		"downloads",
+		"webRequest",
+		"webRequestBlocking",
+		"https://pbs.twimg.com/"
 	],
 	"icons": {
 		"128": "icon.png"
@@ -19,8 +23,7 @@
 		"scripts": [
 			"browser-polyfill.min.js",
 			"background.js"
-		],
-		"persistent": false
+		]
 	},
 	"content_scripts": [
 		{

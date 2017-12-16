@@ -19,6 +19,20 @@ body {
 	display: none !important;
 }
 
+/* Promote layers to fix repaints */
+#permalink-overlay,
+.RichEditor-tempTextArea {
+	will-change: transform;
+}
+
+/* Remove annoying suggestions in the Search popover */
+#typeahead-dropdown-1 .typeahead-topics {
+	display: none !important;
+}
+#typeahead-dropdown-1 .typeahead-topics + ul {
+	border: none !important;
+}
+
 
 /**
 
@@ -59,4 +73,12 @@ Dashboard
 #page-container .content-main {
 	float: unset !important;
 	margin: 0 auto !important;
+}
+
+/* Prevent DM Modal from closing when clicking the overlay */
+#dm_dialog {
+	pointer-events: none;
+}
+#dm_dialog-dialog {
+	pointer-events: auto;
 }
