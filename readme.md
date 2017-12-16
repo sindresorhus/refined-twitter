@@ -22,6 +22,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Auto-loads new tweets in the stream if you're scrolled to the top. No more clicking "See 3 new Tweets"!
 - Replaces the Twitter emoji with native ones.
 - Hides "Notifications" activity for new followers and being added to a list.
+- Hides promoted tweets.
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10).
 

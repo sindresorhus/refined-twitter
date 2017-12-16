@@ -6,8 +6,8 @@ import autoLoadNewTweets from './features/auto-load-new-tweets';
 // Add global for easier debugging
 window.$ = $;
 
-function cleanPromotedTweets() {
-	$('#stream-items-id .promoted-tweet').remove();
+function hidePromotedTweets() {
+	$('.promoted-tweet').parent().remove();
 }
 
 function cleanNavbarDropdown() {
@@ -59,7 +59,7 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
-			safely(cleanPromotedTweets);
+			safely(hidePromotedTweets);
 		});
 	});
 }
