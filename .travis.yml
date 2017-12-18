@@ -13,5 +13,4 @@ deploy:
     skip_cleanup: true
     script: npm run release
     on:
-      # Set to deploy on: cron with recent commits
       branch: master

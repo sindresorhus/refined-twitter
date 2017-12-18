@@ -40,3 +40,9 @@ export const observeEl = (el, listener, options = {childList: true}) => {
 	observer.observe(el, options);
 	return observer;
 };
+
+export const isModalOpen = () => {
+	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
+	const isDMModalOpen = $('#dm_dialog').is(':visible');
+	return hasPermalinkOverlay || isDMModalOpen;
+};

@@ -1,12 +1,12 @@
 {
 	"scripts": {
-		"test": "xo && BABEL_ENV=testing ava && run-s build",
+		"lint": "xo && stylelint source/*.css",
+		"test": "npm run lint && ava && npm run build",
 		"build": "webpack",
 		"watch": "webpack --watch",
 		"release:cws": "cd distribution && webstore upload --auto-publish",
-		"release": "run-s build update-version release:*",
-		"update-version": "VERSION=$(date -u +%y.%-m.%-d.%-H%M); echo $VERSION; dot-json distribution/manifest.json version $VERSION",
-		"can-release": "if [ \"$TRAVIS_EVENT_TYPE\" = cron ] && [ $(git rev-list -n 1 --since=\"26 hours ago\" master) ]; then echo :ship-it:; else false; fi"
+		"release": "run-s build update-version release:cws",
+		"update-version": "VERSION=$(date -u +%y.%-m.%-d.%-H%M); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
 	},
 	"dependencies": {
 		"dom-chef": "^3.0.0",
@@ -14,20 +14,20 @@
 		"element-ready": "^2.2.0",
 		"jquery": "^3.2.1",
 		"select-dom": "^4.1.1",
-		"webext-options-sync": "^0.12.0",
+		"webext-options-sync": "^0.13.0",
 		"webextension-polyfill": "^0.2.1"
 	},
 	"devDependencies": {
 		"ava": "*",
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
-		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
 		"babel-plugin-transform-react-jsx": "^6.24.1",
 		"chrome-webstore-upload-cli": "^1.0.0",
 		"copy-webpack-plugin": "^4.2.0",
 		"dot-json": "^1.0.3",
 		"npm-run-all": "^4.1.1",
-		"webext": "^1.9.1-with-submit.1",
+		"stylelint": "^8.3.1",
+		"stylelint-config-xo": "^0.4.0",
 		"webpack": "^3.10.0",
 		"xo": "*"
 	},
@@ -66,13 +66,20 @@
 					"useBuiltIns": true
 				}
 			]
-		],
-		"env": {
-			"testing": {
-				"plugins": [
-					"transform-es2015-modules-commonjs"
-				]
-			}
+		]
+	},
+	"stylelint": {
+		"extends": "stylelint-config-xo",
+		"rules": {
+			"declaration-no-important": null,
+			"property-no-vendor-prefix": null,
+			"no-descending-specificity": null,
+			"property-blacklist": null,
+			"selector-class-pattern": null,
+			"selector-max-class": null,
+			"rule-empty-line-before": null,
+			"at-rule-empty-line-before": null,
+			"selector-max-compound-selectors": null
 		}
 	}
 }

@@ -30,7 +30,7 @@ body {
 	display: none !important;
 }
 #typeahead-dropdown-1 .typeahead-topics + ul {
-	border: none !important;
+	border: 0 !important;
 }
 
 
@@ -71,13 +71,13 @@ Dashboard
 	width: unset !important;
 }
 #page-container .content-main {
-	float: unset !important;
 	margin: 0 auto !important;
+	float: unset !important;
 }
 
 /* Custom Inline Image Element */
 .AdaptiveMedia .refined-twitter_instagram-inline {
-	max-width: 100%
+	max-width: 100%;
 }
 
 /* Prevent DM Modal from closing when clicking the overlay */
