@@ -1,6 +1,7 @@
 import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
+import inlineInstagramPhotos from './features/inline-instagram-photos';
 import codeHighlight from './features/code-highlight';
 
 function cleanNavbarDropdown() {
@@ -29,6 +30,10 @@ function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
 
+function hidePromotedTweets() {
+	$('.promoted-tweet').parent().remove();
+}
+
 async function init() {
 	await safeElementReady('body');
 
@@ -50,6 +55,17 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
+function onSingleTweetOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('overlay-enabled')) {
+				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 
@@ -62,7 +78,14 @@ function onDomReady() {
 			safely(hideListAddActivity);
 			safely(codeHighlight);
 			safely(hideLikeTweets);
+			safely(inlineInstagramPhotos);
+			safely(hidePromotedTweets);
 		});
+	});
+
+	onSingleTweetOpen(() => {
+		safely(useNativeEmoji);
+		safely(inlineInstagramPhotos);
 	});
 }
 
