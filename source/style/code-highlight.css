@@ -31,8 +31,7 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 2em 1em 1em;
-	margin: .5em 0;
+	padding: 2.1em 1em 1em;
 	overflow: auto;
 	border-radius: 0.3em;
 	line-height: 0;
@@ -153,6 +152,7 @@ pre[class*="language-"] {
 	position: relative;
 	border-radius: 0.3em;
 	overflow: hidden;
+	font-size: 14px;
 }
 
 .refined-twitter_highlight-lang {
@@ -169,6 +169,5 @@ pre[class*="language-"] {
 	text-align: right;
 	color: #ffffff6e;
 	background: #ffffff12;
-	margin-top: 5px;
 	z-index: 1;
 }

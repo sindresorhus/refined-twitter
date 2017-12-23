@@ -85,6 +85,7 @@ function onDomReady() {
 
 	onSingleTweetOpen(() => {
 		safely(useNativeEmoji);
+		safely(codeHighlight);
 		safely(inlineInstagramPhotos);
 	});
 }
