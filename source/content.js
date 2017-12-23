@@ -1,6 +1,7 @@
 import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
+import inlineInstagramPhotos from './features/inline-instagram-photos';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -53,6 +54,17 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
+function onSingleTweetOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('overlay-enabled')) {
+				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 
@@ -64,8 +76,14 @@ function onDomReady() {
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
 			safely(hideLikeTweets);
+			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
 		});
+	});
+
+	onSingleTweetOpen(() => {
+		safely(useNativeEmoji);
+		safely(inlineInstagramPhotos);
 	});
 }
 
