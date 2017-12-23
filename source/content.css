@@ -75,6 +75,11 @@ Dashboard
 	float: unset !important;
 }
 
+/* Custom inline image element */
+.AdaptiveMedia .refined-twitter_instagram-inline {
+	max-width: 100%;
+}
+
 /* Prevent DM Modal from closing when clicking the overlay */
 #dm_dialog {
 	pointer-events: none;
