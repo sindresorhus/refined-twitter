@@ -23,16 +23,16 @@ async function getInstagramPhotoUrl(postUrl) {
 }
 
 export default function () {
-	$('a.twitter-timeline-link[data-expanded-url*="//www.instagram.com').each(async (idx, instagramAnchor) => {
+	$('.twitter-timeline-link[data-expanded-url*="//www.instagram.com').each(async (idx, instagramAnchor) => {
 		const tweetElement = $(instagramAnchor).parents('.js-tweet-text-container');
 		const instagramPostUrl = instagramAnchor.dataset.expandedUrl;
 		const shouldInlinePhoto = tweetElement.siblings('.AdaptiveMediaOuterContainer').length < 1;
 
-		if (shouldInlinePhoto) {
-			tweetElement.after(createPhotoContainer());
-		} else {
+		if (!shouldInlinePhoto) {
 			return;
 		}
+
+		tweetElement.after(createPhotoContainer());
 
 		let imageUrl = '';
 
