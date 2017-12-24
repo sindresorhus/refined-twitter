@@ -6,6 +6,11 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-git';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-diff';
+import 'prismjs/components/prism-ruby';
+import 'prismjs/components/prism-rust';
+import 'prismjs/components/prism-swift';
+import 'prismjs/components/prism-java';
 
 const supportedLang = new Set([
 	'javascript',
@@ -15,7 +20,12 @@ const supportedLang = new Set([
 	'typescript',
 	'html',
 	'css',
-	'scss'
+	'scss',
+	'diff',
+	'ruby',
+	'rust',
+	'swift',
+	'java'
 ]);
 
 const aliases = new Map([
@@ -25,7 +35,7 @@ const aliases = new Map([
 	['zsh', 'bash']
 ]);
 
-function correctLanguage(lang) {
+function pickLanguage(lang) {
 	if (supportedLang.has(lang)) {
 		return lang;
 	}
@@ -42,7 +52,7 @@ export default function () {
 
 		if (capturingGroup && capturingGroup.length === 3) {
 			const code = capturingGroup[2];
-			const selectedLang = correctLanguage(capturingGroup[1].toLowerCase());
+			const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
 			const tweetText = postContent.replace(codeBlockRegex, '');
 
 			if (selectedLang) {

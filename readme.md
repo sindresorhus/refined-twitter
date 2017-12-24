@@ -25,7 +25,6 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Replaces the Twitter emoji with native ones.
 - Uses the original image in tweet image galleries.
 - Syntax highlighting in code blocks with [PrismJS](http://prismjs.com)
-- [Removes the annoying suggestions in the search popover](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.

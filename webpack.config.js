@@ -14,7 +14,7 @@ module.exports = {
 		new CopyWebpackPlugin([{
 			from: '*',
 			context: 'source',
-			ignore: '*.js$'
+			ignore: '*.js'
 		}, {
 			from: 'style/*',
 			context: 'source'
