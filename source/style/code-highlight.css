@@ -1,10 +1,10 @@
 /* PrismJS 1.9.0
-http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+go+graphql+java+json+php+powershell+pug+python+jsx+scss+scala */
+http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+ruby+diff+go+graphql+java+json+php+powershell+pug+python+jsx+rust+scss+scala+swift+typescript */
 /**
-* okaidia theme for JavaScript, CSS and HTML
-* Loosely based on Monokai textmate theme by http://www.monokai.nl/
-* @author ocodia
-*/
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
 
 code[class*="language-"],
 pre[class*="language-"] {
