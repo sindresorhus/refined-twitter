@@ -16,6 +16,9 @@ module.exports = {
 			context: 'source',
 			ignore: '*.js'
 		}, {
+			from: 'style/*',
+			context: 'source'
+		}, {
 			from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js'
 		}, {
 			from: 'node_modules/jquery/dist/jquery.slim.min.js'

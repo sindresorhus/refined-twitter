@@ -32,7 +32,8 @@
 				"https://twitter.com/*"
 			],
 			"css": [
-				"content.css"
+				"style/content.css",
+				"style/code-highlight.css"
 			],
 			"js": [
 				"jquery.slim.min.js",
