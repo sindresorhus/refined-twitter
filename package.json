@@ -13,6 +13,7 @@
 		"dom-loaded": "^1.0.0",
 		"element-ready": "^2.2.0",
 		"jquery": "^3.2.1",
+		"prismjs": "^1.9.0",
 		"select-dom": "^4.1.1",
 		"webext-options-sync": "^0.13.0",
 		"webextension-polyfill": "^0.2.1"

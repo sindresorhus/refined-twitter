@@ -2,6 +2,7 @@ import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
+import codeHighlight from './features/code-highlight';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -75,6 +76,7 @@ function onDomReady() {
 			safely(useNativeEmoji);
 			safely(hideFollowersActivity);
 			safely(hideListAddActivity);
+			safely(codeHighlight);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
@@ -83,6 +85,7 @@ function onDomReady() {
 
 	onSingleTweetOpen(() => {
 		safely(useNativeEmoji);
+		safely(codeHighlight);
 		safely(inlineInstagramPhotos);
 	});
 }
