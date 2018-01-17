@@ -11,6 +11,7 @@ import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-rust';
 import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-python';
 
 const supportedLang = new Set([
 	'javascript',
@@ -25,7 +26,8 @@ const supportedLang = new Set([
 	'ruby',
 	'rust',
 	'swift',
-	'java'
+	'java',
+	'python'
 ]);
 
 const aliases = new Map([
