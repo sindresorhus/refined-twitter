@@ -34,7 +34,8 @@ const aliases = new Map([
 	['js', 'javascript'],
 	['shell', 'bash'],
 	['sh', 'bash'],
-	['zsh', 'bash']
+	['zsh', 'bash'],
+	['py', 'python']
 ]);
 
 function pickLanguage(lang) {
