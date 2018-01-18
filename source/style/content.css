@@ -94,7 +94,6 @@ Dashboard
 }
 
 /* Highlight Mention in stream */
-
 [data-mentioned-user-id] {
     position: relative;
     padding: 2px 5px 4px 5px;
