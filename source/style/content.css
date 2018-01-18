@@ -87,3 +87,8 @@ Dashboard
 #dm_dialog-dialog {
 	pointer-events: auto;
 }
+
+/* Custom spacing for replaced emoji */
+.refined-twitter_emoji {
+	letter-spacing: 0.5em;
+}

@@ -9,12 +9,17 @@ function cleanNavbarDropdown() {
 }
 
 function useNativeEmoji() {
+	const emojiWrap = emoji => `<span class="Emoji refined-twitter_emoji">${emoji}</span>`;
+
 	$('.Emoji--forText').replaceWith(function () {
-		return $(this).attr('alt');
+		return emojiWrap($(this).attr('alt'));
 	});
 
 	$('.Emoji--forLinks').replaceWith(function () {
-		return $(this).siblings('span.visuallyhidden').text();
+		const systemEmojiEl = $(this).next('span.visuallyhidden');
+		const emojiText = systemEmojiEl.text();
+		systemEmojiEl.remove();
+		return emojiWrap(emojiText);
 	});
 }
 
