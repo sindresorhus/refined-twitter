@@ -33,6 +33,23 @@ body {
 	border: 0 !important;
 }
 
+/* Highlight Mention in stream */
+[data-mentioned-user-id] {
+    position: relative;
+    padding: 2px 5px 4px 5px;
+}
+
+[data-mentioned-user-id]:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: currentColor;
+    border-radius: 20px;
+    opacity: 0.1;
+}
 
 /**
 
@@ -91,22 +108,4 @@ Dashboard
 /* Custom spacing for replaced emoji */
 .refined-twitter_emoji {
 	letter-spacing: 0.5em;
-}
-
-/* Highlight Mention in stream */
-[data-mentioned-user-id] {
-    position: relative;
-    padding: 2px 5px 4px 5px;
-}
-
-[data-mentioned-user-id]:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: currentColor;
-    border-radius: 20px;
-    opacity: 0.1;
 }
