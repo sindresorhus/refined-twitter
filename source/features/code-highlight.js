@@ -45,36 +45,40 @@ function pickLanguage(lang) {
 	return aliases.get(lang);
 }
 
-function cleanUpTweetText(tweetText, codeRegex, textRegex) {
-	const tweet_codeBlock = tweetText.match(codeRegex);
-	const _removeCodeBlock = tweetText.replace(codeRegex, '?@code@?');
-	const tweet_text = _removeCodeBlock.split('?@code@?');
+function cleanUpTweetText(tweet, codeRegex) {
+	const tweetCodeBlock = tweet.match(codeRegex);
+	const _removeCodeBlock = tweet.replace(codeRegex, '?@code@?');
+	const tweetText = _removeCodeBlock.split('?@code@?');
 
-	if (!tweet_codeBlock) return undefined;
+	if (!tweetCodeBlock) {
+		return undefined;
+	}
 
 	return {
 		code: {
-			lang: tweet_codeBlock[1],
-			text: tweet_codeBlock[2]
+			lang: tweetCodeBlock[1],
+			text: tweetCodeBlock[2]
 		},
-		before: tweet_text[0],
-		after: tweet_text[1]
-	}
+		before: tweetText[0],
+		after: tweetText[1]
+	};
 }
 
 export default function () {
 	const posts = $('.tweet-text');
 	const codeBlockRegex = /```(\w+)([\s\S]+)```/i;
-	const textRegex = /([\w\s\S]+)\?code\?\s?([\w\s\S]+)/i;
 
 	posts.each((i, el) => {
 		const postContent = $(el).text();
-		const tweet = cleanUpTweetText(postContent, codeBlockRegex, textRegex);
+		const tweet = cleanUpTweetText(postContent, codeBlockRegex);
 
 		if (tweet) {
 			const selectedLang = pickLanguage(tweet.code.lang.toLowerCase());
-			const highlightedCode = prism.highlight(tweet.code.text, prism.languages[selectedLang]);
+			if (!selectedLang) {
+				return;
+			}
 
+			const highlightedCode = prism.highlight(tweet.code.text, prism.languages[selectedLang]);
 			const updatedHtml = (
 				<div>
 					<p>{tweet.before}</p>
