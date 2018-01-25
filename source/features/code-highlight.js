@@ -46,28 +46,19 @@ function pickLanguage(lang) {
 }
 
 function cleanUpTweetText(tweetText, codeRegex, textRegex) {
-	const tweetText_codeBlock = tweetText.match(codeRegex);
-	const _removeCodeBlock = tweetText.replace(codeRegex, '?code?');
+	const tweet_codeBlock = tweetText.match(codeRegex);
+	const _removeCodeBlock = tweetText.replace(codeRegex, '?@code@?');
+	const tweet_text = _removeCodeBlock.split('?@code@?');
 
-	// resolve problems for this two var
-	const tweetText_before = _removeCodeBlock.replace(textRegex, "$1");
-	const tweetText_after = _removeCodeBlock.replace(textRegex, "$2");
-
-	console.log("tweetText_codeBlock:",tweetText_codeBlock)
-	console.log("")
-	console.log("tweetText_before:",tweetText_before)
-	console.log("")
-	console.log("tweetText_after:",tweetText_after)
-
-	if (!tweetText_codeBlock) return undefined;
+	if (!tweet_codeBlock) return undefined;
 
 	return {
 		code: {
-			lang: tweetText_codeBlock[1],
-			text: tweetText_codeBlock[2]
+			lang: tweet_codeBlock[1],
+			text: tweet_codeBlock[2]
 		},
-		before: tweetText_before,
-		after: tweetText_after
+		before: tweet_text[0],
+		after: tweet_text[1]
 	}
 }
 
@@ -78,16 +69,15 @@ export default function () {
 
 	posts.each((i, el) => {
 		const postContent = $(el).text();
-		const tweetText = cleanUpTweetText(postContent, codeBlockRegex, textRegex);
-		// console.log(tweetText)
+		const tweet = cleanUpTweetText(postContent, codeBlockRegex, textRegex);
 
-		if (tweetText) {
-			const selectedLang = pickLanguage(tweetText.code.lang.toLowerCase());
-			const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
+		if (tweet) {
+			const selectedLang = pickLanguage(tweet.code.lang.toLowerCase());
+			const highlightedCode = prism.highlight(tweet.code.text, prism.languages[selectedLang]);
 
 			const updatedHtml = (
 				<div>
-					<p>{tweetText.before}</p>
+					<p>{tweet.before}</p>
 					<div class="refined-twitter_highlight">
 						<div class="refined-twitter_highlight-lang">
 							{selectedLang}
@@ -98,7 +88,7 @@ export default function () {
 							</code>
 						</pre>
 					</div>
-					<p>{tweetText.after}</p>
+					<p>{tweet.after}</p>
 				</div>);
 			$(el).html(updatedHtml);
 		}
