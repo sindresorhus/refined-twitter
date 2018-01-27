@@ -39,16 +39,12 @@ body {
     padding: 2px 5px 4px 5px;
 }
 
-[data-mentioned-user-id]:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: currentColor;
-    border-radius: 20px;
-    opacity: 0.1;
+.tweet.mention4me {
+    background-color: rgba(var(--bgcolor-values), 0.1);
+}
+
+.tweet.mention4me:hover {
+    background-color: rgba(var(--bgcolor-values), 0.2);
 }
 
 /**

@@ -47,6 +47,16 @@ export const domify = html => {
 	return div;
 };
 
+export const getUsername = () => {
+	const username = document.querySelector(".DashUserDropdown-userInfo .username > b");
+
+	if (username) {
+		return username.innerText
+	}
+
+	return;
+};
+
 export const isModalOpen = () => {
 	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
 	const isDMModalOpen = $('#dm_dialog').is(':visible');
