@@ -39,12 +39,12 @@ body {
     padding: 2px 5px 4px 5px;
 }
 
-.tweet.mention4me {
-    background-color: rgba(var(--bgcolor-values), 0.1);
+.tweet.refined-twitter-mention {
+    background-color: rgba(var(--refinedtwitter-bgcolor-values), 0.1);
 }
 
-.tweet.mention4me:hover {
-    background-color: rgba(var(--bgcolor-values), 0.2);
+.tweet.refined-twitter-mention:hover {
+    background-color: rgba(var(--refinedtwitter-bgcolor-values), 0.2);
 }
 
 /**

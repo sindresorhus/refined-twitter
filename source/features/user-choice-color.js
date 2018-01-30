@@ -6,6 +6,6 @@ export default function () {
 		const bgColor = window.getComputedStyle(newTweetButton).backgroundColor;
 		const userChoiceColorValues = bgColor.match(/\((.*)\)/i)[1];
 
-		html[0].style.setProperty('--bgcolor-values', userChoiceColorValues);
+		html[0].style.setProperty('--refinedtwitter-bgcolor-values', userChoiceColorValues);
 	}
 }
