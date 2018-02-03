@@ -1,11 +1,11 @@
-export default function () {
+export default () => {
 	const html = document.getElementsByTagName('html');
-	const newTweetButton = document.getElementById('global-new-tweet-button');
+	const newTweetButton = document.querySelector('#global-new-tweet-button');
 
 	if (html && newTweetButton) {
 		const bgColor = window.getComputedStyle(newTweetButton).backgroundColor;
-		const userChoiceColorValues = bgColor.match(/\((.*)\)/i)[1];
+		const userChoiceColorValues = /\((.*)\)/i.exec(bgColor)[1];
 
-		html[0].style.setProperty('--refinedtwitter-bgcolor-values', userChoiceColorValues);
+		html[0].style.setProperty('--refined-twitter_bgcolor-values', userChoiceColorValues);
 	}
-}
+};

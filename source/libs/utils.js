@@ -49,10 +49,7 @@ export const domify = html => {
 
 export const getUsername = () => {
 	const username = document.querySelector('.DashUserDropdown-userInfo .username > b');
-
-	if (username) {
-		return username.innerText;
-	}
+	return username.textContent;
 };
 
 export const isModalOpen = () => {
