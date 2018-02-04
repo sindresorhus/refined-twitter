@@ -39,11 +39,11 @@ body {
     padding: 2px 5px 4px 5px;
 }
 
-.tweet.refined-twitter-mention {
+body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
     background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
 
-.tweet.refined-twitter-mention:hover {
+body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
     background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
 }
 
