@@ -45,37 +45,54 @@ function pickLanguage(lang) {
 	return aliases.get(lang);
 }
 
-export default function () {
-	const postsContent = $('.tweet-text');
+function highlightCode(md) {
+	const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
+	const capturingGroup = codeBlockRegex.exec(md);
 
-	postsContent.each((i, el) => {
-		const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
-		const postContent = $(el).text();
-		const capturingGroup = codeBlockRegex.exec(postContent);
+	if (capturingGroup && capturingGroup.length === 3) {
+		const code = capturingGroup[2];
+		const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
 
-		if (capturingGroup && capturingGroup.length === 3) {
-			const code = capturingGroup[2];
-			const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
-			const tweetText = postContent.replace(codeBlockRegex, '');
-
-			if (selectedLang) {
-				const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
-				const updatedHtml = (
-					<div>
-						<p>{tweetText}</p>
-						<div class="refined-twitter_highlight">
-							<div class="refined-twitter_highlight-lang">
-								{selectedLang}
-							</div>
-							<pre class={`language-${selectedLang}`}>
-								<code class={`language-${selectedLang}`}>
-									{domify(highlightedCode)}
-								</code>
-							</pre>
-						</div>
-					</div>);
-				$(el).html(updatedHtml);
-			}
+		if (selectedLang) {
+			const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
+			return (
+				<div class="refined-twitter_highlight">
+					<div class="refined-twitter_highlight-lang">
+						{selectedLang}
+					</div>
+					<pre class={`language-${selectedLang}`}>
+						<code class={`language-${selectedLang}`}>
+							{domify(highlightedCode)}
+						</code>
+					</pre>
+				</div>
+			);
 		}
+	} else {
+		return md;
+	}
+}
+function splitTextReducer(frag, text, index) {
+	if (index % 2) { // Code is always in odd positions
+		frag.append(highlightCode(text));
+	} else if (text.length > 0) {
+		frag.append(text);
+	}
+
+	return frag;
+}
+
+export default function () {
+	// Regex needs to be non-capturing ?: and to have the extra () to work with .split
+	const splittingRegex = /((?:```\w*[\s\S]+```))/g;
+	$('.tweet-text').each((i, el) => {
+		const tweetWithCode = el.textContent.split(splittingRegex);
+		if (tweetWithCode.length === 1) {
+			return;
+		}
+		const frag = el.textContent
+		.split(splittingRegex)
+		.reduce(splitTextReducer, new DocumentFragment());
+		$(el).html(frag);
 	});
 }
