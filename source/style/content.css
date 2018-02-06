@@ -92,3 +92,13 @@ Dashboard
 .refined-twitter_emoji {
 	letter-spacing: 0.5em;
 }
+
+/* Hide list-add activity */
+#stream-items-id .js-activity-list_member_added {
+	display: none;
+}
+
+/* Hide follow activity */
+#stream-items-id .js-activity-follow {
+	display: none;
+}
