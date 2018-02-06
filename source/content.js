@@ -8,17 +8,19 @@ function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
 }
 
+const handledClass = `refined-twitter--handled`;
 function useNativeEmoji() {
 	const emojiWrap = emoji => `<span class="Emoji refined-twitter_emoji">${emoji}</span>`;
 
-	$('.Emoji--forText').replaceWith(function () {
-		return emojiWrap($(this).attr('alt'));
+	$(`.Emoji--forText:not(.${handledClass})`).after(function () {
+		this.classList.add(handledClass);
+		return emojiWrap(this.alt);
 	});
 
-	$('.Emoji--forLinks').replaceWith(function () {
+	$(`.Emoji--forLinks:not(.${handledClass})`).after(function () {
+		this.classList.add(handledClass);
 		const systemEmojiEl = $(this).next('span.visuallyhidden');
 		const emojiText = systemEmojiEl.text();
-		systemEmojiEl.remove();
 		return emojiWrap(emojiText);
 	});
 }
