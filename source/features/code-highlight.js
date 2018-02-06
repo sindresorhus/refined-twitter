@@ -13,23 +13,6 @@ import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 
-const supportedLang = new Set([
-	'javascript',
-	'jsx',
-	'bash',
-	'git',
-	'typescript',
-	'html',
-	'css',
-	'scss',
-	'diff',
-	'ruby',
-	'rust',
-	'swift',
-	'java',
-	'python'
-]);
-
 const aliases = new Map([
 	['js', 'javascript'],
 	['shell', 'bash'],
@@ -39,10 +22,7 @@ const aliases = new Map([
 ]);
 
 function pickLanguage(lang) {
-	if (supportedLang.has(lang)) {
-		return lang;
-	}
-	return aliases.get(lang);
+	return aliases.get(lang) || lang;
 }
 
 function highlightCode(md) {
