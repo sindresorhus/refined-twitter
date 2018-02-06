@@ -27,30 +27,36 @@ function pickLanguage(lang) {
 
 function highlightCode(md) {
 	const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
-	const capturingGroup = codeBlockRegex.exec(md);
-
-	if (capturingGroup && capturingGroup.length === 3) {
-		const code = capturingGroup[2];
-		const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
-
-		if (selectedLang) {
-			const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
-			return (
-				<div class="refined-twitter_highlight">
-					<div class="refined-twitter_highlight-lang">
-						{selectedLang}
-					</div>
-					<pre class={`language-${selectedLang}`}>
-						<code class={`language-${selectedLang}`}>
-							{domify(highlightedCode)}
-						</code>
-					</pre>
-				</div>
-			);
-		}
-	} else {
+	const [, lang, code] = codeBlockRegex.exec(md) || [];
+	if (!code) {
 		return md;
 	}
+
+	const selectedLang = pickLanguage(lang.toLowerCase());
+	if (!selectedLang) {
+		return (
+			<pre class="refined-twitter_highlight language-txt">
+				<code class="language-txt">
+					{code}
+				</code>
+			</pre>
+		);
+	}
+
+	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
+
+	return (
+		<div class="refined-twitter_highlight">
+			<div class="refined-twitter_highlight-lang">
+				{selectedLang}
+			</div>
+			<pre class={`language-${selectedLang}`}>
+				<code class={`language-${selectedLang}`}>
+					{domify(highlightedCode)}
+				</code>
+			</pre>
+		</div>
+	);
 }
 function splitTextReducer(frag, text, index) {
 	if (index % 2) { // Code is always in odd positions
