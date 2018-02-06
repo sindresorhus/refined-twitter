@@ -2,7 +2,9 @@ import domLoaded from 'dom-loaded';
 import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
+import userChoiceColor from './features/user-choice-color';
 import codeHighlight from './features/code-highlight';
+import mentionHighlight from './features/mentions-highlight';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -68,10 +70,12 @@ function onDomReady() {
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
+		safely(userChoiceColor);
 
 		onNewTweets(() => {
 			safely(useNativeEmoji);
 			safely(codeHighlight);
+			safely(mentionHighlight);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
@@ -81,6 +85,7 @@ function onDomReady() {
 	onSingleTweetOpen(() => {
 		safely(useNativeEmoji);
 		safely(codeHighlight);
+		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
 	});
 }

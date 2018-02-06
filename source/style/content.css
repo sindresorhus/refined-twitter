@@ -33,6 +33,19 @@ body {
 	border: 0 !important;
 }
 
+/* Highlight your mentions in the stream */
+[data-mentioned-user-id] {
+    position: relative;
+    padding: 2px 5px 4px 5px;
+}
+
+body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
+    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
+}
+
+body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
+    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
+}
 
 /**
 
