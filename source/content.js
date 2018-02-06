@@ -23,14 +23,6 @@ function useNativeEmoji() {
 	});
 }
 
-function hideFollowersActivity() {
-	$('#stream-items-id .js-activity-follow').hide();
-}
-
-function hideListAddActivity() {
-	$('#stream-items-id .js-activity-list_member_added').hide();
-}
-
 function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
@@ -79,8 +71,6 @@ function onDomReady() {
 
 		onNewTweets(() => {
 			safely(useNativeEmoji);
-			safely(hideFollowersActivity);
-			safely(hideListAddActivity);
 			safely(codeHighlight);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
