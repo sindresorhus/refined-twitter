@@ -90,9 +90,7 @@ export default function () {
 		if (tweetWithCode.length === 1) {
 			return;
 		}
-		const frag = el.textContent
-		.split(splittingRegex)
-		.reduce(splitTextReducer, new DocumentFragment());
+		const frag = tweetWithCode.reduce(splitTextReducer, new DocumentFragment());
 		$(el).html(frag);
 	});
 }
