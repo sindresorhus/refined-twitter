@@ -25,6 +25,17 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
+function addLikeButtonNavbar() {
+	$('#global-actions').append(`
+		<li>
+			<a role="button" data-nav="favorites" href="/i/likes" class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" data-original-title="">
+				<span class="Icon Icon--heart Icon--large"></span>
+				<span class="text">Likes</span>
+			</a>
+		</li>
+	`);
+}
+
 function onSingleTweetOpen(cb) {
 	observeEl('body', mutations => {
 		for (const mutation of mutations) {
@@ -48,6 +59,7 @@ function init() {
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
+		addLikeButtonNavbar();
 
 		onNewTweets(() => {
 			safely(codeHighlight);
