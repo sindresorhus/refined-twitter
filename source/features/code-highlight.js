@@ -45,37 +45,56 @@ function pickLanguage(lang) {
 	return aliases.get(lang);
 }
 
+function cleanUpTweetText(tweet, codeRegex) {
+	const tweetCodeBlock = tweet.match(codeRegex);
+	const _removeCodeBlock = tweet.replace(codeRegex, '?@code@?');
+	const tweetText = _removeCodeBlock.split('?@code@?');
+
+	if (!tweetCodeBlock) {
+		return undefined;
+	}
+
+	return {
+		code: {
+			lang: tweetCodeBlock[1],
+			text: tweetCodeBlock[2]
+		},
+		before: tweetText[0],
+		after: tweetText[1]
+	};
+}
+
 export default function () {
-	const postsContent = $('.tweet-text');
+	const posts = $('.tweet-text');
+	const codeBlockRegex = /```(\w+)([\s\S]+)```/i;
 
-	postsContent.each((i, el) => {
-		const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
+	posts.each((i, el) => {
 		const postContent = $(el).text();
-		const capturingGroup = codeBlockRegex.exec(postContent);
+		const tweet = cleanUpTweetText(postContent, codeBlockRegex);
 
-		if (capturingGroup && capturingGroup.length === 3) {
-			const code = capturingGroup[2];
-			const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
-			const tweetText = postContent.replace(codeBlockRegex, '');
-
-			if (selectedLang) {
-				const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
-				const updatedHtml = (
-					<div>
-						<p>{tweetText}</p>
-						<div class="refined-twitter_highlight">
-							<div class="refined-twitter_highlight-lang">
-								{selectedLang}
-							</div>
-							<pre class={`language-${selectedLang}`}>
-								<code class={`language-${selectedLang}`}>
-									{domify(highlightedCode)}
-								</code>
-							</pre>
-						</div>
-					</div>);
-				$(el).html(updatedHtml);
+		if (tweet) {
+			const selectedLang = pickLanguage(tweet.code.lang.toLowerCase());
+			if (!selectedLang) {
+				return;
 			}
+
+			const highlightedCode = prism.highlight(tweet.code.text, prism.languages[selectedLang]);
+			const updatedHtml = (
+				<div>
+					<p>{tweet.before}</p>
+					<div class="refined-twitter_highlight">
+						<div class="refined-twitter_highlight-lang">
+							{selectedLang}
+						</div>
+						<pre class={`language-${selectedLang}`}>
+							<code class={`language-${selectedLang}`}>
+								{domify(highlightedCode)}
+							</code>
+						</pre>
+					</div>
+					<p>{tweet.after}</p>
+				</div>);
+			$(el).html(updatedHtml);
 		}
 	});
 }
