@@ -9,21 +9,6 @@ function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
 }
 
-function useNativeEmoji() {
-	const emojiWrap = emoji => `<span class="Emoji refined-twitter_emoji">${emoji}</span>`;
-
-	$('.Emoji--forText').replaceWith(function () {
-		return emojiWrap($(this).attr('alt'));
-	});
-
-	$('.Emoji--forLinks').replaceWith(function () {
-		const systemEmojiEl = $(this).next('span.visuallyhidden');
-		const emojiText = systemEmojiEl.text();
-		systemEmojiEl.remove();
-		return emojiWrap(emojiText);
-	});
-}
-
 function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
@@ -65,7 +50,6 @@ function init() {
 		safely(userChoiceColor);
 
 		onNewTweets(() => {
-			safely(useNativeEmoji);
 			safely(codeHighlight);
 			safely(mentionHighlight);
 			safely(hideLikeTweets);
@@ -75,7 +59,6 @@ function init() {
 	});
 
 	onSingleTweetOpen(() => {
-		safely(useNativeEmoji);
 		safely(codeHighlight);
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);

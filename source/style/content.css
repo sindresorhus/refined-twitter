@@ -35,16 +35,16 @@ body {
 
 /* Highlight your mentions in the stream */
 [data-mentioned-user-id] {
-    position: relative;
-    padding: 2px 5px 4px 5px;
+	position: relative;
+	padding: 2px 5px 4px 5px;
 }
 
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
-    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
+	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
 
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
-    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
+	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
 }
 
 /**
@@ -99,11 +99,6 @@ Dashboard
 }
 #dm_dialog-dialog {
 	pointer-events: auto;
-}
-
-/* Custom spacing for replaced emoji */
-.refined-twitter_emoji {
-	letter-spacing: 0.5em;
 }
 
 /* Hide list-add activity */

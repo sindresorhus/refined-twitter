@@ -22,7 +22,6 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Embeds the photo from Instagram links directly in the tweet.](https://user-images.githubusercontent.com/170270/34315380-12d52994-e77f-11e7-8e23-27b76aee4df2.png)
 - [Improves scrolling performance.](https://github.com/sindresorhus/refined-twitter/pull/14)
 - Hides "Liked" tweets in the stream.
-- Replaces the Twitter emoji with native ones.
 - [Syntax highlighting in code blocks.](https://github.com/sindresorhus/refined-twitter/issues/37)
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
