@@ -4,6 +4,7 @@ import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
 import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
+import addLikesButtonNavBar from './features/likes-button-navbar';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -25,17 +26,6 @@ function onNewTweets(cb) {
 	observeEl('#stream-items-id', cb);
 }
 
-function addLikeButtonNavbar() {
-	$('#global-actions').append(`
-		<li>
-			<a role="button" data-nav="favorites" href="/i/likes" class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" data-original-title="">
-				<span class="Icon Icon--heart Icon--large"></span>
-				<span class="text">Likes</span>
-			</a>
-		</li>
-	`);
-}
-
 function onSingleTweetOpen(cb) {
 	observeEl('body', mutations => {
 		for (const mutation of mutations) {
@@ -55,11 +45,11 @@ function init() {
 	document.documentElement.classList.add('refined-twitter');
 
 	safely(cleanNavbarDropdown);
+	safely(addLikesButtonNavBar);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
-		addLikeButtonNavbar();
 
 		onNewTweets(() => {
 			safely(codeHighlight);
