@@ -1,6 +1,6 @@
 import {h} from 'dom-chef';
 
-export default function () {
+export default () => {
 	// Exit if it already exists
 	if (document.querySelector('.refined-twitter_like-button')) {
 		return;
