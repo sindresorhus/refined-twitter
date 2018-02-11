@@ -27,6 +27,7 @@
 	},
 	"content_scripts": [
 		{
+			"run_at": "document_start",
 			"matches": [
 				"https://twitter.com/*"
 			],

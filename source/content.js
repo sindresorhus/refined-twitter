@@ -1,4 +1,5 @@
-import {observeEl, safely} from './libs/utils';
+import domLoaded from 'dom-loaded';
+import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
@@ -16,6 +17,19 @@ function hideLikeTweets() {
 
 function hidePromotedTweets() {
 	$('.promoted-tweet').parent().remove();
+}
+
+async function init() {
+	await safeElementReady('body');
+
+	if (document.body.classList.contains('logged-out')) {
+		return;
+	}
+
+	document.documentElement.classList.add('refined-twitter');
+
+	await domLoaded;
+	onDomReady();
 }
 
 function onRouteChange(cb) {
@@ -37,13 +51,7 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
-function init() {
-	if (document.body.classList.contains('logged-out')) {
-		return;
-	}
-
-	document.documentElement.classList.add('refined-twitter');
-
+function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(addLikesButtonNavBar);
 
