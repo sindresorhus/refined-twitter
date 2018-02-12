@@ -28,6 +28,8 @@ async function init() {
 
 	document.documentElement.classList.add('refined-twitter');
 
+	safely(addLikesButtonNavBar);
+
 	await domLoaded;
 	onDomReady();
 }
@@ -53,7 +55,6 @@ function onSingleTweetOpen(cb) {
 
 function onDomReady() {
 	safely(cleanNavbarDropdown);
-	safely(addLikesButtonNavBar);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);

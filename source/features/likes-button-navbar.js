@@ -1,6 +1,9 @@
 import {h} from 'dom-chef';
+import {safeElementReady} from '../libs/utils';
 
-export default () => {
+export default async () => {
+	await safeElementReady($('#global-actions'));
+
 	// Exit if it already exists
 	if (document.querySelector('.refined-twitter_like-button')) {
 		return;
@@ -14,4 +17,4 @@ export default () => {
 			</a>
 		</li>
 	);
-}
+};
