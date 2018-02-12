@@ -28,6 +28,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Hides "Notifications" activity for new followers and being added to a list.
 - Prevents DM modal from closing when (accidentally) clicking outside the modal.
 - Highlight your mentions in the stream
+- [Adds a `Likes` button to the main navbar](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10). And press <kbd>Command/Ctrl</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 

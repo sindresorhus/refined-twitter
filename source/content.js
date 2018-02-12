@@ -5,6 +5,7 @@ import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
 import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
+import addLikesButtonNavBar from './features/likes-button-navbar';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -26,6 +27,8 @@ async function init() {
 	}
 
 	document.documentElement.classList.add('refined-twitter');
+
+	safely(addLikesButtonNavBar);
 
 	await domLoaded;
 	onDomReady();
