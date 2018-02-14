@@ -3,11 +3,13 @@ import {h} from 'dom-chef';
 const instagramUrls = new Map();
 
 function createPhotoElement(imageUrl, postUrl) {
-	return <div class="AdaptiveMedia">
-				<a href={`${postUrl}`} target="_blank" rel="noopener">
-					<img class="refined-twitter_instagram-inline" src={`${imageUrl}`} />
-				</a>
-			</div>;
+	return (
+		<div class="AdaptiveMedia">
+			<a href={`${postUrl}`} target="_blank" rel="noopener">
+				<img class="refined-twitter_instagram-inline" src={`${imageUrl}`} />
+			</a>
+		</div>
+	);
 }
 
 function createPhotoContainer() {
