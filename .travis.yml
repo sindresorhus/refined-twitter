@@ -8,9 +8,4 @@ deploy:
     skip_cleanup: true
     script: npm run release
     on:
-      tags: true
-  - provider: script
-    skip_cleanup: true
-    script: npm run release
-    on:
       branch: master
