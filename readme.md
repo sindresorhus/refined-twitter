@@ -4,6 +4,8 @@
 
 We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
 
+**Discuss it on [Product Hunt](https://www.producthunt.com/posts/refined-twitter)** 🦄
+
 
 ## Install
 
