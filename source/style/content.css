@@ -26,10 +26,10 @@ body {
 }
 
 /* Remove annoying suggestions in the Search popover */
-#typeahead-dropdown-1 .typeahead-topics {
+.typeahead-topics {
 	display: none !important;
 }
-#typeahead-dropdown-1 .typeahead-topics + ul {
+.typeahead-topics + ul {
 	border: 0 !important;
 }
 
