@@ -110,3 +110,21 @@ Dashboard
 #stream-items-id .js-activity-follow {
 	display: none;
 }
+/* Hide follow activity */
+#stream-items-id .js-activity-follow {
+	display: none;
+}
+
+/* Remove big header from profile page */
+#page-outer .ProfileCanopy,
+#page-outer .ProfileCanopy-header {
+	height: 0;
+}
+
+#page-outer .ProfileCanopy-avatar {
+	position: static;
+}
+
+#page-outer .ProfileSidebar {
+	transform: translateY(120px);
+}
