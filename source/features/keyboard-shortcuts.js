@@ -45,7 +45,7 @@ export default async () => {
 	const initDataElement = document.querySelector('#init-data');
 	if (initDataElement) {
 		const initData = JSON.parse(initDataElement.value);
-		const updatedShortcuts = initData.keyboardShortcuts;
+		const updatedShortcuts = [...initData.keyboardShortcuts];
 		for (const [i, item] of updatedShortcuts.entries()) {
 			item.shortcuts = item.shortcuts.concat(customShortcuts[i].shortcuts);
 		}
