@@ -1,10 +1,11 @@
 const toggleNightMode = () => {
-	if (document.querySelector('.nightmode-toggle')) {
-		document.querySelector('.nightmode-toggle').click();
+	const nightmodeToggle = document.querySelector('.nightmode-toggle');
+	if (nightmodeToggle) {
+		nightmodeToggle.click();
 	}
 };
 
-export default async () => {
+export default () => {
 	const customShortcuts = [
 		{
 			name: 'Actions',
