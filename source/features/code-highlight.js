@@ -13,23 +13,6 @@ import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 
-const supportedLang = new Set([
-	'javascript',
-	'jsx',
-	'bash',
-	'git',
-	'typescript',
-	'html',
-	'css',
-	'scss',
-	'diff',
-	'ruby',
-	'rust',
-	'swift',
-	'java',
-	'python'
-]);
-
 const aliases = new Map([
 	['js', 'javascript'],
 	['shell', 'bash'],
@@ -39,43 +22,61 @@ const aliases = new Map([
 ]);
 
 function pickLanguage(lang) {
-	if (supportedLang.has(lang)) {
-		return lang;
+	return aliases.get(lang) || lang;
+}
+
+function highlightCode(md) {
+	const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
+	const [, lang, code] = codeBlockRegex.exec(md) || [];
+	if (!code) {
+		return md;
 	}
-	return aliases.get(lang);
+
+	const selectedLang = pickLanguage(lang.toLowerCase());
+	if (!selectedLang) {
+		return (
+			<pre class="refined-twitter_highlight language-txt">
+				<code class="language-txt">
+					{code}
+				</code>
+			</pre>
+		);
+	}
+
+	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
+
+	return (
+		<div class="refined-twitter_highlight">
+			<div class="refined-twitter_highlight-lang">
+				{selectedLang}
+			</div>
+			<pre class={`language-${selectedLang}`}>
+				<code class={`language-${selectedLang}`}>
+					{domify(highlightedCode)}
+				</code>
+			</pre>
+		</div>
+	);
+}
+function splitTextReducer(frag, text, index) {
+	if (index % 2) { // Code is always in odd positions
+		frag.append(highlightCode(text));
+	} else if (text.length > 0) {
+		frag.append(text);
+	}
+
+	return frag;
 }
 
 export default function () {
-	const postsContent = $('.tweet-text');
-
-	postsContent.each((i, el) => {
-		const codeBlockRegex = /```(\w*)([\s\S]+)```/g;
-		const postContent = $(el).text();
-		const capturingGroup = codeBlockRegex.exec(postContent);
-
-		if (capturingGroup && capturingGroup.length === 3) {
-			const code = capturingGroup[2];
-			const selectedLang = pickLanguage(capturingGroup[1].toLowerCase());
-			const tweetText = postContent.replace(codeBlockRegex, '');
-
-			if (selectedLang) {
-				const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
-				const updatedHtml = (
-					<div>
-						<p>{tweetText}</p>
-						<div class="refined-twitter_highlight">
-							<div class="refined-twitter_highlight-lang">
-								{selectedLang}
-							</div>
-							<pre class={`language-${selectedLang}`}>
-								<code class={`language-${selectedLang}`}>
-									{domify(highlightedCode)}
-								</code>
-							</pre>
-						</div>
-					</div>);
-				$(el).html(updatedHtml);
-			}
+	// Regex needs to be non-capturing ?: and to have the extra () to work with .split
+	const splittingRegex = /((?:```\w*[\s\S]+```\n?))/g;
+	$('.tweet-text').each((i, el) => {
+		const tweetWithCode = el.textContent.split(splittingRegex);
+		if (tweetWithCode.length === 1) {
+			return;
 		}
+		const frag = tweetWithCode.reduce(splitTextReducer, new DocumentFragment());
+		$(el).html(frag);
 	});
 }

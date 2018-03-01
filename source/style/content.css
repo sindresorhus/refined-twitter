@@ -26,25 +26,25 @@ body {
 }
 
 /* Remove annoying suggestions in the Search popover */
-#typeahead-dropdown-1 .typeahead-topics {
+#global-nav-search .typeahead-topics {
 	display: none !important;
 }
-#typeahead-dropdown-1 .typeahead-topics + ul {
+#global-nav-search .typeahead-topics + ul {
 	border: 0 !important;
 }
 
 /* Highlight your mentions in the stream */
 [data-mentioned-user-id] {
-    position: relative;
-    padding: 2px 5px 4px 5px;
+	position: relative;
+	padding: 2px 5px 4px 5px;
 }
 
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
-    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
+	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
 
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
-    background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
+	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
 }
 
 /**
@@ -101,7 +101,12 @@ Dashboard
 	pointer-events: auto;
 }
 
-/* Custom spacing for replaced emoji */
-.refined-twitter_emoji {
-	letter-spacing: 0.5em;
+/* Hide list-add activity */
+#stream-items-id .js-activity-list_member_added {
+	display: none;
+}
+
+/* Hide follow activity */
+#stream-items-id .js-activity-follow {
+	display: none;
 }

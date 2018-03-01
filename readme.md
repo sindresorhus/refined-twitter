@@ -4,6 +4,8 @@
 
 We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
 
+**Read the [blog post](https://blog.sindresorhus.com/refined-twitter-74038424fe2a) and discuss it on [Product Hunt](https://www.producthunt.com/posts/refined-twitter)**
+
 
 ## Install
 
@@ -22,15 +24,16 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Embeds the photo from Instagram links directly in the tweet.](https://user-images.githubusercontent.com/170270/34315380-12d52994-e77f-11e7-8e23-27b76aee4df2.png)
 - [Improves scrolling performance.](https://github.com/sindresorhus/refined-twitter/pull/14)
 - Hides "Liked" tweets in the stream.
-- Replaces the Twitter emoji with native ones.
 - [Syntax highlighting in code blocks.](https://github.com/sindresorhus/refined-twitter/issues/37)
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.
 - Prevents DM modal from closing when (accidentally) clicking outside the modal.
 - Highlight your mentions in the stream
+- [Adds a `Likes` button to the main navbar](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
+- Keyboard shortcut to toggle Night Mode (<kbd>Ctrl</kbd><kbd>m</kbd>).
 
-Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10). And press <kbd>Command/Ctrl</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
+Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Ctrl</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 
 <img src="media/screenshot.gif" width="1272">
 

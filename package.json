@@ -6,7 +6,7 @@
 		"watch": "webpack --watch",
 		"release:cws": "cd distribution && webstore upload --auto-publish",
 		"release": "run-s build update-version release:cws",
-		"update-version": "VERSION=$(date -u +%y.%-m.%-d.%-H%M); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
+		"update-version": "VERSION=$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
 	},
 	"dependencies": {
 		"dom-chef": "^3.0.0",
@@ -29,6 +29,7 @@
 		"npm-run-all": "^4.1.1",
 		"stylelint": "^8.3.1",
 		"stylelint-config-xo": "^0.4.0",
+		"utc-version": "^1.0.0",
 		"webpack": "^3.10.0",
 		"xo": "*"
 	},

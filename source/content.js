@@ -4,33 +4,11 @@ import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
 import codeHighlight from './features/code-highlight';
-import mentionHighlight from './features/mentions-highlight';
+import addLikesButtonNavBar from './features/likes-button-navbar';
+import keyboardShortcuts from './features/keyboard-shortcuts';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
-}
-
-function useNativeEmoji() {
-	const emojiWrap = emoji => `<span class="Emoji refined-twitter_emoji">${emoji}</span>`;
-
-	$('.Emoji--forText').replaceWith(function () {
-		return emojiWrap($(this).attr('alt'));
-	});
-
-	$('.Emoji--forLinks').replaceWith(function () {
-		const systemEmojiEl = $(this).next('span.visuallyhidden');
-		const emojiText = systemEmojiEl.text();
-		systemEmojiEl.remove();
-		return emojiWrap(emojiText);
-	});
-}
-
-function hideFollowersActivity() {
-	$('#stream-items-id .js-activity-follow').hide();
-}
-
-function hideListAddActivity() {
-	$('#stream-items-id .js-activity-list_member_added').hide();
 }
 
 function hideLikeTweets() {
@@ -49,6 +27,8 @@ async function init() {
 	}
 
 	document.documentElement.classList.add('refined-twitter');
+
+	safely(addLikesButtonNavBar);
 
 	await domLoaded;
 	onDomReady();
@@ -75,15 +55,13 @@ function onSingleTweetOpen(cb) {
 
 function onDomReady() {
 	safely(cleanNavbarDropdown);
+	safely(keyboardShortcuts);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 
 		onNewTweets(() => {
-			safely(useNativeEmoji);
-			safely(hideFollowersActivity);
-			safely(hideListAddActivity);
 			safely(codeHighlight);
 			safely(mentionHighlight);
 			safely(hideLikeTweets);
@@ -93,7 +71,6 @@ function onDomReady() {
 	});
 
 	onSingleTweetOpen(() => {
-		safely(useNativeEmoji);
 		safely(codeHighlight);
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
