@@ -110,3 +110,26 @@ Dashboard
 #stream-items-id .js-activity-follow {
 	display: none;
 }
+
+/* Center the nav widgets */
+.global-nav .container {
+	max-width: 820px !important;
+}
+@media screen and (max-width: 938px) {
+	.global-nav .container {
+		max-width: 590px !important;
+	}
+}
+
+/* Adjust pushstate spinner for the above nav max-width change */
+.pushstate-spinner {
+	position: absolute;
+	left: 0 !important;
+	margin-left: -40px !important;
+}
+@media screen and (max-width: 938px) {
+	.pushstate-spinner {
+		left: 43% !important;
+		margin-left: -10px !important;
+	}
+}
