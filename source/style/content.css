@@ -25,6 +25,13 @@ body {
 	will-change: transform;
 }
 
+/* Contain layout for better performance */
+.stream-item,
+.Gallery,
+.topbar {
+	contain: layout style; /* We don't contain `content` as it breaks fullscreening videos */
+}
+
 /* Remove annoying suggestions in the Search popover */
 #global-nav-search .typeahead-topics {
 	display: none !important;
