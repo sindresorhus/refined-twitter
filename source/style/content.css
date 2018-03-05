@@ -122,7 +122,7 @@ Dashboard
 .global-nav .container {
 	max-width: 820px !important;
 }
-@media screen and (max-width: 938px) {
+@media screen and (max-width: 936px) {
 	.global-nav .container {
 		max-width: 590px !important;
 	}
@@ -134,7 +134,7 @@ Dashboard
 	left: 0 !important;
 	margin-left: -40px !important;
 }
-@media screen and (max-width: 938px) {
+@media screen and (max-width: 936px) {
 	.pushstate-spinner {
 		left: 43% !important;
 		margin-left: -10px !important;
