@@ -7,6 +7,7 @@ import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
+import onDMDialogOpen, {getConversationId} from './features/preserve-text-messages';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -54,6 +55,30 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
+function onDMDelete() {
+	observeEl('body', async mutations => {
+		const savedMessages = await browser.storage.local.get();
+		const pendingRemoval = [];
+
+		for (const mutation of mutations) {
+			if (mutation.target.id === 'confirm_dialog') {
+				const conversationId = getConversationId();
+				$('#confirm_dialog_submit_button').on('click', () => {
+					for (const id in savedMessages) {
+						if (conversationId === id) {
+							pendingRemoval.push(browser.storage.local.remove(conversationId));
+						}
+					}
+				});
+
+				break;
+			}
+		}
+
+		await Promise.all(pendingRemoval);
+	}, {childList: true, subtree: true, attributes: true});
+}
+
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
@@ -76,6 +101,10 @@ function onDomReady() {
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
 	});
+
+	safely(onDMDialogOpen);
+	safely(onDMDelete);
 }
 
 init();
+
