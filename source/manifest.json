@@ -10,7 +10,8 @@
 		"downloads",
 		"webRequest",
 		"webRequestBlocking",
-		"https://pbs.twimg.com/"
+		"https://pbs.twimg.com/",
+		"declarativeContent"
 	],
 	"icons": {
 		"128": "icon.png"

@@ -24,3 +24,20 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 }, {
 	urls: ['https://pbs.twimg.com/media/*']
 }, ['blocking']);
+
+// https://stackoverflow.com/a/20856789/5106072
+browser.runtime.onInstalled.addListener(() => {
+	browser.declarativeContent.onPageChanged.removeRules(undefined, () => {
+		browser.declarativeContent.onPageChanged.addRules([{
+			conditions: [
+				new browser.declarativeContent.PageStateMatcher({
+					pageUrl: {
+						hostEquals: 'twitter.com',
+						schemes: ['https']
+					}
+				})
+			],
+			actions: [new browser.declarativeContent.ShowPageAction()]
+		}]);
+	});
+});
