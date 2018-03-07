@@ -38,6 +38,6 @@ browser.runtime.onInstalled.addListener(() => {
 				})
 			],
 			actions: [new browser.declarativeContent.ShowPageAction()]
-		}])
-	})
-})
+		}]);
+	});
+});
