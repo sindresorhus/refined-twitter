@@ -31,7 +31,7 @@ export default function () {
 		const text = contents.map(node => node.nodeValue || node);
 		text.splice(-2);	// Remove extraneous elements
 
-		const test = text.map(val => {
+		const frag = text.map(val => {
 			// Style the single backticks while ignoring the already styled multiline code blocks
 			if (isElement(val)) {
 				return val;
@@ -39,7 +39,7 @@ export default function () {
 			return val.split(splittingRegex).reduce(splitTextReducer, new DocumentFragment());
 		});
 
-		const flattened = Array.prototype.concat.apply([], test);
+		const flattened = Array.prototype.concat.apply([], frag);
 		$(el).html(flattened);
 	});
 }
