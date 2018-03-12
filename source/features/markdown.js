@@ -1,12 +1,15 @@
 import {h} from 'dom-chef';
 
 function styleInlineCode(md) {
-	console.log(md);
 	return (
 		<code class="refined_twitter_markdown">
 			{md}
 		</code>
 	);
+}
+
+function isElement(el) {
+	return el instanceof HTMLElement;
 }
 
 function splitTextReducer(frag, text, index) {
@@ -21,14 +24,22 @@ function splitTextReducer(frag, text, index) {
 
 export default function () {
 	const splittingRegex = /`(.*?)`/g;
+
 	$('.tweet-text').each((i, el) => {
-		const tweetWithBackticks = el.textContent.split(splittingRegex);
+		// Get everything in tweet
+		const contents = Object.values($(el).contents());
+		const text = contents.map(node => node.nodeValue || node);
+		text.splice(-2);	// Remove extraneous elements
 
-		if (tweetWithBackticks.length === 1) {
-			return;
-		}
+		const test = text.map(val => {
+			// Style the single backticks while ignoring the already styled multiline code blocks
+			if (isElement(val)) {
+				return val;
+			}
+			return val.split(splittingRegex).reduce(splitTextReducer, new DocumentFragment());
+		});
 
-		const frag = tweetWithBackticks.reduce(splitTextReducer, new DocumentFragment());
-		$(el).html(frag);
+		const flattened = Array.prototype.concat.apply([], test);
+		$(el).html(flattened);
 	});
 }
