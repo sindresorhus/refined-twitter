@@ -23,7 +23,7 @@ function splitTextReducer(frag, text, index) {
 }
 
 export default function () {
-	const splittingRegex = /`(.*?)`/g;
+	const splittingRegex = /`(.+)`/g;
 
 	$('.tweet-text').each((i, el) => {
 		// Get everything in tweet
