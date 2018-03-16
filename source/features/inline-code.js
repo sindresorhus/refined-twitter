@@ -13,7 +13,7 @@ function isElement(el) {
 }
 
 function splitTextReducer(frag, text, index) {
-	if (index % 2) { // Code is always in odd positions
+	if (index % 2 && text.length >= 1) { // Code is always in odd positions
 		frag.append(styleInlineCode(text));
 	} else if (text.length > 0) {
 		frag.append(text);
@@ -23,7 +23,7 @@ function splitTextReducer(frag, text, index) {
 }
 
 export default function () {
-	const splittingRegex = /`(.+)`/g;
+	const splittingRegex = /`(.*?)`/g;
 
 	$('.tweet-text').each((i, el) => {
 		// Get everything in tweet
