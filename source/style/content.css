@@ -115,7 +115,7 @@ Dashboard
 
 /* Center the nav widgets */
 .global-nav .container {
-	max-width: 820px !important;
+	max-width: 880px !important;
 }
 @media screen and (max-width: 936px) {
 	.global-nav .container {
