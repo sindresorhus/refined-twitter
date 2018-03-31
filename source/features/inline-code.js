@@ -2,7 +2,7 @@ import {h} from 'dom-chef';
 
 function styleInlineCode(md) {
 	return (
-		<code class="refined_twitter_markdown">
+		<code class="refined-twitter-markdown">
 			{md}
 		</code>
 	);
