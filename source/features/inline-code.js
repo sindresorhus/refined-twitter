@@ -29,7 +29,7 @@ export default function () {
 		// Get everything in tweet
 		const contents = Object.values($(el).contents());
 		const text = contents.map(node => node.nodeValue || node);
-		text.splice(-2);	// Remove extraneous elements
+		text.splice(-2); // Remove extraneous elements
 
 		const frag = text.map(val => {
 			// Style the single backticks while ignoring the already styled multiline code blocks
