@@ -33,8 +33,7 @@
 			],
 			"css": [
 				"style/content.css",
-				"style/code-highlight.css",
-				"style/markdown.css"
+				"style/code-highlight.css"
 			],
 			"js": [
 				"jquery.slim.min.js",
