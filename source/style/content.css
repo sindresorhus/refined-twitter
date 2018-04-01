@@ -135,3 +135,12 @@ Dashboard
 		margin-left: -10px !important;
 	}
 }
+
+/* Style text in backticks */
+code.refined-twitter_markdown {
+	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	background-color: rgba(27, 31, 35, 0.05);
+	padding: 0.1em 0.4em;
+	margin: 0;
+	font-size: 90%;
+}
