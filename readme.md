@@ -52,7 +52,7 @@ This doesn't necessarily limit you from manually disabling functionality that is
 
 ## Contribute
 
-Suggestions and pull requests are highly encouraged! 
+Suggestions and pull requests are highly encouraged!
 
 In order to make modifications to the extension you'd need to run it locally.
 
