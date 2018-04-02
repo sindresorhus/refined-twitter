@@ -64,7 +64,7 @@ function onDomReady() {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 		safely(disableCustomColors);
-		
+
 		onNewTweets(() => {
 			safely(codeHighlight);
 			safely(mentionHighlight);
