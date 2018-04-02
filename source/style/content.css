@@ -144,3 +144,12 @@ code.refined-twitter_markdown {
 	margin: 0;
 	font-size: 90%;
 }
+
+/* Move dropdown menu to the right */
+.DashUserDropdown {
+	transform: translateX(145px);
+}
+
+.dropdown-caret {
+	transform: translateX(-145px);
+}
