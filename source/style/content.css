@@ -25,6 +25,13 @@ body {
 	will-change: transform;
 }
 
+/* Contain layout for better performance */
+.stream-item,
+.Gallery,
+.topbar {
+	contain: layout style; /* We don't contain `content` as it breaks fullscreening videos */
+}
+
 /* Remove annoying suggestions in the Search popover */
 #global-nav-search .typeahead-topics {
 	display: none !important;
@@ -34,11 +41,6 @@ body {
 }
 
 /* Highlight your mentions in the stream */
-[data-mentioned-user-id] {
-	position: relative;
-	padding: 2px 5px 4px 5px;
-}
-
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
@@ -109,4 +111,36 @@ Dashboard
 /* Hide follow activity */
 #stream-items-id .js-activity-follow {
 	display: none;
+}
+
+/* Center the nav widgets */
+.global-nav .container {
+	max-width: 880px !important;
+}
+@media screen and (max-width: 936px) {
+	.global-nav .container {
+		max-width: 590px !important;
+	}
+}
+
+/* Adjust pushstate spinner for the above nav max-width change */
+.pushstate-spinner {
+	position: absolute;
+	left: 0 !important;
+	margin-left: -40px !important;
+}
+@media screen and (max-width: 936px) {
+	.pushstate-spinner {
+		left: 43% !important;
+		margin-left: -10px !important;
+	}
+}
+
+/* Style text in backticks */
+code.refined-twitter_markdown {
+	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	background-color: rgba(27, 31, 35, 0.05);
+	padding: 0.1em 0.4em;
+	margin: 0;
+	font-size: 90%;
 }

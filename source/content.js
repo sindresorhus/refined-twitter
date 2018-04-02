@@ -7,6 +7,7 @@ import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
+import renderInlineCode from './features/inline-code';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -68,6 +69,7 @@ function onDomReady() {
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
+			safely(renderInlineCode);
 		});
 	});
 
@@ -75,6 +77,7 @@ function onDomReady() {
 		safely(codeHighlight);
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
+		safely(renderInlineCode);
 	});
 }
 
