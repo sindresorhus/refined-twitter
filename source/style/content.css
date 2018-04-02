@@ -154,6 +154,8 @@ code.refined-twitter_markdown {
 .ProfileCanopy-avatar,
 .ProfileSidebar--withLeftAlignment {
 	transform: translateY(130px);
+	position: relative;
+	z-index: 3;
 }
 
 /* Remove white border and add shadow to profile picture */
