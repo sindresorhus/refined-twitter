@@ -62,7 +62,8 @@ function onDomReady() {
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
-
+		safely(disableCustomColors);
+		
 		onNewTweets(() => {
 			safely(codeHighlight);
 			safely(mentionHighlight);
