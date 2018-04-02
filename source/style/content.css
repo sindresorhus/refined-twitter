@@ -144,3 +144,14 @@ code.refined-twitter_markdown {
 	margin: 0;
 	font-size: 90%;
 }
+
+/* Remove big header from profile page */
+#page-outer .ProfileCanopy,
+#page-outer .ProfileCanopy-header {
+	height: 0;
+}
+
+.ProfileCanopy-avatar,
+.ProfileSidebar--withLeftAlignment {
+	transform: translateY(130px);
+}
