@@ -146,16 +146,24 @@ code.refined-twitter_markdown {
 }
 
 /* Remove big header from profile page */
-#page-outer .ProfileCanopy,
-#page-outer .ProfileCanopy-header {
-	height: 0;
+.ProfileCanopy-avatar {
+	bottom: -160px !important;
 }
 
-.ProfileCanopy-avatar,
 .ProfileSidebar--withLeftAlignment {
 	transform: translateY(130px);
 	position: relative;
 	z-index: 3;
+}
+
+.ProfileCanopy-navBar > .AppContainer {
+	position: relative;
+}
+
+.ProfileCanopy,
+.ProfileCanopy-header,
+.ProfileCanopy--large {
+	height: 0 !important;
 }
 
 /* Remove white border and add shadow to profile picture */
