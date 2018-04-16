@@ -150,6 +150,6 @@ code.refined-twitter_markdown {
 	transform: translateX(145px);
 }
 
-.dropdown-caret {
+.DashUserDropdown .dropdown-caret {
 	transform: translateX(-145px);
 }
