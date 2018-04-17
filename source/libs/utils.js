@@ -56,3 +56,5 @@ export const isModalOpen = () => {
 };
 
 export const isProfilePage = () => document.body.classList.contains('ProfilePage');
+
+export const isOwnProfilePage = () => isProfilePage() && document.body.classList.contains(`user-style-${getUsername()}`);
