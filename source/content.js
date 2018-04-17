@@ -59,11 +59,11 @@ function onSingleTweetOpen(cb) {
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
-	safely(disableCustomColors);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
+		safely(disableCustomColors);
 
 		onNewTweets(() => {
 			safely(codeHighlight);

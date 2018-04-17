@@ -1,8 +1,9 @@
 import {isProfilePage, getUsername} from '../libs/utils';
 
 export default () => {
-	if (isProfilePage()) {
-		const userStyles = document.getElementById(`user-style-${getUsername()}`);
+	const targetStyle = `user-style-${getUsername()}`;
+	if (isProfilePage() && !document.body.classList.contains(targetStyle)) {
+		const userStyles = document.getElementById(targetStyle);
 		document.body.append(userStyles);
 	}
 };
