@@ -75,9 +75,10 @@ Dashboard
 	display: none !important;
 }
 
-/* Remove sidebars */
-.dashboard-left,
-.dashboard-right {
+/* Remove sidebars only if we are not
+   on a Twitter list */
+#page-container:not(.wrapper-list) .dashboard-left,
+#page-container:not(.wrapper-list) .dashboard-right {
 	display: none !important;
 }
 
