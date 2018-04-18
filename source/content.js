@@ -8,6 +8,7 @@ import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
 import renderInlineCode from './features/inline-code';
+import disableCustomColors from './features/disable-custom-colors';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -62,6 +63,7 @@ function onDomReady() {
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
+		safely(disableCustomColors);
 
 		onNewTweets(() => {
 			safely(codeHighlight);
