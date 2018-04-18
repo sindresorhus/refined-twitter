@@ -111,6 +111,7 @@ This is reusing the name from the [original Refined Twitter](https://github.com/
 
 - [Sindre Sorhus](https://github.com/sindresorhus)
 - [Filipe Kiss](https://github.com/filipekiss)
+- [Jorge Gonzalez](https://github.com/jorgegonzalez)
 
 
 ## License
