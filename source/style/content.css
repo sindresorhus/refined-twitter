@@ -75,8 +75,8 @@ Dashboard
 	display: none !important;
 }
 
-/* Remove sidebars only if we are not
-   on a Twitter list */
+/* Remove sidebars */
+/* The `:not(.wrapper-list)` part filters out Twitter lists because we don't want to hide the sidebars there */
 #page-container:not(.wrapper-list) .dashboard-left,
 #page-container:not(.wrapper-list) .dashboard-right {
 	display: none !important;
