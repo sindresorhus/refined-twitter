@@ -145,6 +145,39 @@ code.refined-twitter_markdown {
 	font-size: 90%;
 }
 
+/* Remove big header from profile page */
+.ProfileCanopy-avatar {
+	bottom: -160px !important;
+}
+
+.ProfileSidebar--withLeftAlignment {
+	transform: translateY(130px);
+	position: relative;
+	z-index: 3;
+}
+
+.ProfileCanopy-navBar > .AppContainer {
+	position: relative;
+}
+
+.ProfileCanopy,
+.ProfileCanopy-header,
+.ProfileCanopy--large {
+	height: 0 !important;
+}
+
+/* Remove white border and add shadow to profile picture */
+.ProfileCanopy-avatar {
+	padding: 5px;
+	border-radius: 100%;
+}
+
+.ProfileAvatar,
+.ProfileAvatarEditing {
+	border: none !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.36);
+}
+
 /* Move dropdown menu to the right */
 .DashUserDropdown {
 	transform: translateX(145px);

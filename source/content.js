@@ -56,6 +56,11 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
+function removeProfileHeader() {
+	$('.ProfileCanopy-header .ProfileCanopy-avatar').appendTo('.ProfileCanopy-inner .AppContainer');
+	$('.ProfileCanopy-header').remove();
+}
+
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
@@ -64,6 +69,7 @@ function onDomReady() {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 		safely(disableCustomColors);
+    safely(removeProfileHeader);
 
 		onNewTweets(() => {
 			safely(codeHighlight);

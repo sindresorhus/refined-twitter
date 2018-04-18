@@ -34,6 +34,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Keyboard shortcut to toggle Night Mode (<kbd>Alt</kbd><kbd>m</kbd>).
 - [Adds Markdown-like styling of `text wrapped in backticks`](https://user-images.githubusercontent.com/12901172/38168571-d9bd82ea-351d-11e8-9858-0d7c8993cdd3.png)
 - Uses your personal color theme on all profiles.
+- Hides the header image on profile pages.
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Alt</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 
