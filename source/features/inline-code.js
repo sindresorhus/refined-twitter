@@ -1,11 +1,7 @@
 import {h} from 'dom-chef';
 
 function styleInlineCode(md) {
-	return (
-		<code class="refined-twitter_markdown">
-			{md}
-		</code>
-	);
+	return <code class="refined-twitter_markdown">{md}</code>;
 }
 
 function isElement(el) {
@@ -13,7 +9,8 @@ function isElement(el) {
 }
 
 function splitTextReducer(frag, text, index) {
-	if (index % 2 && text.length >= 1) { // Code is always in odd positions
+	if (index % 2 && text.length >= 1) {
+		// Code is always in odd positions
 		frag.append(styleInlineCode(text));
 	} else if (text.length > 0) {
 		frag.append(text);
@@ -24,8 +21,12 @@ function splitTextReducer(frag, text, index) {
 
 export default function () {
 	const splittingRegex = /`(.*?)`/g;
+	const styledClassName = 'refined-twitter_monospaced-styled';
 
 	$('.tweet-text').each((i, el) => {
+		if ($(el).hasClass(styledClassName)) {
+			return;
+		}
 		// Get everything in tweet
 		const contents = Object.values($(el).contents());
 		const text = contents.map(node => node.nodeValue || node);
@@ -36,10 +37,13 @@ export default function () {
 			if (isElement(val)) {
 				return val;
 			}
-			return val.split(splittingRegex).reduce(splitTextReducer, new DocumentFragment());
+			return val
+				.split(splittingRegex)
+				.reduce(splitTextReducer, new DocumentFragment());
 		});
 
 		const flattened = Array.prototype.concat.apply([], frag);
 		$(el).html(flattened);
+		$(el).addClass(styledClassName);
 	});
 }
