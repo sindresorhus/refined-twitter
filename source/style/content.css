@@ -189,7 +189,7 @@ code.refined-twitter_markdown {
 }
 
 /* Plugin-generated div that display the alternative text of an image */
-.refined-twitter_alt {
+.refined-twitter_image-alt {
 	position:absolute;
 	top:0; bottom:auto; right:0; left:0;
 	width:100%;
