@@ -74,8 +74,7 @@ function onDomReady() {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 		safely(disableCustomColors);
-		safely(imageAlternatives);
-    safely(removeProfileHeader);
+		safely(removeProfileHeader);
 
 		onNewTweets(() => {
 			safely(codeHighlight);
@@ -84,6 +83,7 @@ function onDomReady() {
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
 			safely(renderInlineCode);
+			safely(imageAlternatives);
 		});
 	});
 
@@ -92,6 +92,7 @@ function onDomReady() {
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
 		safely(renderInlineCode);
+		safely(imageAlternatives);
 	});
 }
 
