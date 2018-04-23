@@ -187,3 +187,16 @@ code.refined-twitter_markdown {
 .DashUserDropdown .dropdown-caret {
 	transform: translateX(-145px);
 }
+
+/* Plugin-generated div that display the alternative text of an image */
+.refined-twitter_alt {
+	position:absolute;
+	top:0; bottom:auto; right:0; left:0;
+	width:100%;
+	z-index:999999;
+	background-color:rgba(0,0,0,.75);
+	color:#fff;
+	box-sizing:border-box;
+	padding:1em 2em;
+	font-size:calc(1em + .25vw);
+}

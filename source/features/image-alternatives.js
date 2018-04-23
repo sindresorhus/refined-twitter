@@ -1,24 +1,21 @@
-import {h} from 'dom-chef';
-import {safeElementReady} from '../libs/utils';
-
 export default async () => {
-	const imgContainers = document.querySelectorAll('.AdaptiveMedia > div > div > div');
+	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer');
 
-	for (let i = 0; i < imgContainers.length; i++) {
+	for (let imgContainer of imgContainers) {
 		// Exit if it already exists
-		if (document.querySelector('div.refined-twitter_alt')) {
+		if (imgContainer.querySelector('.refined-twitter_alt')) {
 			return;
 		}
 
-        var imgs = imgContainers[i].getElementsByTagName('img');
-        for (let j = 0; j < imgs.length; j++) {
-			let imgAlt = imgs[j].getAttribute('alt');
+		const imgs = imgContainer.querySelectorAll('img');
+		for (let img of imgs) {
 
+			let imgAlt = img.getAttribute('alt');
 			if(imgAlt) {
 				var altDiv = document.createElement('div');
 				altDiv.className = 'refined-twitter_alt';
-				altDiv.innerText = imgAlt,
-				imgs[j].parentNode.insertBefore(altDiv, imgs[j].nextSibling)
+				altDiv.textContent = imgAlt;
+				img.parentNode.prepend(altDiv);
 			}
 		}
 	}
