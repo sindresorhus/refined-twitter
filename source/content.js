@@ -61,6 +61,17 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
+function onGalleryItemOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('gallery-enabled') ) {
+				observeEl('.Gallery-media', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
 function removeProfileHeader() {
 	$('.ProfileCanopy-header .ProfileCanopy-avatar').appendTo('.ProfileCanopy-inner .AppContainer');
 	$('.ProfileCanopy-header').remove();
@@ -92,6 +103,10 @@ function onDomReady() {
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
 		safely(renderInlineCode);
+		safely(imageAlternatives);
+	});
+
+	onGalleryItemOpen(() => {
 		safely(imageAlternatives);
 	});
 }

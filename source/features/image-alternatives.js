@@ -1,5 +1,5 @@
 export default async () => {
-	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer');
+	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer, .Gallery-media');
 
 	for (const imgContainer of imgContainers) {
 		// Exit if it already exists
