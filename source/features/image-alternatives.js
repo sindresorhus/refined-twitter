@@ -15,10 +15,15 @@ export default async () => {
 				continue;
 			}
 
+			imgContainer.classList.add("refined-twitter_image-alt_container");
+			imgContainer.parentNode.classList.add("refined-twitter_image-alt_parent-container");
+
 			var altDiv = document.createElement('div');
 			altDiv.className = 'refined-twitter_image-alt';
 			altDiv.textContent = imgAlt;
 			img.parentNode.prepend(altDiv);
+
+			img.classList.add("refined-twitter_image-alt_img")
 		}
 	}
 };

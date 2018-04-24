@@ -196,3 +196,14 @@ code.refined-twitter_markdown {
 	font-size: 1rem;
 	line-height: 1.5;
 }
+.refined-twitter_image-alt_img {
+	top: 0 !important;
+	position: relative !important;
+}
+.refined-twitter_image-alt_container {
+	position: relative !important;
+}
+.refined-twitter_image-alt_parent-container {
+	padding-top: 0 !important;
+}
+
