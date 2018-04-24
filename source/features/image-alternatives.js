@@ -3,7 +3,7 @@ export default async () => {
 
 	for (const imgContainer of imgContainers) {
 		// Exit if it already exists
-		if (imgContainer.querySelector('.refined-twitter_image-alt')) {
+		if (imgContainer.classList.contains('refined-twitter_image-alt')) {
 			continue;
 		}
 
@@ -15,15 +15,15 @@ export default async () => {
 				continue;
 			}
 
-			imgContainer.classList.add("refined-twitter_image-alt_container");
-			imgContainer.parentNode.classList.add("refined-twitter_image-alt_parent-container");
+			imgContainer.classList.add('refined-twitter_image-alt_container');
+			imgContainer.parentNode.classList.add('refined-twitter_image-alt_parent-container');
 
 			var altDiv = document.createElement('div');
 			altDiv.className = 'refined-twitter_image-alt';
 			altDiv.textContent = imgAlt;
 			img.parentNode.prepend(altDiv);
 
-			img.classList.add("refined-twitter_image-alt_img")
+			img.classList.add('refined-twitter_image-alt_img');
 		}
 	}
 };
