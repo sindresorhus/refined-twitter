@@ -1,12 +1,10 @@
-import { debug } from "util";
-
 export default async () => {
 	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer, .Gallery-media');
 
 	for (const imgContainer of imgContainers) {
-		debugger;
 		// Exit if it already exists
-		if (imgContainer.classList.contains('refined-twitter_image-alt_container')) {
+		// Test on content because a same container can be reused (Gallery)
+		if (imgContainer.querySelector('.refined-twitter_image-alt')) {
 			continue;
 		}
 
@@ -19,7 +17,10 @@ export default async () => {
 			}
 
 			imgContainer.classList.add('refined-twitter_image-alt_container');
-			imgContainer.parentNode.classList.add('refined-twitter_image-alt_parent-container');
+
+			if (imgContainer.classList.contains('AdaptiveMedia-photoContainer')) {
+				imgContainer.parentNode.classList.add('refined-twitter_image-alt_parent-container');
+			}
 
 			const altDiv = document.createElement('div');
 			altDiv.className = 'refined-twitter_image-alt';

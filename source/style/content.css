@@ -198,6 +198,7 @@ code.refined-twitter_markdown {
 }
 .refined-twitter_image-alt_img {
 	top: 0 !important;
+	margin-top: 0 !important;
 	position: relative !important;
 }
 .refined-twitter_image-alt_container {
