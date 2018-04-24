@@ -64,7 +64,7 @@ function onSingleTweetOpen(cb) {
 function onGalleryItemOpen(cb) {
 	observeEl('body', mutations => {
 		for (const mutation of mutations) {
-			if (mutation.target.classList.contains('gallery-enabled') ) {
+			if (mutation.target.classList.contains('gallery-enabled')) {
 				observeEl('.Gallery-media', cb, {attributes: true, subtree: true});
 				break;
 			}
