@@ -48,8 +48,12 @@ function onNewTweets(cb) {
 function onSingleTweetOpen(cb) {
 	observeEl('body', mutations => {
 		for (const mutation of mutations) {
-			if (mutation.target.classList.contains('overlay-enabled')) {
+			const {classList} = mutation.target;
+			if (classList.contains('overlay-enabled')) {
 				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
+				break;
+			} else if (classList.contains('modal-enabled')) {
+				observeEl('#global-tweet-dialog', cb, {attributes: true, subtree: true});
 				break;
 			}
 		}
