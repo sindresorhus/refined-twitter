@@ -2,6 +2,8 @@
 
 > Browser extension that simplifies the Twitter interface and adds useful features
 
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo) [![Gitter](https://badges.gitter.im/join_chat.svg)](https://gitter.im/refined-twitter/Lobby)
+
 We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
 
 **Read the [blog post](https://blog.sindresorhus.com/refined-twitter-74038424fe2a) and discuss it on [Product Hunt](https://www.producthunt.com/posts/refined-twitter)**
