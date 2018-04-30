@@ -190,10 +190,11 @@ code.refined-twitter_markdown {
 
 /* Plugin-generated div that display the alternative text of an image */
 .refined-twitter_image-alt {
-	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
-	color: #fff;
-	padding: 1rem;
-	font-size: 1rem;
+	background-color: #fff;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	color: #14171a;
+	padding: 0.8rem;
+	font-size: 0.9rem;
 	line-height: 1.5;
 }
 .refined-twitter_image-alt_img {
