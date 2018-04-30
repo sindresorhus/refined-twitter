@@ -54,3 +54,7 @@ export const isModalOpen = () => {
 	const isDMModalOpen = $('#dm_dialog').is(':visible');
 	return hasPermalinkOverlay || isDMModalOpen;
 };
+
+export const isProfilePage = () => document.body.classList.contains('ProfilePage');
+
+export const isOwnProfilePage = () => isProfilePage() && document.body.classList.contains(`user-style-${getUsername()}`);

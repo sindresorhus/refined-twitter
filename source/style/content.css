@@ -41,11 +41,6 @@ body {
 }
 
 /* Highlight your mentions in the stream */
-[data-mentioned-user-id] {
-	position: relative;
-	padding: 2px 5px 4px 5px;
-}
-
 body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
@@ -81,8 +76,9 @@ Dashboard
 }
 
 /* Remove sidebars */
-.dashboard-left,
-.dashboard-right {
+/* The `:not(.wrapper-list)` part filters out Twitter lists because we don't want to hide the sidebars there */
+#page-container:not(.wrapper-list) .dashboard-left,
+#page-container:not(.wrapper-list) .dashboard-right {
 	display: none !important;
 }
 
@@ -120,9 +116,9 @@ Dashboard
 
 /* Center the nav widgets */
 .global-nav .container {
-	max-width: 820px !important;
+	max-width: 880px !important;
 }
-@media screen and (max-width: 938px) {
+@media screen and (max-width: 936px) {
 	.global-nav .container {
 		max-width: 590px !important;
 	}
@@ -134,9 +130,60 @@ Dashboard
 	left: 0 !important;
 	margin-left: -40px !important;
 }
-@media screen and (max-width: 938px) {
+@media screen and (max-width: 936px) {
 	.pushstate-spinner {
 		left: 43% !important;
 		margin-left: -10px !important;
 	}
+}
+
+/* Style text in backticks */
+code.refined-twitter_markdown {
+	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	background-color: rgba(27, 31, 35, 0.05);
+	padding: 0.1em 0.4em;
+	margin: 0;
+	font-size: 90%;
+}
+
+/* Remove big header from profile page */
+.ProfileCanopy-avatar {
+	bottom: -160px !important;
+}
+
+.ProfileSidebar--withLeftAlignment {
+	transform: translateY(130px);
+	position: relative;
+	z-index: 3;
+}
+
+.ProfileCanopy-navBar > .AppContainer {
+	position: relative;
+}
+
+.ProfileCanopy,
+.ProfileCanopy-header,
+.ProfileCanopy--large {
+	height: 0 !important;
+}
+
+/* Remove white border and add shadow to profile picture */
+.ProfileCanopy-avatar {
+	padding: 5px;
+	border-radius: 100%;
+}
+
+.ProfileAvatar,
+.ProfileAvatarEditing {
+	border: none !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.36);
+}
+
+/* Move dropdown menu to the right */
+.DashUserDropdown {
+	transform: translateX(145px);
+}
+
+.DashUserDropdown .dropdown-caret {
+	transform: translateX(-145px);
 }

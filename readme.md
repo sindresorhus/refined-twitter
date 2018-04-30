@@ -2,6 +2,8 @@
 
 > Browser extension that simplifies the Twitter interface and adds useful features
 
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo) [![Gitter](https://badges.gitter.im/join_chat.svg)](https://gitter.im/refined-twitter/Lobby)
+
 We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
 
 **Read the [blog post](https://blog.sindresorhus.com/refined-twitter-74038424fe2a) and discuss it on [Product Hunt](https://www.producthunt.com/posts/refined-twitter)**
@@ -22,18 +24,21 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Fixes the file extension when saving images in tweets. No more `foo.jpg_large`!
 - Uses the system font.
 - [Embeds the photo from Instagram links directly in the tweet.](https://user-images.githubusercontent.com/170270/34315380-12d52994-e77f-11e7-8e23-27b76aee4df2.png)
-- Improves performance. [1](https://github.com/sindresorhus/refined-twitter/pull/14) [2](https://github.com/sindresorhus/refined-twitter/commit/23897e251d2bc8d59526129ce54c7a5bf1ef884c)
+- Improves performance. <sup>[1](https://github.com/sindresorhus/refined-twitter/pull/14)</sup> <sup>[2](https://github.com/sindresorhus/refined-twitter/commit/23897e251d2bc8d59526129ce54c7a5bf1ef884c)</sup>
 - Hides "Liked" tweets in the stream.
 - [Syntax highlighting in code blocks.](https://github.com/sindresorhus/refined-twitter/issues/37)
+- [Adds Markdown-like styling of `text wrapped in backticks`.](https://user-images.githubusercontent.com/12901172/38168571-d9bd82ea-351d-11e8-9858-0d7c8993cdd3.png)
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.
 - Prevents DM modal from closing when (accidentally) clicking outside the modal.
-- Highlight your mentions in the stream
-- [Adds a `Likes` button to the main navbar](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
-- Keyboard shortcut to toggle Night Mode (<kbd>Ctrl</kbd><kbd>m</kbd>).
+- Highlight your mentions in the stream.
+- [Adds a `Likes` button to the main navbar.](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
+- Keyboard shortcut to toggle Night Mode (<kbd>Alt</kbd><kbd>m</kbd>).
+- Uses your personal color theme on all profiles.
+- Hides the header image on profile pages.
 
-Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Ctrl</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
+Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Alt</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 
 <img src="media/screenshot.gif" width="1272">
 
@@ -78,7 +83,7 @@ Once built, load it in the browser of your choice:
 				<li>Open <code>chrome://extensions</code>
 				<li>Check the <strong>Developer mode</strong> checkbox
 				<li>Click on the <strong>Load unpacked extension</strong> button
-				<li>Select the folder <code>refined-twitter/extension</code>
+				<li>Select the folder <code>refined-twitter/distribution</code>
 			</ol>
 		</td>
 		<td width="50%">
@@ -108,6 +113,7 @@ This is reusing the name from the [original Refined Twitter](https://github.com/
 
 - [Sindre Sorhus](https://github.com/sindresorhus)
 - [Filipe Kiss](https://github.com/filipekiss)
+- [Jorge Gonzalez](https://github.com/jorgegonzalez)
 
 
 ## License

@@ -13,7 +13,7 @@ export default () => {
 			shortcuts: [
 				{
 					keys: [
-						'Ctrl',
+						'Alt',
 						'm'
 					],
 					description: 'Toggle Night Mode'
@@ -35,7 +35,8 @@ export default () => {
 	document.addEventListener('keydown', event => {
 		const keyName = event.key;
 		switch (keyName) {
-			case event.ctrlKey && 'm':
+			case 'µ':
+			case event.altKey && 'm':
 				toggleNightMode();
 				break;
 			default:
