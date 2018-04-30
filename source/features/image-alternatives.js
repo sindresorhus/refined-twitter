@@ -19,13 +19,26 @@ export default async () => {
 			imgContainer.classList.add('refined-twitter_image-alt_container');
 
 			if (imgContainer.classList.contains('AdaptiveMedia-photoContainer')) {
-				imgContainer.parentNode.classList.add('refined-twitter_image-alt_parent-container');
+				const ancestor1 = imgContainer.parentNode;
+				ancestor1.classList.add('refined-twitter_image-alt_photocontainer');
+				if (ancestor1.parentNode.classList.contains('AdaptiveMedia-container')) {
+					const ancestor2 = ancestor1.parentNode;
+					if(ancestor2.parentNode.classList.contains('is-square'))
+					ancestor2.parentNode.classList.add('refined-twitter_image-alt_ancestor-not-square');
+				}
 			}
 
 			const altDiv = document.createElement('div');
-			altDiv.className = 'refined-twitter_image-alt';
 			altDiv.textContent = imgAlt;
-			img.parentNode.prepend(altDiv);
+
+			if(imgContainer.classList.contains('Gallery-media')) {
+				altDiv.className = 'refined-twitter_image-alt refined-twitter_image-alt_top';
+				img.parentNode.prepend(altDiv);
+			}
+			else {
+				altDiv.className = 'refined-twitter_image-alt refined-twitter_image-alt_bottom';
+				img.parentNode.append(altDiv);
+			}
 
 			img.classList.add('refined-twitter_image-alt_img');
 		}
