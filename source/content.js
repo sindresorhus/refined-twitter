@@ -7,7 +7,7 @@ import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
-import onDMDialogOpen, {getConversationId} from './features/preserve-text-messages';
+import {onDMDialogOpen, onDMDelete} from './features/preserve-text-messages';
 import renderInlineCode from './features/inline-code';
 import disableCustomColors from './features/disable-custom-colors';
 
@@ -60,29 +60,6 @@ function onSingleTweetOpen(cb) {
 		}
 	}, {attributes: true});
 }
-
-function onDMDelete() {
-	observeEl('body', async mutations => {
-		const savedMessages = await browser.storage.local.get();
-		const pendingRemoval = [];
-
-		for (const mutation of mutations) {
-			if (mutation.target.id === 'confirm_dialog') {
-				const conversationId = getConversationId();
-				$('#confirm_dialog_submit_button').on('click', () => {
-					for (const id in savedMessages) {
-						if (conversationId === id) {
-							pendingRemoval.push(browser.storage.local.remove(conversationId));
-						}
-					}
-				});
-
-				break;
-			}
-		}
-
-		await Promise.all(pendingRemoval);
-	}, {childList: true, subtree: true, attributes: true});
 
 function removeProfileHeader() {
 	$('.ProfileCanopy-header .ProfileCanopy-avatar').appendTo('.ProfileCanopy-inner .AppContainer');

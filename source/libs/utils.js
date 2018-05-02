@@ -58,3 +58,28 @@ export const isModalOpen = () => {
 export const isProfilePage = () => document.body.classList.contains('ProfilePage');
 
 export const isOwnProfilePage = () => isProfilePage() && document.body.classList.contains(`user-style-${getUsername()}`);
+
+// LOCALSTORAGE UTILITIES
+export const getFromLocalStorage = value => {
+	try {
+		return browser.storage.local.get(value);
+	} catch (e) {
+		console.error(`Error while fetching ${value ? JSON.stringify(value, null, 2) : 'everything'}: ${e}`);
+	}
+};
+
+export const removeFromLocalStorage = async value => {
+	try {
+		await browser.storage.local.remove(value);
+	} catch (e) {
+		console.error(`Error in removing ${value ? JSON.stringify(value, null, 2) : 'everything'} from local storage `);
+	}
+};
+
+export const setToLocalStorage = async value => {
+	try {
+		await browser.storage.local.set(value);
+	} catch (e) {
+		console.error(`Error in storing ${JSON.stringify(value, null, 2)} to local storage: ${e}`);
+	}
+};
