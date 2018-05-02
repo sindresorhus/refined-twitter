@@ -1,8 +1,9 @@
 import debounce from 'lodash.debounce';
+import pick from 'lodash.pick';
+
 import {
 	observeEl,
 	getFromLocalStorage,
-	removeFromLocalStorage,
 	setToLocalStorage
 } from '../libs/utils';
 
@@ -23,19 +24,30 @@ export async function onDMDialogOpen() {
 			}
 		}
 
+		/** If Direct message modal is not open (hence also when it gets closed); */
 		if (!DMDialogOpen) {
-			const savedMessages = await getFromLocalStorage();
+			const {messages: savedMessages} = await getFromLocalStorage('messages');
 
-			const idsOfMgsToRemove = Object.keys(savedMessages)
-				.filter(id => isEmptyMsgInput(savedMessages[id]));
+			if (!savedMessages) {
+				return;
+			}
 
-			removeFromLocalStorage(idsOfMgsToRemove);
+			// Select messages which are not empty
+			const idsOfMgsToSave = Object.keys(savedMessages)
+				.filter(id => !isEmptyMsgInput(savedMessages[id]));
+
+			// Empty messages are discarded before re write to local storage
+			const updatedMessages = {
+				messages: pick(savedMessages, idsOfMgsToSave)
+			};
+
+			setToLocalStorage(updatedMessages);
 		}
 	}, {attributes: true});
 }
 
 function onDMOpen() {
-	const conversationOptions = {
+	const DMOpenMutationOptions = {
 		attributes: true,
 		attributeFilter: ['class']
 	};
@@ -55,35 +67,52 @@ function onDMOpen() {
 			}
 			break;
 		}
-	}, conversationOptions);
+	}, DMOpenMutationOptions);
 }
 
+/** When someone deletes the message; remove it from localstorage */
 export function onDMDelete() {
+	const DMDeleteMutationOptions = {
+		childList: true,
+		subtree: true,
+		attributes: true
+	};
+
 	observeEl('body', async mutations => {
-		const savedMessages = await getFromLocalStorage();
-		const pendingRemoval = [];
+		const {messages: savedMessages} = await getFromLocalStorage('messages');
+
+		if (!savedMessages) {
+			return;
+		}
 
 		for (const mutation of mutations) {
 			if (mutation.target.id === 'confirm_dialog') {
 				const conversationId = getConversationId();
 				$('#confirm_dialog_submit_button').on('click', () => {
-					savedMessages
-						.filter(id => conversationId === id)
-						.forEach(() => {
-              pendingRemoval.push(browser.storage.local.remove(conversationId));
-						});
+					// Get all the ids of messages that are not being deleted
+					const idsOfMsgToReSave = Object.keys(savedMessages)
+						.filter(id => id !== conversationId);
+
+					const updatedMessages = {
+						messages: pick(savedMessages, idsOfMsgToReSave)
+					};
+
+					setToLocalStorage(updatedMessages);
 				});
 
 				break;
 			}
 		}
-
-		await Promise.all(pendingRemoval);
-	}, {childList: true, subtree: true, attributes: true});
+	}, DMDeleteMutationOptions);
 }
 
 async function fetchStoredMessage(conversationId, messageContainer) {
-	const {[conversationId]: savedMessage} = await getFromLocalStorage(conversationId);
+	const {messages: savedMessages} = await getFromLocalStorage('messages');
+	if (!savedMessages) {
+		return;
+	}
+	const {[conversationId]: savedMessage} = savedMessages;
+
 	if (savedMessage && !isEmptyMsgInput(savedMessage)) {
     messageContainer.empty();
     messageContainer.append(savedMessage);
@@ -92,7 +121,7 @@ async function fetchStoredMessage(conversationId, messageContainer) {
 }
 
 function onMessageChange(messageContainer) {
-	const messageOptions = {
+	const messageMutationOptions = {
 		childList: true,
 		subtree: true,
 		characterData: true
@@ -101,14 +130,18 @@ function onMessageChange(messageContainer) {
 	observeEl(DMTextBoxSelector, debounce(async () => {
 		const conversationId = getConversationId();
 		const currentMessage = messageContainer.html();
-		const message = {
-			[conversationId]: currentMessage
+
+		// Read the messages to merge them to the latest
+		const {messages: savedMessages} = await getFromLocalStorage('messages');
+
+		const updatedMessages = {
+			messages: Object.assign(savedMessages || {}, {[conversationId]: currentMessage})
 		};
 
 		if (DMDialogOpen) {
-      setToLocalStorage(message);
+      setToLocalStorage(updatedMessages);
 		}
-	}, 150), messageOptions);
+	}, 150), messageMutationOptions);
 }
 
 // See: https://gist.github.com/al3x-edge/1010364

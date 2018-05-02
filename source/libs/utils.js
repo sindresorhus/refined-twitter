@@ -68,14 +68,6 @@ export const getFromLocalStorage = value => {
 	}
 };
 
-export const removeFromLocalStorage = async value => {
-	try {
-		await browser.storage.local.remove(value);
-	} catch (e) {
-		console.error(`Error in removing ${value ? JSON.stringify(value, null, 2) : 'everything'} from local storage `);
-	}
-};
-
 export const setToLocalStorage = async value => {
 	try {
 		await browser.storage.local.set(value);
