@@ -1,165 +1,99 @@
-import debounce from 'lodash.debounce';
 import pick from 'lodash.pick';
 
 import {
-	observeEl,
 	getFromLocalStorage,
 	setToLocalStorage
 } from '../libs/utils';
 
-let DMDialogOpen = false;
-
-const DMModalSelector = '#dm_dialog';
-const DMConversationSelector = '.DMConversation';
-const DMTextBoxSelector = '#tweet-box-dm-conversation';
-
-export async function onDMDialogOpen() {
-	observeEl(DMModalSelector, async mutations => {
-		for (const mutation of mutations) {
-			if (mutation.target.style.display === 'none') {
-				DMDialogOpen = false;
-			} else {
-				DMDialogOpen = true;
-				onDMOpen();
-			}
-		}
-
-		/** If Direct message modal is not open (hence also when it gets closed); */
-		if (!DMDialogOpen) {
-			const {messages: savedMessages} = await getFromLocalStorage('messages');
-
-			if (!savedMessages) {
-				return;
-			}
-
-			// Select messages which are not empty
-			const idsOfMgsToSave = Object.keys(savedMessages)
-				.filter(id => !isEmptyMsgInput(savedMessages[id]));
-
-			// Empty messages are discarded before re write to local storage
-			const updatedMessages = {
-				messages: pick(savedMessages, idsOfMgsToSave)
-			};
-
-			setToLocalStorage(updatedMessages);
-		}
-	}, {attributes: true});
-}
-
-function onDMOpen() {
-	const DMOpenMutationOptions = {
-		attributes: true,
-		attributeFilter: ['class']
-	};
-
-	observeEl(DMConversationSelector, mutations => {
-		let conversationId;
-		let messageContainer;
-
-		for (const mutation of mutations) {
-			if (mutation.target.classList.contains('DMActivity--open')) {
-				conversationId = getConversationId();
-				messageContainer = $(DMTextBoxSelector);
-				if (conversationId) {
-          fetchStoredMessage(conversationId, messageContainer);
-          onMessageChange(messageContainer);
-				}
-			}
-			break;
-		}
-	}, DMOpenMutationOptions);
-}
-
-/** When someone deletes the message; remove it from localstorage */
-export function onDMDelete() {
-	const DMDeleteMutationOptions = {
-		childList: true,
-		subtree: true,
-		attributes: true
-	};
-
-	observeEl('body', async mutations => {
-		const {messages: savedMessages} = await getFromLocalStorage('messages');
-
-		if (!savedMessages) {
-			return;
-		}
-
-		for (const mutation of mutations) {
-			if (mutation.target.id === 'confirm_dialog') {
-				const conversationId = getConversationId();
-				$('#confirm_dialog_submit_button').on('click', () => {
-					// Get all the ids of messages that are not being deleted
-					const idsOfMsgToReSave = Object.keys(savedMessages)
-						.filter(id => id !== conversationId);
-
-					const updatedMessages = {
-						messages: pick(savedMessages, idsOfMsgToReSave)
-					};
-
-					setToLocalStorage(updatedMessages);
-				});
-
-				break;
-			}
-		}
-	}, DMDeleteMutationOptions);
-}
-
-async function fetchStoredMessage(conversationId, messageContainer) {
+export async function removeMessages(refinedMsgIdsMaker) {
 	const {messages: savedMessages} = await getFromLocalStorage('messages');
+
 	if (!savedMessages) {
 		return;
 	}
-	const {[conversationId]: savedMessage} = savedMessages;
 
-	if (savedMessage && !isEmptyMsgInput(savedMessage)) {
-    messageContainer.empty();
-    messageContainer.append(savedMessage);
-    setCursorToEnd(messageContainer[0]);
-	}
-}
+	const idsOfMsgToReSave = refinedMsgIdsMaker(savedMessages);
 
-function onMessageChange(messageContainer) {
-	const messageMutationOptions = {
-		childList: true,
-		subtree: true,
-		characterData: true
+	const updatedMessages = {
+		messages: pick(savedMessages, idsOfMsgToReSave)
 	};
 
-	observeEl(DMTextBoxSelector, debounce(async () => {
-		const conversationId = getConversationId();
-		const currentMessage = messageContainer.html();
+	setToLocalStorage(updatedMessages);
+}
 
-		// Read the messages to merge them to the latest
-		const {messages: savedMessages} = await getFromLocalStorage('messages');
+export function idsOfNonEmptyMsgs(savedMessages) {
+	return Object.keys(savedMessages)
+		.filter(id => !isEmptyMsgInput(savedMessages[id]));
+}
 
-		const updatedMessages = {
-			messages: Object.assign(savedMessages || {}, {[conversationId]: currentMessage})
-		};
-
-		if (DMDialogOpen) {
-      setToLocalStorage(updatedMessages);
-		}
-	}, 150), messageMutationOptions);
+export function idsOfNotDeletedMsgs(savedMessages) {
+	return Object.keys(savedMessages)
+		.filter(id => id !== getConversationId());
 }
 
 // See: https://gist.github.com/al3x-edge/1010364
 function setCursorToEnd(contentEditableElement) {
 	const range = document.createRange();
 	const selection = window.getSelection();
-  range.selectNodeContents(contentEditableElement);
-  range.collapse(false);
-  selection.removeAllRanges();
-  selection.addRange(range);
+	range.selectNodeContents(contentEditableElement);
+	range.collapse(false);
+	selection.removeAllRanges();
+	selection.addRange(range);
 }
 
-export function getConversationId() {
+function getConversationId() {
 	return document.querySelector('.DMConversation').dataset.threadId;
+}
+
+function getMessageContainer() {
+	return $('#tweet-box-dm-conversation');
 }
 
 function isEmptyMsgInput(message) {
 	const messageEl = document.createElement('div');
 	messageEl.innerHTML = message;
 	return messageEl.textContent === '';
+}
+
+export async function restoreSavedMessage() {
+	const conversationId = getConversationId();
+	const messageContainer = getMessageContainer();
+	if (conversationId) {
+		const {messages: savedMessages} = await getFromLocalStorage('messages');
+
+		if (!savedMessages) {
+			return;
+		}
+
+		const {[conversationId]: savedMessage} = savedMessages;
+
+		if (savedMessage && !isEmptyMsgInput(savedMessage)) {
+			fillContainerWithMessage(messageContainer, savedMessage);
+		}
+	}
+}
+
+export async function handleMessageChange(isDMModalOpen) {
+	const conversationId = getConversationId();
+	const currentMessage = getMessageContainer().html();
+	const {messages: savedMessages} = await getFromLocalStorage('messages');
+
+	const updatedMessages = {
+		messages: Object.assign((savedMessages || {}), {[conversationId]: currentMessage})
+	};
+
+	// We need to check if DM Modal is open because
+	// twitter unsets the message when DMModal closes.
+	// Hence we need a way to tell handleMessageChange
+	// to not store empty message (which happens when DMModal closes)
+	// in local storage. Otherwise the message will be lost.
+	if (isDMModalOpen) {
+		setToLocalStorage(updatedMessages);
+	}
+}
+
+function fillContainerWithMessage(messageContainer, savedMessage) {
+	messageContainer.empty();
+	messageContainer.append(savedMessage);
+	setCursorToEnd(messageContainer[0]);
 }
