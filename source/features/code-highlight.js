@@ -63,7 +63,11 @@ function splitTextReducer(frag, text, index) {
 	if (index % 2) { // Code is always in odd positions
 		frag.append(highlightCode(text));
 	} else if (text.length > 0) {
-		frag.append(text);
+		const tempElement = document.createElement('div');
+		tempElement.innerHTML = text;
+		for (const child of tempElement.children) {
+			frag.append(child);
+		}
 	}
 
 	return frag;
@@ -73,7 +77,7 @@ export default function () {
 	// Regex needs to be non-capturing ?: and to have the extra () to work with .split
 	const splittingRegex = /((?:```\w*[\s\S]+```\n?))/g;
 	$('.tweet-text').each((i, el) => {
-		const tweetWithCode = el.textContent.split(splittingRegex);
+		const tweetWithCode = el.innerHTML.split(splittingRegex);
 		if (tweetWithCode.length === 1) {
 			return;
 		}
