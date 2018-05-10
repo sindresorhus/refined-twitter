@@ -59,10 +59,20 @@ function highlightCode(md) {
 		</div>
 	);
 }
+
+function cleanupMessyUrls(element) {
+	const elementsToRemove = element.querySelectorAll('.invisible');
+	for (const removableElement of elementsToRemove) {
+		removableElement.remove()
+	}
+	return element
+}
+
 function splitTextReducer(frag, text, index) {
 	if (index % 2) { // Code is always in odd positions
 		const tempElement = document.createElement('div');
 		tempElement.innerHTML = text;
+		const cleanElement = cleanupMessyUrls(tempElement);
 		frag.append(highlightCode(tempElement.textContent));
 	} else if (text.length > 0) {
 		const tempElement = document.createElement('div');
