@@ -61,7 +61,9 @@ function highlightCode(md) {
 }
 function splitTextReducer(frag, text, index) {
 	if (index % 2) { // Code is always in odd positions
-		frag.append(highlightCode(text));
+		const tempElement = document.createElement('div');
+		tempElement.innerHTML = text;
+		frag.append(highlightCode(tempElement.textContent));
 	} else if (text.length > 0) {
 		const tempElement = document.createElement('div');
 		tempElement.innerHTML = text;
