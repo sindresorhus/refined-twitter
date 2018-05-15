@@ -26,9 +26,7 @@ const aliases = new Map([
 	['py', 'python']
 ]);
 
-function pickLanguage(lang) {
-	return aliases.get(lang) || lang;
-}
+const pickLanguage = lang => aliases.get(lang) || lang;
 
 function highlightCodeBlocks(compiledEl) {
 	const selectedLang = pickLanguage(
