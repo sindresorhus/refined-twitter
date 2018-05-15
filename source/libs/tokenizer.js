@@ -4,10 +4,10 @@
  * not sanitized when the markdown is compiled to HTML.
  */
 
-tokenizeMentionAndHashtags.notInLink = true;
-tokenizeMentionAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
+mentionsAndHashtags.notInLink = true;
+mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
 
-function tokenizeMentionAndHashtags(eat, value, silent) {
+function mentionsAndHashtags(eat, value, silent) {
 	const match = /^(@|#)(\w+)/.exec(value);
 
 	if (match) {
@@ -23,14 +23,14 @@ function tokenizeMentionAndHashtags(eat, value, silent) {
 	}
 }
 
-export default function mentionsAndHashtags() {
+export default () => {
 	const {Parser} = this;
 	const tokenizers = Parser.prototype.inlineTokenizers;
 	const methods = Parser.prototype.inlineMethods;
 
 	// Add inline tokenizer.
-	tokenizers.mention = tokenizeMentionAndHashtags;
+	tokenizers.mention = mentionsAndHashtags;
 
 	// Run it just before `text`.
 	methods.splice(methods.indexOf('text'), 0, 'mention');
-}
+};
