@@ -3,12 +3,11 @@ import {observeEl, safeElementReady, safely} from './libs/utils';
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
-import codeHighlight from './features/code-highlight';
 import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
-import renderInlineCode from './features/inline-code';
 import disableCustomColors from './features/disable-custom-colors';
+import renderMarkdown from './features/markdown';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -73,23 +72,21 @@ function onDomReady() {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 		safely(disableCustomColors);
-    safely(removeProfileHeader);
+		safely(removeProfileHeader);
 
 		onNewTweets(() => {
-			safely(codeHighlight);
+			safely(renderMarkdown);
 			safely(mentionHighlight);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
-			safely(renderInlineCode);
 		});
 	});
 
 	onSingleTweetOpen(() => {
-		safely(codeHighlight);
+		safely(renderMarkdown);
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
-		safely(renderInlineCode);
 	});
 }
 

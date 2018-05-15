@@ -14,7 +14,12 @@
 		"element-ready": "^2.2.0",
 		"jquery": "^3.2.1",
 		"prismjs": "^1.9.0",
+		"remark": "^9.0.0",
+		"remark-code-blocks": "^1.0.0",
+		"remark-html": "^7.0.0",
+		"remark-parse": "^5.0.0",
 		"select-dom": "^4.1.1",
+		"unified": "^7.0.0",
 		"webext-options-sync": "^0.15.0",
 		"webextension-polyfill": "^0.2.1"
 	},
