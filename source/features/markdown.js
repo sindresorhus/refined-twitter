@@ -50,9 +50,9 @@ function highlightCodeBlocks(compiledEl) {
 			.className.split('-')[1]
 	);
 
-	const languageClass = selectedLang
-		? `language-${selectedLang}`
-		: 'language-txt';
+	const languageClass = selectedLang ?
+		`language-${selectedLang}` :
+		'language-txt';
 
 	$(compiledEl).addClass(languageClass);
 	$(compiledEl)
@@ -94,6 +94,8 @@ export default () => {
 				if (err) {
 					throw err;
 				}
+
+				console.log(file);
 
 				if (containsMarkdown(String(file))) {
 					const compiledEl = domify(String(file));

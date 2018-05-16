@@ -53,7 +53,8 @@
 				{
 					"varsIgnorePattern": "^h$"
 				}
-			]
+			],
+			"valid-jsdoc": 0
 		},
 		"globals": [
 			"browser"
