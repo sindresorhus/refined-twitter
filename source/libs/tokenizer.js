@@ -4,9 +4,6 @@
  * not sanitized when the markdown is compiled to HTML.
  */
 
-mentionsAndHashtags.notInLink = true;
-mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
-
 function mentionsAndHashtags(eat, value, silent) {
 	const match = /^(@|#)(\w+)/.exec(value);
 
@@ -22,6 +19,10 @@ function mentionsAndHashtags(eat, value, silent) {
 		});
 	}
 }
+
+
+mentionsAndHashtags.notInLink = true;
+mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
 
 export default () => {
 	const {Parser} = this;
