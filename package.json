@@ -37,7 +37,12 @@
 		"webpack-cli": "^2.0.10",
 		"xo": "*"
 	},
+	"prettier": {
+		"bracketSpacing": false,
+		"singleQuote": true
+	},
 	"xo": {
+		"prettier": true,
 		"envs": [
 			"browser",
 			"jquery"
