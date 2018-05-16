@@ -1,8 +1,8 @@
-/**
- * This custom tokenizer for remark-parse is needed so that
- * hashtags (#refinedtwitter) and mentions (@sindresorhus) are
- * not sanitized when the markdown is compiled to HTML.
- */
+/*
+	This custom tokenizer for remark-parse is needed so that
+	hashtags (#refinedtwitter) and mentions (@sindresorhus) are
+	not sanitized when the markdown is compiled to HTML.
+*/
 
 function mentionsAndHashtags(eat, value, silent) {
 	const match = /^(@|#)(\w+)/.exec(value);
@@ -19,7 +19,6 @@ function mentionsAndHashtags(eat, value, silent) {
 		});
 	}
 }
-
 
 mentionsAndHashtags.notInLink = true;
 mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
