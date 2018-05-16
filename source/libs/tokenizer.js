@@ -23,7 +23,7 @@ function mentionsAndHashtags(eat, value, silent) {
 mentionsAndHashtags.notInLink = true;
 mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
 
-export default () => {
+export default function () {
 	const {Parser} = this;
 	const tokenizers = Parser.prototype.inlineTokenizers;
 	const methods = Parser.prototype.inlineMethods;
@@ -33,4 +33,4 @@ export default () => {
 
 	// Run it just before `text`.
 	methods.splice(methods.indexOf('text'), 0, 'mention');
-};
+}
