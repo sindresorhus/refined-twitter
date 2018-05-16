@@ -42,7 +42,6 @@
 		"singleQuote": true
 	},
 	"xo": {
-		"prettier": true,
 		"envs": [
 			"browser",
 			"jquery"
