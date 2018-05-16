@@ -16,6 +16,7 @@ import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-r';
 
+import {domify} from '../libs/utils';
 import tokenizer from '../libs/tokenizer';
 
 const aliases = new Map([
@@ -28,46 +29,55 @@ const aliases = new Map([
 
 const pickLanguage = lang => aliases.get(lang) || lang;
 
+const containsMarkdown = html => {
+	const tags = [
+		'</code>',
+		'</pre>',
+		'</strong>',
+		'</em>',
+		'</ul>',
+		'</blockquote>'
+	];
+	return tags.filter(tag => html.includes(tag)).length > 0;
+};
+
 function highlightCodeBlocks(compiledEl) {
+	$(compiledEl).wrap('<div class="refined-twitter_highlight"></div>');
+
 	const selectedLang = pickLanguage(
 		$(compiledEl)
-			.find('pre code')[0]
+			.find('code')[0]
 			.className.split('-')[1]
 	);
 
-	const languageClass = selectedLang ?
-		`language-${selectedLang}` :
-		'language-txt';
+	const languageClass = selectedLang
+		? `language-${selectedLang}`
+		: 'language-txt';
 
+	$(compiledEl).addClass(languageClass);
 	$(compiledEl)
-		.find('pre')
+		.find('code')
 		.addClass(languageClass);
-	$(compiledEl)
-		.find('pre code')
-		.addClass(languageClass);
-
-	$(compiledEl)
-		.find('pre')
-		.wrap('<div class="refined-twitter_highlight"></div>');
 
 	const languageBar = document.createElement('div');
 	languageBar.innerText = selectedLang || 'txt';
 	languageBar.classList.add('refined-twitter_highlight-lang');
 
 	$(compiledEl)
-		.find('div')
+		.parent()
 		.prepend($(languageBar));
 
 	// Highlight code
-	const code = $(compiledEl).find('pre code')[0].innerText;
+	const code = $(compiledEl).find('code')[0].innerText;
 	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
 
 	$(compiledEl)
-		.find('pre code')
+		.find('code')
 		.html(`<div>${highlightedCode}</div>`);
 }
 
 export default () => {
+	const processed = 'refined-twitter_markdown-processed';
 	const styledClassName = 'refined-twitter_markdown';
 
 	$('.tweet-text').each((i, el) => {
@@ -85,16 +95,20 @@ export default () => {
 					throw err;
 				}
 
-				const compiledEl = document.createElement('div');
-				compiledEl.innerHTML = String(file);
+				if (containsMarkdown(String(file))) {
+					const compiledEl = domify(String(file));
+					const preBlock = $(compiledEl).find('pre');
 
-				if ($(compiledEl).find('pre').length > 0) {
-					// Format code blocks if they exist
-					highlightCodeBlocks(compiledEl);
+					if (preBlock.length > 0) {
+						// Format code blocks if they exist
+						highlightCodeBlocks(preBlock[0]);
+					}
+
+					$(el).html(compiledEl.childNodes);
+					$(el).addClass(styledClassName);
 				}
 
-				$(el).html(compiledEl);
-				$(el).addClass(styledClassName);
+				$(el).addClass(processed);
 			});
 	});
 };

@@ -21,9 +21,10 @@ function mentionsAndHashtags(eat, value, silent) {
 }
 
 mentionsAndHashtags.notInLink = true;
-mentionsAndHashtags.locator = (value, fromIndex) => value.indexOf('@', fromIndex);
+mentionsAndHashtags.locator = (value, fromIndex) =>
+	value.indexOf('@', fromIndex);
 
-export default function () {
+export default function() {
 	const {Parser} = this;
 	const tokenizers = Parser.prototype.inlineTokenizers;
 	const methods = Parser.prototype.inlineMethods;
