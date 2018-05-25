@@ -187,3 +187,33 @@ code.refined-twitter_markdown {
 .DashUserDropdown .dropdown-caret {
 	transform: translateX(-145px);
 }
+
+/* Plugin-generated div that display the alternative text of an image */
+.refined-twitter_image-alt {
+	background-color: #fff;
+	color: #14171a;
+	padding: 0.8rem;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+.refined-twitter_image-alt_top {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.refined-twitter_image-alt_bottom {
+	border-top: 1px solid rgba(0,0,0,0.1);
+}
+.refined-twitter_image-alt_img {
+	top: 0 !important;
+	margin-top: 0 !important;
+	position: relative !important;
+}
+.refined-twitter_image-alt_container {
+	position: relative !important;
+}
+.refined-twitter_image-alt_photocontainer {
+	padding-top: 0 !important;
+}
+.refined-twitter_image-alt_ancestor-not-square {
+	max-height: initial !important;
+}
+
