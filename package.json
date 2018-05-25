@@ -11,7 +11,7 @@
 	"dependencies": {
 		"dom-chef": "^3.0.0",
 		"dom-loaded": "^1.0.0",
-		"element-ready": "^2.2.0",
+		"element-ready": "^3.0.0",
 		"jquery": "^3.2.1",
 		"prismjs": "^1.9.0",
 		"select-dom": "^4.1.1",
@@ -28,7 +28,7 @@
 		"dot-json": "^1.0.3",
 		"npm-run-all": "^4.1.1",
 		"stylelint": "^9.1.1",
-		"stylelint-config-xo": "^0.7.0",
+		"stylelint-config-xo": "^0.9.0",
 		"utc-version": "^1.0.0",
 		"webpack": "^4.1.0",
 		"webpack-cli": "^2.0.10",
@@ -74,15 +74,7 @@
 	"stylelint": {
 		"extends": "stylelint-config-xo",
 		"rules": {
-			"declaration-no-important": null,
-			"property-no-vendor-prefix": null,
-			"no-descending-specificity": null,
-			"property-blacklist": null,
-			"selector-class-pattern": null,
-			"selector-max-class": null,
-			"rule-empty-line-before": null,
-			"at-rule-empty-line-before": null,
-			"selector-max-compound-selectors": null
+			"declaration-no-important": null
 		}
 	}
 }
