@@ -15,6 +15,7 @@ import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
 import renderInlineCode from './features/inline-code';
 import disableCustomColors from './features/disable-custom-colors';
+import imageAlternatives from './features/image-alternatives';
 
 import preserveTextMessages from './features/preserve-text-messages';
 
@@ -68,6 +69,17 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
+function onGalleryItemOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('gallery-enabled')) {
+				observeEl('.Gallery-media', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
 function removeProfileHeader() {
 	$('.ProfileCanopy-header .ProfileCanopy-avatar').appendTo('.ProfileCanopy-inner .AppContainer');
 	$('.ProfileCanopy-header').remove();
@@ -82,7 +94,7 @@ function onDomReady() {
 		safely(autoLoadNewTweets);
 		safely(userChoiceColor);
 		safely(disableCustomColors);
-    safely(removeProfileHeader);
+		safely(removeProfileHeader);
 
 		onNewTweets(() => {
 			safely(codeHighlight);
@@ -91,6 +103,7 @@ function onDomReady() {
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
 			safely(renderInlineCode);
+			safely(imageAlternatives);
 		});
 	});
 
@@ -99,6 +112,11 @@ function onDomReady() {
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
 		safely(renderInlineCode);
+		safely(imageAlternatives);
+	});
+
+	onGalleryItemOpen(() => {
+		safely(imageAlternatives);
 	});
 }
 
