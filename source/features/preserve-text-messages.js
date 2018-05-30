@@ -121,12 +121,14 @@ function idsOfNotDeletedMsgs(savedMessages) {
 
 // See: https://gist.github.com/al3x-edge/1010364
 function setCursorToEnd(contentEditableElement) {
-	const range = document.createRange();
-	const selection = window.getSelection();
-	range.selectNodeContents(contentEditableElement);
-	range.collapse(false);
-	selection.removeAllRanges();
-	selection.addRange(range);
+	window.requestAnimationFrame(() => {
+		const range = document.createRange();
+		const selection = window.getSelection();
+		range.selectNodeContents(contentEditableElement);
+		range.collapse(false);
+		selection.removeAllRanges();
+		selection.addRange(range);
+	})
 }
 
 function getConversationId() {
