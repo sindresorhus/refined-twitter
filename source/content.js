@@ -10,6 +10,7 @@ import keyboardShortcuts from './features/keyboard-shortcuts';
 import renderInlineCode from './features/inline-code';
 import disableCustomColors from './features/disable-custom-colors';
 import imageAlternatives from './features/image-alternatives';
+import removeOthersFollow from './features/remove-others-follow';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -80,6 +81,7 @@ function removeProfileHeader() {
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
+	safely(removeOthersFollow)
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
@@ -95,6 +97,7 @@ function onDomReady() {
 			safely(hidePromotedTweets);
 			safely(renderInlineCode);
 			safely(imageAlternatives);
+			safely(removeOthersFollow);
 		});
 	});
 
