@@ -128,7 +128,7 @@ function setCursorToEnd(contentEditableElement) {
 		range.collapse(false);
 		selection.removeAllRanges();
 		selection.addRange(range);
-	})
+	});
 }
 
 function getConversationId() {
