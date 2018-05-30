@@ -1,5 +1,6 @@
 import pick from 'lodash.pick';
 import debounce from 'lodash.debounce';
+import DOMPurify from 'dompurify';
 
 import {
 	getFromLocalStorage,
@@ -138,7 +139,7 @@ function getMessageContainer() {
 
 function isEmptyMsgInput(message) {
 	const messageEl = document.createElement('div');
-	messageEl.innerHTML = message;
+	messageEl.innerHTML = DOMPurify.sanitize(message);
 	return messageEl.textContent === '';
 }
 
