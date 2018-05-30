@@ -7,6 +7,8 @@ import {
 	observeEl
 } from '../libs/utils';
 
+let isDMModalOpen = false;
+
 export default function preserveTextMessages() {
 	onDMModalOpenAndClose(
 		handleConversationOpen,
@@ -46,14 +48,12 @@ function onDMModalOpenAndClose(handleConversationOpen, handleDMModalClose) {
 	observeEl('#dm_dialog', mutations => {
 		for (const mutation of mutations) {
 			if (mutation.target.style.display === 'none') {
-				// This is necessary for `handleMessageChange` function
-				setToLocalStorage({isDMModalOpen: false});
+				isDMModalOpen = false;
 
 				handleDMModalClose();
 				break;
 			} else {
-				// This is necessary for `handleMessageChange` function
-				setToLocalStorage({isDMModalOpen: true});
+				isDMModalOpen = true;
 
 				observeEl('.DMConversation', mutations => {
 					for (const mutation of mutations) {
@@ -89,23 +89,7 @@ function onMessageChange(cb) {
 function handleConversationOpen() {
 	restoreSavedMessage();
 
-	// When a user starts typing in a conversation
-	// after the first time of opening the DM Modal
-	// allow storing the message in the local storage by default.
-	// see `handleMessageChange` to see where this boolean
-	// is used and why
-	let isDMModalOpen = true;
-
-	// Start listening for when isDMModalOpen property in localstorage changes.
-	// we need this to pass onto `handleMessageChange`.
-	// see handleMessageChange definition to know why.
-	browser.storage.onChanged.addListener((changes, area) => {
-		if (area === 'local' && (changes.isDMModalOpen)) {
-			isDMModalOpen = changes.isDMModalOpen.newValue;
-		}
-	});
-
-	onMessageChange(() => handleMessageChange(isDMModalOpen));
+	onMessageChange(() => handleMessageChange());
 }
 
 async function removeMessages(refinedMsgIdsMaker) {
@@ -177,7 +161,7 @@ async function restoreSavedMessage() {
 	}
 }
 
-async function handleMessageChange(isDMModalOpen) {
+async function handleMessageChange() {
 	const conversationId = getConversationId();
 	const currentMessage = getMessageContainer().html();
 	const {messages: savedMessages} = await getFromLocalStorage('messages');
@@ -190,7 +174,6 @@ async function handleMessageChange(isDMModalOpen) {
 	// twitter unsets the message when DMModal closes.
 	// Hence we need a way to tell handleMessageChange
 	// to not store empty message (which happens when DMModal closes)
-	// in local storage. Otherwise the message will be lost.
 	if (isDMModalOpen) {
 		setToLocalStorage(updatedMessages);
 	}
