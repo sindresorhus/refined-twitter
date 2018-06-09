@@ -6,7 +6,9 @@ Global
 
 /* Use system fonts */
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol' !important;
 }
 
 /* Remove navbar logo */
@@ -41,11 +43,13 @@ body {
 }
 
 /* Highlight your mentions in the stream */
-body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
+body:not(.NotificationsPage)
+	.tweet.refined-twitter_mention:not(.permalink-tweet) {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
 
-body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
+body:not(.NotificationsPage)
+	.tweet.refined-twitter_mention:not(.permalink-tweet):hover {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
 }
 
@@ -189,10 +193,10 @@ Dashboard
 	line-height: 1.5;
 }
 .refined-twitter_image-alt_top {
-	border-bottom: 1px solid rgba(0,0,0,0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .refined-twitter_image-alt_bottom {
-	border-top: 1px solid rgba(0,0,0,0.1);
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .refined-twitter_image-alt_img {
 	top: 0 !important;
@@ -208,4 +212,3 @@ Dashboard
 .refined-twitter_image-alt_ancestor-not-square {
 	max-height: initial !important;
 }
-
