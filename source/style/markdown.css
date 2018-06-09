@@ -6,7 +6,7 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
  * @author ocodia
  */
 
-.refined-twitter_markdown p > code {
+.refined-twitter_markdown code {
 	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 	background-color: rgba(27, 31, 35, 0.05);
 	padding: 0.1em 0.4em;
@@ -14,8 +14,15 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 	font-size: 90%;
 }
 
+.refined-twitter_markdown h1,
+.refined-twitter_markdown h2,
+.refined-twitter_markdown h3,
+.refined-twitter_markdown h4 {
+	color: #14171a;
+	display: inline-block;
+	margin-top: 5px;
+}
 
-code[class*="language-"],
 pre[class*="language-"] {
 	color: #c5c8c6;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);

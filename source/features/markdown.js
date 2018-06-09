@@ -36,7 +36,11 @@ const containsMarkdown = html => {
 		'</strong>',
 		'</em>',
 		'</ul>',
-		'</blockquote>'
+		'</blockquote>',
+		'</h1>',
+		'</h2>',
+		'</h3>',
+		'</h4>'
 	];
 	return tags.filter(tag => html.includes(tag)).length > 0;
 };
@@ -95,8 +99,6 @@ export default () => {
 					throw err;
 				}
 
-				console.log(file);
-
 				if (containsMarkdown(String(file))) {
 					const compiledEl = domify(String(file));
 					const preBlock = $(compiledEl).find('pre');
@@ -107,6 +109,7 @@ export default () => {
 					}
 
 					$(el).html(compiledEl.childNodes);
+					$(el).find('p').contents().unwrap();
 					$(el).addClass(styledClassName);
 				}
 
