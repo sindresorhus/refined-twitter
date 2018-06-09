@@ -130,6 +130,7 @@ Dashboard
 	left: 0 !important;
 	margin-left: -40px !important;
 }
+
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
 		left: 43% !important;
