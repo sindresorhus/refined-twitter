@@ -7,6 +7,7 @@ import mentionHighlight from './features/mentions-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
 import disableCustomColors from './features/disable-custom-colors';
+import imageAlternatives from './features/image-alternatives';
 import renderMarkdown from './features/markdown';
 
 function cleanNavbarDropdown() {
@@ -59,6 +60,17 @@ function onSingleTweetOpen(cb) {
 	}, {attributes: true});
 }
 
+function onGalleryItemOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('gallery-enabled')) {
+				observeEl('.Gallery-media', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
 function removeProfileHeader() {
 	$('.ProfileCanopy-header .ProfileCanopy-avatar').appendTo('.ProfileCanopy-inner .AppContainer');
 	$('.ProfileCanopy-header').remove();
@@ -80,6 +92,7 @@ function onDomReady() {
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
+			safely(imageAlternatives);
 		});
 	});
 
@@ -87,6 +100,11 @@ function onDomReady() {
 		safely(renderMarkdown);
 		safely(mentionHighlight);
 		safely(inlineInstagramPhotos);
+		safely(imageAlternatives);
+	});
+
+	onGalleryItemOpen(() => {
+		safely(imageAlternatives);
 	});
 }
 
