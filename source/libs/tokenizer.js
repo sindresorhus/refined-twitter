@@ -12,7 +12,6 @@ function mentions(eat, value, silent) {
 			return true;
 		}
 
-		console.log(match);
 		return eat(match[0])({
 			type: 'link',
 			url: 'https://twitter.com/' + match[1],
@@ -33,7 +32,6 @@ function hashTags(eat, value, silent) {
 			return true;
 		}
 
-		console.log(match);
 		return eat(match[0])({
 			type: 'link',
 			url: 'https://twitter.com/hashtag/' + match[1],
