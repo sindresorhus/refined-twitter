@@ -36,11 +36,14 @@ const containsMarkdown = html => {
 		'</strong>',
 		'</em>',
 		'</ul>',
+		'</ol>',
 		'</blockquote>',
 		'</h1>',
 		'</h2>',
 		'</h3>',
-		'</h4>'
+		'</h4>',
+		'</del>',
+		'</a>'
 	];
 	return tags.filter(tag => html.includes(tag)).length > 0;
 };
@@ -109,7 +112,6 @@ export default () => {
 					}
 
 					$(el).html(compiledEl.childNodes);
-					$(el).find('p').contents().unwrap();
 					$(el).addClass(styledClassName);
 				}
 
