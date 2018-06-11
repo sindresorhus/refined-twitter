@@ -29,8 +29,8 @@ const aliases = new Map([
 
 const pickLanguage = lang => aliases.get(lang) || lang;
 
-const containsMarkdown = html => {
-	const tags = [
+const containsMarkdown = html =>
+	[
 		'</code>',
 		'</pre>',
 		'</strong>',
@@ -42,11 +42,24 @@ const containsMarkdown = html => {
 		'</h2>',
 		'</h3>',
 		'</h4>',
-		'</del>',
-		'</a>'
-	];
-	return tags.filter(tag => html.includes(tag)).length > 0;
-};
+		'</del>'
+	].filter(tag => html.includes(tag)).length > 0;
+
+function stripLinks(el) {
+	const possibleLink = $(el).find('span.token.string');
+
+	possibleLink.each(index => {
+		const {innerText} = possibleLink[index];
+
+		if (innerText.includes('http://')) {
+			// Twitter adds a trailing space to links which is why the slice is needed
+			possibleLink[index].innerText = `${innerText.slice(
+				0,
+				innerText.length - 2
+			)}${innerText.slice(innerText.length - 1)}`.replace('http://', '');
+		}
+	});
+}
 
 function highlightCodeBlocks(compiledEl) {
 	$(compiledEl).wrap('<div class="refined-twitter_highlight"></div>');
@@ -81,6 +94,8 @@ function highlightCodeBlocks(compiledEl) {
 	$(compiledEl)
 		.find('code')
 		.html(`<div>${highlightedCode}</div>`);
+
+	stripLinks(compiledEl);
 }
 
 export default () => {
@@ -102,13 +117,29 @@ export default () => {
 					throw err;
 				}
 
-				if (containsMarkdown(String(file))) {
-					const compiledEl = domify(String(file));
+				const processedTweet = String(file);
+
+				if (containsMarkdown(processedTweet)) {
+					const compiledEl = domify(processedTweet);
 					const preBlock = $(compiledEl).find('pre');
 
 					if (preBlock.length > 0) {
 						// Format code blocks if they exist
 						highlightCodeBlocks(preBlock[0]);
+					}
+
+					const inlineCode = $(compiledEl).find('code');
+
+					if (inlineCode.length > 0) {
+						// Strip links from inline code if there is any
+						inlineCode.each(index => {
+							const block = inlineCode[index];
+
+							if (block.classList.length === 0) {
+								// Inline code tags have no classes
+								block.innerText = block.innerText.replace('http://', '');
+							}
+						});
 					}
 
 					$(el).html(compiledEl.childNodes);
