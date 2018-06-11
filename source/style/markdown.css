@@ -55,7 +55,9 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 	color: #6a737d;
 }
 
-pre[class*='language-'] {
+.refined-twitter_highlight code[class*='language-'],
+.refined-twitter_highlight pre[class*='language-'] {
+	font-size: 100%;
 	color: #c5c8c6;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 	font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
@@ -75,14 +77,15 @@ pre[class*='language-'] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
-}
 
-/* Code blocks */
-pre[class*='language-'] {
-	padding: 2.1em 1em 1em;
 	overflow: auto;
 	border-radius: 0.3em;
-	line-height: 0;
+
+	padding: 3em 1em 1em;
+}
+
+.refined-twitter_highlight code[class*='language-'] {
+	padding: 0;
 }
 
 :not(pre) > code[class*='language-'],
@@ -201,6 +204,8 @@ pre[class*='language-'] {
 	border-radius: 0.3em;
 	overflow: hidden;
 	font-size: 14px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 
 .refined-twitter_highlight-lang {

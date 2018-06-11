@@ -89,7 +89,7 @@ export default () => {
 
 	$('.tweet-text').each((i, el) => {
 		// Ensure this is only run once
-		if ($(el).hasClass(styledClassName)) {
+		if ($(el).hasClass(processed)) {
 			return;
 		}
 
