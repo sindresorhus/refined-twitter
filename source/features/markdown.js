@@ -48,12 +48,12 @@ const containsMarkdown = html =>
 function stripLinks(el) {
 	const possibleLink = $(el).find('span.token.string');
 
-	possibleLink.each(index => {
-		const {innerText} = possibleLink[index];
+	possibleLink.each((i, el) => {
+		const {innerText} = el;
 
 		if (innerText.includes('http://')) {
 			// Twitter adds a trailing space to links which is why the slice is needed
-			possibleLink[index].innerText = `${innerText.slice(
+			el.innerText = `${innerText.slice(
 				0,
 				innerText.length - 2
 			)}${innerText.slice(innerText.length - 1)}`.replace('http://', '');
@@ -132,12 +132,10 @@ export default () => {
 
 					if (inlineCode.length > 0) {
 						// Strip links from inline code if there is any
-						inlineCode.each(index => {
-							const block = inlineCode[index];
-
-							if (block.classList.length === 0) {
+						inlineCode.each((i, el) => {
+							if (el.classList.length === 0) {
 								// Inline code tags have no classes
-								block.innerText = block.innerText.replace('http://', '');
+								el.innerText = el.innerText.replace('http://', '');
 							}
 						});
 					}
