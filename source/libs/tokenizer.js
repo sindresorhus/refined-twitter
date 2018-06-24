@@ -14,7 +14,7 @@ function mentions(eat, value, silent) {
 
 		return eat(match[0])({
 			type: 'link',
-			url: 'https://twitter.com/' + match[1],
+			url: `https://twitter.com/${match[1]}`,
 			children: [{type: 'text', value: match[0]}]
 		});
 	}
@@ -34,7 +34,7 @@ function hashTags(eat, value, silent) {
 
 		return eat(match[0])({
 			type: 'link',
-			url: 'https://twitter.com/hashtag/' + match[1],
+			url: `https://twitter.com/hashtag/${match[1]}`,
 			children: [{type: 'text', value: match[0]}]
 		});
 	}
