@@ -49,14 +49,14 @@ function stripLinks(el) {
 	const possibleLink = $(el).find('span.token.string');
 
 	possibleLink.each((i, el) => {
-		const {innerText} = el;
+		const {textContent} = el;
 
-		if (innerText.includes('http://')) {
+		if (textContent.includes('http://')) {
 			// Twitter adds a trailing space to links which is why the slice is needed
-			el.innerText = `${innerText.slice(
+			el.textContent = `${textContent.slice(
 				0,
-				innerText.length - 2
-			)}${innerText.slice(innerText.length - 1)}`.replace('http://', '');
+				textContent.length - 2
+			)}${textContent.slice(textContent.length - 1)}`.replace('http://', '');
 		}
 	});
 }
@@ -80,7 +80,7 @@ function highlightCodeBlocks(compiledEl) {
 		.addClass(languageClass);
 
 	const languageBar = document.createElement('div');
-	languageBar.innerText = selectedLang || 'txt';
+	languageBar.textContent = selectedLang || 'txt';
 	languageBar.classList.add('refined-twitter_highlight-lang');
 
 	$(compiledEl)
@@ -88,7 +88,7 @@ function highlightCodeBlocks(compiledEl) {
 		.prepend($(languageBar));
 
 	// Highlight code
-	const code = $(compiledEl).find('code')[0].innerText;
+	const code = $(compiledEl).find('code')[0].textContent;
 	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
 
 	$(compiledEl)
@@ -135,7 +135,7 @@ export default () => {
 						inlineCode.each((i, el) => {
 							if (el.classList.length === 0) {
 								// Inline code tags have no classes
-								el.innerText = el.innerText.replace('http://', '');
+								el.textContent = el.textContent.replace('http://', '');
 							}
 						});
 					}
