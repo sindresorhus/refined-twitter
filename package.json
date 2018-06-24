@@ -1,8 +1,4 @@
 {
-	"name": "refined-twitter",
-	"private": true,
-	"repository": "https://github.com/sindresorhus/refined-twitter",
-	"license": "MIT",
 	"scripts": {
 		"lint": "xo && stylelint source/*.css",
 		"test": "npm run lint && ava && npm run build",
