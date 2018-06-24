@@ -102,49 +102,49 @@ export default () => {
 	const processed = 'refined-twitter_markdown-processed';
 	const styledClassName = 'refined-twitter_markdown';
 
-	$('.tweet-text').each((i, el) => {
+	$('.tweet-text').each(async (i, el) => {
 		// Ensure this is only run once
 		if ($(el).hasClass(processed)) {
 			return;
 		}
 
-		unified()
-			.use(markdown)
-			.use(html)
-			.use(tokenizer)
-			.process(el.textContent, (err, file) => {
-				if (err) {
-					throw err;
+		try {
+			const file = await unified()
+				.use(markdown)
+				.use(html)
+				.use(tokenizer)
+				.process(el.textContent);
+
+			const processedTweet = String(file);
+
+			if (containsMarkdown(processedTweet)) {
+				const compiledEl = domify(processedTweet);
+				const preBlock = $(compiledEl).find('pre');
+
+				if (preBlock.length > 0) {
+					// Format code blocks if they exist
+					highlightCodeBlocks(preBlock[0]);
 				}
 
-				const processedTweet = String(file);
+				const inlineCode = $(compiledEl).find('code');
 
-				if (containsMarkdown(processedTweet)) {
-					const compiledEl = domify(processedTweet);
-					const preBlock = $(compiledEl).find('pre');
-
-					if (preBlock.length > 0) {
-						// Format code blocks if they exist
-						highlightCodeBlocks(preBlock[0]);
-					}
-
-					const inlineCode = $(compiledEl).find('code');
-
-					if (inlineCode.length > 0) {
-						// Strip links from inline code if there is any
-						inlineCode.each((i, el) => {
-							if (el.classList.length === 0) {
-								// Inline code tags have no classes
-								el.textContent = el.textContent.replace('http://', '');
-							}
-						});
-					}
-
-					$(el).html(compiledEl.childNodes);
-					$(el).addClass(styledClassName);
+				if (inlineCode.length > 0) {
+					// Strip links from inline code if there is any
+					inlineCode.each((i, el) => {
+						if (el.classList.length === 0) {
+							// Inline code tags have no classes
+							el.textContent = el.textContent.replace('http://', '');
+						}
+					});
 				}
 
-				$(el).addClass(processed);
-			});
+				$(el).html(compiledEl.childNodes);
+				$(el).addClass(styledClassName);
+			}
+
+			$(el).addClass(processed);
+		} catch (error) {
+			throw error;
+		}
 	});
 };
