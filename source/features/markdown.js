@@ -45,15 +45,15 @@ const containsMarkdown = html =>
 		'</del>'
 	].filter(tag => html.includes(tag)).length > 0;
 
-function stripLinks(el) {
-	const possibleLink = $(el).find('span.token.string');
+function stripLinks(element) {
+	const possibleLink = $(element).find('span.token.string');
 
-	possibleLink.each((i, el) => {
-		const {textContent} = el;
+	possibleLink.each((i, element) => {
+		const {textContent} = element;
 
 		if (textContent.includes('http://')) {
 			// Twitter adds a trailing space to links which is why the slice is needed
-			el.textContent = `${textContent.slice(
+			element.textContent = `${textContent.slice(
 				0,
 				textContent.length - 2
 			)}${textContent.slice(textContent.length - 1)}`.replace('http://', '');
@@ -61,11 +61,11 @@ function stripLinks(el) {
 	});
 }
 
-function highlightCodeBlocks(compiledEl) {
-	$(compiledEl).wrap('<div class="refined-twitter_highlight"></div>');
+function highlightCodeBlocks(compiledElement) {
+	$(compiledElement).wrap('<div class="refined-twitter_highlight"></div>');
 
 	const selectedLang = pickLanguage(
-		$(compiledEl)
+		$(compiledElement)
 			.find('code')[0]
 			.className.split('-')[1]
 	);
@@ -74,8 +74,8 @@ function highlightCodeBlocks(compiledEl) {
 		`language-${selectedLang}` :
 		'language-txt';
 
-	$(compiledEl).addClass(languageClass);
-	$(compiledEl)
+	$(compiledElement).addClass(languageClass);
+	$(compiledElement)
 		.find('code')
 		.addClass(languageClass);
 
@@ -83,28 +83,28 @@ function highlightCodeBlocks(compiledEl) {
 	languageBar.textContent = selectedLang || 'txt';
 	languageBar.classList.add('refined-twitter_highlight-lang');
 
-	$(compiledEl)
+	$(compiledElement)
 		.parent()
 		.prepend($(languageBar));
 
 	// Highlight code
-	const code = $(compiledEl).find('code')[0].textContent;
+	const code = $(compiledElement).find('code')[0].textContent;
 	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
 
-	$(compiledEl)
+	$(compiledElement)
 		.find('code')
 		.html(`<div>${highlightedCode}</div>`);
 
-	stripLinks(compiledEl);
+	stripLinks(compiledElement);
 }
 
 export default () => {
 	const processed = 'refined-twitter_markdown-processed';
 	const styledClassName = 'refined-twitter_markdown';
 
-	$('.tweet-text').each(async (i, el) => {
+	$('.tweet-text').each(async (index, element) => {
 		// Ensure this is only run once
-		if ($(el).hasClass(processed)) {
+		if ($(element).hasClass(processed)) {
 			return;
 		}
 
@@ -113,36 +113,36 @@ export default () => {
 				.use(markdown)
 				.use(html)
 				.use(tokenizer)
-				.process(el.textContent);
+				.process(element.textContent);
 
 			const processedTweet = String(file);
 
 			if (containsMarkdown(processedTweet)) {
-				const compiledEl = domify(processedTweet);
-				const preBlock = $(compiledEl).find('pre');
+				const compiledElement = domify(processedTweet);
+				const preBlock = $(compiledElement).find('pre');
 
 				if (preBlock.length > 0) {
 					// Format code blocks if they exist
 					highlightCodeBlocks(preBlock[0]);
 				}
 
-				const inlineCode = $(compiledEl).find('code');
+				const inlineCode = $(compiledElement).find('code');
 
 				if (inlineCode.length > 0) {
 					// Strip links from inline code if there is any
-					inlineCode.each((i, el) => {
-						if (el.classList.length === 0) {
+					inlineCode.each((index, element) => {
+						if (element.classList.length === 0) {
 							// Inline code tags have no classes
-							el.textContent = el.textContent.replace('http://', '');
+							element.textContent = element.textContent.replace('http://', '');
 						}
 					});
 				}
 
-				$(el).html(compiledEl.childNodes);
-				$(el).addClass(styledClassName);
+				$(element).html(compiledElement.childNodes);
+				$(element).addClass(styledClassName);
 			}
 
-			$(el).addClass(processed);
+			$(element).addClass(processed);
 		} catch (error) {
 			throw error;
 		}
