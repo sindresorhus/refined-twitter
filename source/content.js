@@ -15,6 +15,10 @@ function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
 }
 
+function hideFollowTweets() {
+	$('[data-component-context="suggest_pyle_tweet"]').parents('.js-stream-item').hide();
+}
+
 function hideLikeTweets() {
 	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
 }
@@ -90,6 +94,7 @@ function onDomReady() {
 		onNewTweets(() => {
 			safely(codeHighlight);
 			safely(mentionHighlight);
+			safely(hideFollowTweets);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);
