@@ -1,5 +1,11 @@
 import domLoaded from 'dom-loaded';
-import {observeEl, safeElementReady, safely} from './libs/utils';
+
+import {
+	observeEl,
+	safeElementReady,
+	safely
+} from './libs/utils';
+
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
@@ -10,6 +16,8 @@ import keyboardShortcuts from './features/keyboard-shortcuts';
 import renderInlineCode from './features/inline-code';
 import disableCustomColors from './features/disable-custom-colors';
 import imageAlternatives from './features/image-alternatives';
+
+import preserveTextMessages from './features/preserve-text-messages';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -84,6 +92,7 @@ function removeProfileHeader() {
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
+	safely(preserveTextMessages);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);

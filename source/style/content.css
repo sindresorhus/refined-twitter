@@ -96,14 +96,6 @@ Dashboard
 	max-width: 100%;
 }
 
-/* Prevent DM Modal from closing when clicking the overlay */
-#dm_dialog {
-	pointer-events: none;
-}
-#dm_dialog-dialog {
-	pointer-events: auto;
-}
-
 /* Hide list-add activity */
 #stream-items-id .js-activity-list_member_added {
 	display: none;

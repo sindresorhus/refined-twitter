@@ -32,7 +32,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.
-- Prevents DM modal from closing when (accidentally) clicking outside the modal.
+- Preserves unsent text in the Messages modal when it closes.
 - Highlight your mentions in the stream.
 - [Adds a `Likes` button to the main navbar.](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
 - Keyboard shortcut to toggle Night Mode (<kbd>Alt</kbd><kbd>m</kbd>).
