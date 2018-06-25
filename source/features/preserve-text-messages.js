@@ -1,7 +1,6 @@
 import pick from 'lodash.pick';
 import debounce from 'lodash.debounce';
 import DOMPurify from 'dompurify';
-
 import {
 	getFromLocalStorage,
 	setToLocalStorage,
