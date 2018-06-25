@@ -15,8 +15,7 @@ export default function preserveTextMessages() {
 		handleDMModalClose
 	);
 
-	// When the user deletes a conversation
-	// remove it from local storage
+	// When the user deletes a conversation remove it from local storage
 	onMessageDelete(() => removeMessages(idsOfNotDeletedMsgs));
 }
 
