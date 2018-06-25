@@ -26,6 +26,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Embeds the photo from Instagram links directly in the tweet.](https://user-images.githubusercontent.com/170270/34315380-12d52994-e77f-11e7-8e23-27b76aee4df2.png)
 - Improves performance. <sup>[1](https://github.com/sindresorhus/refined-twitter/pull/14)</sup> <sup>[2](https://github.com/sindresorhus/refined-twitter/commit/23897e251d2bc8d59526129ce54c7a5bf1ef884c)</sup>
 - Hides "Liked" tweets in the stream.
+- [Hides "And others follow" tweets in the stream.](https://user-images.githubusercontent.com/5341072/39945031-cc81125a-5560-11e8-8334-ea310a9dfdad.png)
 - [Syntax highlighting in code blocks.](https://github.com/sindresorhus/refined-twitter/issues/37)
 - [Adds Markdown-like styling of `text wrapped in backticks`.](https://user-images.githubusercontent.com/12901172/38168571-d9bd82ea-351d-11e8-9858-0d7c8993cdd3.png)
 - Uses the original image in tweet image galleries instead of a downsized version.
