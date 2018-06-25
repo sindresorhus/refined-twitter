@@ -145,7 +145,7 @@ pre[class*='language-'] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #a8ff60;
+	color: #A8FF60;
 }
 
 .token.variable {
@@ -158,11 +158,11 @@ pre[class*='language-'] {
 
 .token.entity {
 	color: #FFFFB6;
-	/* text-decoration: underline; */
+/* text-decoration: underline; */
 }
 
 .token.url {
-	color: #96cbfe;
+	color: #96CBFE;
 }
 
 .language-css .token.string,
