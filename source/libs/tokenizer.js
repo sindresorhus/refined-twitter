@@ -36,7 +36,7 @@ function hashTags(eat, value, silent) {
 		return eat(hashtag)({
 			type: 'link',
 			url: `https://twitter.com/hashtag/${base}`,
-			children: [{ type: 'text', value: hashtag }]
+			children: [{type: 'text', value: hashtag}]
 		});
 	}
 }
