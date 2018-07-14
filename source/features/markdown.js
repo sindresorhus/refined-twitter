@@ -46,6 +46,7 @@ const containsMarkdown = html =>
 	].filter(tag => html.includes(tag)).length > 0;
 
 function stripLinks(element) {
+	// Strip the 'https://' from links
 	const possibleLink = $(element).find('span.token.string');
 
 	possibleLink.each((i, element) => {
@@ -98,53 +99,56 @@ function highlightCodeBlocks(compiledElement) {
 	stripLinks(compiledElement);
 }
 
-export default () => {
+async function processTweet(index, element) {
 	const processed = 'refined-twitter_markdown-processed';
 	const styledClassName = 'refined-twitter_markdown';
 
-	$('.tweet-text').each(async (index, element) => {
-		// Ensure this is only run once
-		if ($(element).hasClass(processed)) {
-			return;
-		}
+	// Ensure this only runs once per tweet
+	if ($(element).hasClass(processed)) {
+		return;
+	}
 
-		try {
-			const file = await unified()
-				.use(markdown)
-				.use(html)
-				.use(tokenizer)
-				.process(element.textContent);
+	try {
+		const file = await unified()
+			.use(markdown)
+			.use(html)
+			.use(tokenizer)
+			.process(element.textContent);
 
-			const processedTweet = String(file);
+		const processedTweet = String(file);
 
-			if (containsMarkdown(processedTweet)) {
-				const compiledElement = domify(processedTweet);
-				const preBlock = $(compiledElement).find('pre');
+		if (containsMarkdown(processedTweet)) {
+			const compiledElement = domify(processedTweet);
+			const preBlock = $(compiledElement).find('pre');
 
-				if (preBlock.length > 0) {
-					// Format code blocks if they exist
-					highlightCodeBlocks(preBlock[0]);
-				}
-
-				const inlineCode = $(compiledElement).find('code');
-
-				if (inlineCode.length > 0) {
-					// Strip links from inline code if there is any
-					inlineCode.each((index, element) => {
-						if (element.classList.length === 0) {
-							// Inline code tags have no classes
-							element.textContent = element.textContent.replace('http://', '');
-						}
-					});
-				}
-
-				$(element).html(compiledElement.childNodes);
-				$(element).addClass(styledClassName);
+			if (preBlock.length > 0) {
+				// Format code blocks if they exist
+				highlightCodeBlocks(preBlock[0]);
 			}
 
-			$(element).addClass(processed);
-		} catch (error) {
-			throw error;
+			const inlineCode = $(compiledElement).find('code');
+
+			if (inlineCode.length > 0) {
+				// Strip links from inline code if there is any
+				inlineCode.each((index, element) => {
+					if (element.classList.length === 0) {
+						// Inline code tags have no classes
+						element.textContent = element.textContent.replace('http://', '');
+					}
+				});
+			}
+
+			$(element).html(compiledElement.childNodes);
+			$(element).addClass(styledClassName);
 		}
-	});
+
+		$(element).addClass(processed);
+	} catch (error) {
+		throw error;
+	}
+}
+
+export default () => {
+	const tweets = $('.tweet-text').map((element, index) => processTweet(element, index));
+	Promise.all(tweets);
 };
