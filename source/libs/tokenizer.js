@@ -12,10 +12,11 @@ function mentions(eat, value, silent) {
 			return true;
 		}
 
-		return eat(match[0])({
+		const [mention, base] = match;
+		return eat(mention)({
 			type: 'link',
-			url: `https://twitter.com/${match[1]}`,
-			children: [{type: 'text', value: match[0]}]
+			url: `https://twitter.com/${base}`,
+			children: [{type: 'text', value: mention}]
 		});
 	}
 }
@@ -31,11 +32,11 @@ function hashTags(eat, value, silent) {
 		if (silent) {
 			return true;
 		}
-
-		return eat(match[0])({
+		const [hashtag, base] = match;
+		return eat(hashtag)({
 			type: 'link',
-			url: `https://twitter.com/hashtag/${match[1]}`,
-			children: [{type: 'text', value: match[0]}]
+			url: `https://twitter.com/hashtag/${base}`,
+			children: [{ type: 'text', value: hashtag }]
 		});
 	}
 }
