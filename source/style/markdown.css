@@ -15,6 +15,13 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 	font-size: 90%;
 }
 
+/* Fix for emojis in inline code */
+.refined-twitter_markdown code img {
+	height: 1.15em;
+	width: 1.15em;
+	padding: 0 0.2em;
+}
+
 .refined-twitter_markdown {
 	white-space: normal !important;
 }

@@ -1,6 +1,7 @@
 import html from 'remark-html';
 import unified from 'unified';
 import markdown from 'remark-parse';
+import twemoji from 'twemoji';
 
 import prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
@@ -109,11 +110,22 @@ async function processTweet(index, element) {
 	}
 
 	try {
+		// Replace emoji-img-tags with the actual emoji value
+		const rawElement = domify(element.innerHTML);
+		const images = $(rawElement).find('img');
+
+		console.log(images);
+		for (const image of images) {
+			image.replaceWith(image.alt);
+		}
+
+		const preprocessed = rawElement.textContent;
+
 		const file = await unified()
-			.use(markdown)
+			.use(markdown, {commonmark: true})
 			.use(html)
 			.use(tokenizer)
-			.process(element.textContent);
+			.process(preprocessed);
 
 		const processedTweet = String(file);
 
@@ -138,7 +150,7 @@ async function processTweet(index, element) {
 				});
 			}
 
-			$(element).html(compiledElement.childNodes);
+			$(element).html(twemoji.parse(compiledElement.innerHTML, {className: 'Emoji Emoji--forText'}));
 			$(element).addClass(styledClassName);
 		}
 
