@@ -32,6 +32,11 @@ body {
 	contain: layout style; /* We don't contain `content` as it breaks fullscreening videos */
 }
 
+/* Set width on search input */
+#global-nav-search {
+	width: 15.625.rem;
+}
+
 /* Remove annoying suggestions in the Search popover */
 #global-nav-search .typeahead-topics {
 	display: none !important;
@@ -108,12 +113,19 @@ Dashboard
 
 /* Center the nav widgets */
 .global-nav .container {
-	max-width: 880px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 @media screen and (max-width: 936px) {
 	.global-nav .container {
 		max-width: 590px !important;
 	}
+}
+
+/* Add margin to have spacing between search-form and navigation */
+div[role=navigation] {
+	margin-right: 6rem;
 }
 
 /* Adjust pushstate spinner for the above nav max-width change */
