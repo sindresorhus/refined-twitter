@@ -1,11 +1,23 @@
 import OptionsSync from 'webext-options-sync';
 
+import {featuresDefaultValues} from './features';
+
+const optionsSync = new OptionsSync();
+
 // Define defaults
-new OptionsSync().define({
-	defaults: {},
+optionsSync.define({
+	defaults: Object.assign({}, featuresDefaultValues, {
+		logging: false
+	}),
 	migrations: [
 		OptionsSync.migrations.removeUnused
 	]
+});
+
+// Make sure that all features have an option value
+optionsSync.getAll().then(options => {
+	const newOptions = Object.assign({}, featuresDefaultValues, options);
+	optionsSync.setAll(newOptions);
 });
 
 // Fix the extension when right-click saving a tweet image

@@ -7,17 +7,36 @@
 		margin: 14px 17px; /* Chrome default, match for Firefox */
 		font-family: sans-serif;
 	}
+
 	/* Increase spacing between sections */
 	h2 ~ h2,
 	form ~ form {
 		margin-top: 2em;
 	}
+
+	.hidden-feature {
+		display: none;
+		opacity: 0.5;
+	}
 </style>
 <form id="options-form">
-	<h2>Information</h2>
-	<p>
-		No options yet.
-	</p>
+	<section>
+		<h2>Features</h2>
+
+		<section id="features-placeholder" />
+	</section>
+
+	<br />
+
+	<section>
+		<h2>Debug</h2>
+		<p>
+			<label>
+				<input type="checkbox" name="logging">
+				Show the features enabled on each page in the console
+			</label>
+		</p>
+	</section>
 </form>
 <script src="browser-polyfill.min.js"></script>
 <script src="options.js"></script>

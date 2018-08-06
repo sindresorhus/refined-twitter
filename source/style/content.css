@@ -5,17 +5,17 @@ Global
 */
 
 /* Use system fonts */
-body {
+.feature-use-system-font body {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
 }
 
 /* Remove navbar logo */
-.bird-topbar-etched {
+.feature-hide-twitter-logo .bird-topbar-etched {
 	display: none !important;
 }
 
 /* Remove "Moments" tab */
-#global-actions .moments {
+.feature-hide-moments-tab #global-actions .moments {
 	display: none !important;
 }
 
@@ -33,19 +33,20 @@ body {
 }
 
 /* Remove annoying suggestions in the Search popover */
-#global-nav-search .typeahead-topics {
+.feature-cleanup-search-suggestions #global-nav-search .typeahead-topics {
 	display: none !important;
 }
-#global-nav-search .typeahead-topics + ul {
+
+.feature-cleanup-search-suggestions #global-nav-search .typeahead-topics + ul {
 	border: 0 !important;
 }
 
 /* Highlight your mentions in the stream */
-body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
+.feature-mentions-highlight body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet) {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.1);
 }
 
-body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
+.feature-mentions-highlight body:not(.NotificationsPage) .tweet.refined-twitter_mention:not(.permalink-tweet):hover {
 	background-color: rgba(var(--refined-twitter_bgcolor-values), 0.2);
 }
 
@@ -56,38 +57,38 @@ Dashboard
 */
 
 /* Remove the profile box */
-.module.DashboardProfileCard {
+.feature-home-hide-profile-card .module.DashboardProfileCard {
 	display: none !important;
 }
 
 /* Remove the "Trends for you" box */
-.module.trends {
+.feature-home-hide-trends-card .module.trends {
 	display: none !important;
 }
 
 /* Remove the "Who to follow" box */
-.module.wtf-module {
+.feature-home-hide-who-to-follow-card .module.wtf-module {
 	display: none !important;
 }
 
 /* Remove the footer box */
-.module.Footer {
+.feature-home-hide-footer-card .module.Footer {
 	display: none !important;
 }
 
 /* Remove sidebars */
 /* The `:not(.wrapper-list)` part filters out Twitter lists because we don't want to hide the sidebars there */
-#page-container:not(.wrapper-list) .dashboard-left,
-#page-container:not(.wrapper-list) .dashboard-right {
+.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-list) .dashboard-left,
+.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-list) .dashboard-right {
 	display: none !important;
 }
 
 /* Center the tweet stream */
-#page-container:not(.wrapper-settings) {
+.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-settings) {
 	width: unset !important;
 }
 
-#page-container:not(.wrapper-settings) .content-main {
+.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
 	float: unset !important;
 }
@@ -98,19 +99,24 @@ Dashboard
 }
 
 /* Hide list-add activity */
-#stream-items-id .js-activity-list_member_added {
+.feature-notifications-hide-list-activity #stream-items-id .js-activity-list_member_added {
 	display: none;
 }
 
 /* Hide follow activity */
-#stream-items-id .js-activity-follow {
+.feature-notifications-hide-follow-activity #stream-items-id .js-activity-follow {
 	display: none;
 }
 
 /* Center the nav widgets */
-.global-nav .container {
+.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card .global-nav .container {
 	max-width: 880px !important;
 }
+
+.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card.feature-likes-button-navbar:not(.feature-hide-moments-tab) #global-nav-search {
+	width: 180px !important;
+}
+
 @media screen and (max-width: 936px) {
 	.global-nav .container {
 		max-width: 590px !important;
@@ -140,34 +146,34 @@ code.refined-twitter_markdown {
 }
 
 /* Remove big header from profile page */
-.ProfileCanopy-avatar {
+.feature-remove-profile-header .ProfileCanopy-avatar {
 	bottom: -160px !important;
 }
 
-.ProfileSidebar--withLeftAlignment {
+.feature-remove-profile-header .ProfileSidebar--withLeftAlignment {
 	transform: translateY(130px);
 	position: relative;
 	z-index: 3;
 }
 
-.ProfileCanopy-navBar > .AppContainer {
+.feature-remove-profile-header .ProfileCanopy-navBar > .AppContainer {
 	position: relative;
 }
 
-.ProfileCanopy,
-.ProfileCanopy-header,
-.ProfileCanopy--large {
+.feature-remove-profile-header .ProfileCanopy,
+.feature-remove-profile-header .ProfileCanopy-header,
+.feature-remove-profile-header .ProfileCanopy--large {
 	height: 0 !important;
 }
 
 /* Remove white border and add shadow to profile picture */
-.ProfileCanopy-avatar {
+.feature-remove-profile-header .ProfileCanopy-avatar {
 	padding: 5px;
 	border-radius: 100%;
 }
 
-.ProfileAvatar,
-.ProfileAvatarEditing {
+.feature-remove-profile-header .ProfileAvatar,
+.feature-remove-profile-header .ProfileAvatarEditing {
 	border: none !important;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.36);
 }
