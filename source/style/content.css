@@ -83,10 +83,11 @@ Dashboard
 }
 
 /* Center the tweet stream */
-#page-container {
+#page-container:not(.wrapper-settings) {
 	width: unset !important;
 }
-#page-container .content-main {
+
+#page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
 	float: unset !important;
 }
