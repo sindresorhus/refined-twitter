@@ -209,3 +209,7 @@ code.refined-twitter_markdown {
 	max-height: initial !important;
 }
 
+/* Hide `Liked a reply to you` notifications */
+.stream-item-favorited_mention {
+	display: none;
+}
