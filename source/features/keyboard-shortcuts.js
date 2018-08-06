@@ -36,9 +36,13 @@ export default () => {
 		const keyName = event.key;
 		switch (keyName) {
 			case 'µ':
-			case event.altKey && 'm':
 				toggleNightMode();
 				break;
+
+			case 'm':
+				if (event.altKey) toggleNightMode();
+				break;
+
 			default:
 				break;
 		}
