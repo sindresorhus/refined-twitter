@@ -83,10 +83,11 @@ Dashboard
 }
 
 /* Center the tweet stream */
-#page-container {
+#page-container:not(.wrapper-settings) {
 	width: unset !important;
 }
-#page-container .content-main {
+
+#page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
 	float: unset !important;
 }
@@ -94,14 +95,6 @@ Dashboard
 /* Custom inline image element */
 .AdaptiveMedia .refined-twitter_instagram-inline {
 	max-width: 100%;
-}
-
-/* Prevent DM Modal from closing when clicking the overlay */
-#dm_dialog {
-	pointer-events: none;
-}
-#dm_dialog-dialog {
-	pointer-events: auto;
 }
 
 /* Hide list-add activity */
@@ -207,4 +200,9 @@ Dashboard
 }
 .refined-twitter_image-alt_ancestor-not-square {
 	max-height: initial !important;
+}
+
+/* Hide `Liked a reply to you` notifications */
+.stream-item-favorited_mention {
+	display: none;
 }

@@ -1,5 +1,11 @@
 import domLoaded from 'dom-loaded';
-import {observeEl, safeElementReady, safely} from './libs/utils';
+
+import {
+	observeEl,
+	safeElementReady,
+	safely
+} from './libs/utils';
+
 import autoLoadNewTweets from './features/auto-load-new-tweets';
 import inlineInstagramPhotos from './features/inline-instagram-photos';
 import userChoiceColor from './features/user-choice-color';
@@ -10,8 +16,14 @@ import disableCustomColors from './features/disable-custom-colors';
 import imageAlternatives from './features/image-alternatives';
 import renderMarkdown from './features/markdown';
 
+import preserveTextMessages from './features/preserve-text-messages';
+
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
+}
+
+function hideFollowTweets() {
+	$('[data-component-context="suggest_pyle_tweet"]').parents('.js-stream-item').hide();
 }
 
 function hideLikeTweets() {
@@ -79,6 +91,7 @@ function removeProfileHeader() {
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
+	safely(preserveTextMessages);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);
@@ -89,6 +102,7 @@ function onDomReady() {
 		onNewTweets(() => {
 			safely(renderMarkdown);
 			safely(mentionHighlight);
+			safely(hideFollowTweets);
 			safely(hideLikeTweets);
 			safely(inlineInstagramPhotos);
 			safely(hidePromotedTweets);

@@ -35,10 +35,18 @@ export default () => {
 	document.addEventListener('keydown', event => {
 		const keyName = event.key;
 		switch (keyName) {
-			case 'µ':
-			case event.altKey && 'm':
+			case 'µ': {
 				toggleNightMode();
 				break;
+			}
+
+			case 'm': {
+				if (event.altKey) {
+					toggleNightMode();
+				}
+				break;
+			}
+
 			default:
 				break;
 		}

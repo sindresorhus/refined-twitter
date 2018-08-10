@@ -15,6 +15,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - **Firefox** add-on: Use [this](https://addons.mozilla.org/en-US/firefox/addon/chrome-store-foxified/) to enable installing Chrome extensions and then install [Refined Twitter](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 - **Opera** extension: Use [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to enable installing Chrome extensions and then install [Refined Twitter](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 
+*Note: You **must** be logged in for this extension to work.*
 
 ## Highlights
 
@@ -26,12 +27,13 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - [Embeds the photo from Instagram links directly in the tweet.](https://user-images.githubusercontent.com/170270/34315380-12d52994-e77f-11e7-8e23-27b76aee4df2.png)
 - Improves performance. <sup>[1](https://github.com/sindresorhus/refined-twitter/pull/14)</sup> <sup>[2](https://github.com/sindresorhus/refined-twitter/commit/23897e251d2bc8d59526129ce54c7a5bf1ef884c)</sup>
 - Hides "Liked" tweets in the stream.
+- [Hides "And others follow" tweets in the stream.](https://user-images.githubusercontent.com/5341072/39945031-cc81125a-5560-11e8-8334-ea310a9dfdad.png)
 - [Syntax highlighting in code blocks.](https://github.com/sindresorhus/refined-twitter/issues/37)
 - [Adds Markdown-like styling of `text wrapped in backticks`.](https://user-images.githubusercontent.com/12901172/38168571-d9bd82ea-351d-11e8-9858-0d7c8993cdd3.png)
 - Uses the original image in tweet image galleries instead of a downsized version.
 - [Removes the annoying suggestions in the search popover.](https://user-images.githubusercontent.com/170270/33800304-70198358-dd3d-11e7-9870-477a44f74f4d.png)
 - Hides "Notifications" activity for new followers and being added to a list.
-- Prevents DM modal from closing when (accidentally) clicking outside the modal.
+- Preserves unsent text in the Messages modal when it closes.
 - Highlight your mentions in the stream.
 - [Adds a `Likes` button to the main navbar.](https://user-images.githubusercontent.com/14620121/35988497-ace9f93e-0ce5-11e8-8675-17e6ee38cd99.png)
 - Keyboard shortcut to toggle Night Mode (<kbd>Alt</kbd><kbd>m</kbd>).
@@ -104,6 +106,9 @@ Once built, load it in the browser of your choice:
 
 This is reusing the name from the [original Refined Twitter](https://github.com/sindresorhus/refined-twitter-old) extension, which tried to use the mobile Twitter version on the desktop. It was a good idea in theory, but not in practice. This extension instead improves upon the desktop version of Twitter.
 
+### Will this extension work if I'm not logged in?
+
+[No](https://github.com/sindresorhus/refined-twitter/issues/126).
 
 ## Related
 
