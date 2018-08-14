@@ -113,12 +113,13 @@ Once built, load it in the browser of your choice:
 
 This is reusing the name from the [original Refined Twitter](https://github.com/sindresorhus/refined-twitter-old) extension, which tried to use the mobile Twitter version on the desktop. It was a good idea in theory, but not in practice. This extension instead improves upon the desktop version of Twitter.
 
-### Will this extension work if I'm not logged in?
+#### Will this extension work if I'm not logged in?
 
 [No](https://github.com/sindresorhus/refined-twitter/issues/126).
 #### Will this extension work if I'm not logged in?
 
 [No](https://github.com/sindresorhus/refined-twitter/issues/126).
+
 
 
 ## Related
