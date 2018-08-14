@@ -2,13 +2,42 @@ import {h} from 'dom-chef';
 import select from 'select-dom';
 import elementReady from 'element-ready';
 import domLoaded from 'dom-loaded';
+import OptionsSync from 'webext-options-sync';
+
+let options;
+const optionsPromise = new OptionsSync().getAll();
 
 /**
+ * Enable toggling each feature via options.
  * Prevent fn's errors from blocking the remaining tasks.
  * https://github.com/sindresorhus/refined-github/issues/678
- * The code looks weird but it's synchronous and fn is called without args.
  */
-export const safely = async fn => fn();
+export const enableFeature = async ({fn, id: _featureId = fn.name}) => {
+	if (!options) {
+		options = await optionsPromise;
+	}
+
+	const {logging = false} = options;
+	const log = logging ? console.log : () => {};
+
+	const featureId = _featureId.replace(/_/g, '-');
+	if (/^$|^anonymous$/.test(featureId)) {
+		console.warn('This feature is nameless', fn);
+	} else if (options[featureId] === false) {
+		$('html').removeClass(featureId);
+		log('↩️', 'Skipping', featureId);
+		return;
+	}
+
+	try {
+		$('html').addClass(featureId);
+		await fn();
+		log('✅', featureId);
+	} catch (err) {
+		console.log('❌', featureId);
+		console.error(err);
+	}
+};
 
 /**
  * Automatically stops checking for an element to appear once the DOM is ready.

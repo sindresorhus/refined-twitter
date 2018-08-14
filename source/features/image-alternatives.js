@@ -1,4 +1,4 @@
-export default async () => {
+export default async function () {
 	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer, .Gallery-media');
 
 	for (const imgContainer of imgContainers) {
@@ -43,4 +43,4 @@ export default async () => {
 			img.classList.add('refined-twitter_image-alt_img');
 		}
 	}
-};
+}
