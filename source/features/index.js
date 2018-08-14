@@ -99,6 +99,12 @@ export const features = {
 		label: 'Hide "Added you to a list" activity',
 		runOnInit: true
 	},
+	hideNotificationsLikedReplyActivity: {
+		id: 'feature-notifications-hide-liked-reply-activity',
+		category: 'notifications',
+		label: 'Hide "Liked a reply to you" activity',
+		runOnInit: true
+	},
 
 	/* PROFILE */
 	hideProfileHeader: {

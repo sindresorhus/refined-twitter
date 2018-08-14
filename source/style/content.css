@@ -61,6 +61,14 @@ Dashboard
 
 */
 
+
+/* Increase width of dashboard sidepanel in settings when in smaller viewport mode */
+@media screen and (max-width: 936px) {
+	#page-container .dashboard {
+		width: 18.75rem;
+	}
+}
+
 /* Remove the profile box */
 .feature-home-hide-profile-card .module.DashboardProfileCard {
 	display: none !important;
@@ -95,7 +103,32 @@ Dashboard
 
 .feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
+}
+
+#page-container .content-main {
 	float: unset !important;
+	margin: 0 auto !important;
+}
+
+/* Adjust the main content into flex */
+div.AppContent.wrapper.wrapper-settings {
+	display: flex;
+	justify-content: center;
+}
+
+#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+	margin: 0 16rem 0 0.625rem !important;
+}
+
+@media screen and (max-width: 1236px) {
+	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+		margin: 0 3rem 0 0.625rem !important;
+	}
+}
+@media screen and (max-width: 936px) {
+	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+		margin: 0 0 0 0.625rem !important;
+	}
 }
 
 /* Custom inline image element */
@@ -130,7 +163,7 @@ Dashboard
 
 @media screen and (max-width: 936px) {
 	.global-nav .container {
-		max-width: 590px !important;
+		justify-content: space-around;
 	}
 }
 
@@ -139,16 +172,25 @@ Dashboard
 	margin-right: 6rem;
 }
 
+.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card.feature-likes-button-navbar:not(.feature-hide-moments-tab) #global-nav-search {
+	width: 180px !important;
+}
+
 /* Adjust pushstate spinner for the above nav max-width change */
 .pushstate-spinner {
+	margin: 0.125rem 0 0 0.31rem !important;
 	position: absolute;
-	left: 0 !important;
-	margin-left: -40px !important;
-	top: 0;
 }
+
+@media screen and (min-width: 1236px) {
+	.pushstate-spinner {
+		left: -5% !important;
+	}
+}
+
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
-		left: 43% !important;
+		left: 7% !important;
 		margin-left: -10px !important;
 	}
 }
@@ -177,7 +219,6 @@ code.refined-twitter_markdown {
 	position: relative;
 }
 
-
 .feature-remove-profile-header .ProfileCanopy,
 .feature-remove-profile-header .ProfileCanopy-header,
 .feature-remove-profile-header .ProfileCanopy--large {
@@ -187,10 +228,6 @@ code.refined-twitter_markdown {
 /* Remove unnecessary profile card in header on profile page */
 .ProfileCanopy.is-locked .ProfileCanopy-card {
 	display: none;
-}
-
-.ProfileCanopy.is-locked .ProfileCanopy-inner {
-	top: 2.8rem !important;
 }
 
 /* Remove white border and add shadow to profile picture */
@@ -203,6 +240,11 @@ code.refined-twitter_markdown {
 .feature-remove-profile-header .ProfileAvatarEditing {
 	border: none !important;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.36);
+}
+
+/* Prevent follow button being hidden */
+.feature-remove-profile-header .ProfileCanopy-inner {
+	position: relative !important;
 }
 
 /* Move dropdown menu to the right */
@@ -244,6 +286,6 @@ code.refined-twitter_markdown {
 }
 
 /* Hide `Liked a reply to you` notifications */
-.stream-item-favorited_mention {
+.feature-notifications-hide-liked-reply-activity .stream-item-favorited_mention {
 	display: none;
 }

@@ -5,7 +5,7 @@ function styleInlineCode(md) {
 }
 
 function isElement(el) {
-	return el instanceof HTMLElement;
+	return el instanceof HTMLElement || el instanceof Text;
 }
 
 function splitTextReducer(frag, text, index) {
@@ -34,9 +34,10 @@ export default function () {
 
 		const frag = text.map(val => {
 			// Style the single backticks while ignoring the already styled multiline code blocks
-			if (isElement(val)) {
+			if (isElement(val) || typeof val === "object") {
 				return val;
 			}
+			
 			return val
 				.split(splittingRegex)
 				.reduce(splitTextReducer, new DocumentFragment());
