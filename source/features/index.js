@@ -121,12 +121,6 @@ export const features = {
 		label: 'Auto-loads new tweets in the stream if you\'re scrolled to the top',
 		fn: require('./auto-load-new-tweets').default
 	},
-	codeHighlight: {
-		id: 'feature-code-highlight',
-		category: 'timeline',
-		label: 'Syntax highlighting in code blocks',
-		fn: require('./code-highlight').default
-	},
 	hideFollowTweets: {
 		id: 'feature-hide-follow-tweets',
 		category: 'timeline',
@@ -164,11 +158,11 @@ export const features = {
 		label: 'Highlight your mentions in the stream',
 		fn: require('./mentions-highlight').default
 	},
-	renderInlineCode: {
-		id: 'feature-inline-code',
+	renderMarkdown: {
+		id: 'feature-markdown',
 		category: 'timeline',
-		label: 'Adds Markdown-like styling of text wrapped in backticks',
-		fn: require('./inline-code').default
+		label: 'Adds support for Markdown in tweets',
+		fn: require('./markdown').default
 	}
 };
 

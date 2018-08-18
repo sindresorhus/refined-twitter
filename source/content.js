@@ -70,22 +70,21 @@ function onDomReady() {
 		enableFeature(features.hideProfileHeader);
 
 		onNewTweets(() => {
-			enableFeature(features.codeHighlight);
 			enableFeature(features.mentionHighlight);
 			enableFeature(features.hideFollowTweets);
 			enableFeature(features.hideLikeTweets);
 			enableFeature(features.inlineInstagramPhotos);
 			enableFeature(features.hidePromotedTweets);
-			enableFeature(features.renderInlineCode);
 			enableFeature(features.imageAlternatives);
+			enableFeature(features.renderMarkdown);
 		});
 	});
 
 	onSingleTweetOpen(() => {
 		enableFeature(features.mentionHighlight);
 		enableFeature(features.inlineInstagramPhotos);
-		enableFeature(features.renderInlineCode);
 		enableFeature(features.imageAlternatives);
+		enableFeature(features.renderMarkdown);
 	});
 
 	onGalleryItemOpen(() => {
