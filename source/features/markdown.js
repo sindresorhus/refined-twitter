@@ -66,11 +66,15 @@ function stripLinks(element) {
 function highlightCodeBlocks(compiledElement) {
 	$(compiledElement).wrap('<div class="refined-twitter_highlight"></div>');
 
-	const selectedLang = pickLanguage(
+	let selectedLang = pickLanguage(
 		$(compiledElement)
 			.find('code')[0]
 			.className.split('-')[1]
 	);
+
+	if (!prism.languages[selectedLang]) {
+		selectedLang = "markup";
+	}
 
 	const languageClass = selectedLang ?
 		`language-${selectedLang}` :
@@ -114,7 +118,6 @@ async function processTweet(index, element) {
 		const rawElement = domify(element.innerHTML);
 		const images = $(rawElement).find('img');
 
-		console.log(images);
 		for (const image of images) {
 			image.replaceWith(image.alt);
 		}
