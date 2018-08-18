@@ -73,13 +73,13 @@ function highlightCodeBlocks(compiledElement) {
 	);
 
 	if (!prism.languages[selectedLang]) {
-		selectedLang = "markup";
+		selectedLang = 'markup';
 	}
 
 	const languageClass = selectedLang ?
 		`language-${selectedLang}` :
 		'language-txt';
-
+	
 	$(compiledElement).addClass(languageClass);
 	$(compiledElement)
 		.find('code')
@@ -144,7 +144,7 @@ async function processTweet(index, element) {
 			const inlineCode = $(compiledElement).find('code');
 
 			if (inlineCode.length > 0) {
-				// Strip links from inline code if there is any
+				// Strip links from inline code if there are any
 				inlineCode.each((index, element) => {
 					if (element.classList.length === 0) {
 						// Inline code tags have no classes

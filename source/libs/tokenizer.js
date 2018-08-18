@@ -32,6 +32,7 @@ function hashTags(eat, value, silent) {
 		if (silent) {
 			return true;
 		}
+
 		const [hashtag, base] = match;
 		return eat(hashtag)({
 			type: 'link',
@@ -50,11 +51,11 @@ export default function () {
 	const tokenizers = Parser.prototype.inlineTokenizers;
 	const methods = Parser.prototype.inlineMethods;
 
-	// Add inline tokenizer.
+	// Add inline tokenizers
 	tokenizers.mention = mentions;
 	tokenizers.hashTag = hashTags;
 
-	// Run it just before `text`.
+	// Run it just before `text`
 	methods.splice(methods.indexOf('text'), 0, 'mention');
 	methods.splice(methods.indexOf('text'), 0, 'hashTag');
 }

@@ -161,7 +161,7 @@ export const features = {
 	renderMarkdown: {
 		id: 'feature-markdown',
 		category: 'timeline',
-		label: 'Adds support for Markdown in tweets',
+		label: 'Add support for Markdown in tweets',
 		fn: require('./markdown').default
 	}
 };
