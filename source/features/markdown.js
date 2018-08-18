@@ -79,7 +79,7 @@ function highlightCodeBlocks(compiledElement) {
 	const languageClass = selectedLang ?
 		`language-${selectedLang}` :
 		'language-txt';
-	
+
 	$(compiledElement).addClass(languageClass);
 	$(compiledElement)
 		.find('code')
