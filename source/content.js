@@ -6,6 +6,8 @@ import userChoiceColor from './features/user-choice-color';
 import codeHighlight from './features/code-highlight';
 import addLikesButtonNavBar from './features/likes-button-navbar';
 import keyboardShortcuts from './features/keyboard-shortcuts';
+import mentionHighlight from './features/mentions-highlight';
+import multipleAccounts from './features/multiple-accounts';
 
 function cleanNavbarDropdown() {
 	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
@@ -56,6 +58,7 @@ function onSingleTweetOpen(cb) {
 function onDomReady() {
 	safely(cleanNavbarDropdown);
 	safely(keyboardShortcuts);
+	safely(multipleAccounts);
 
 	onRouteChange(() => {
 		safely(autoLoadNewTweets);

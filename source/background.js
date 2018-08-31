@@ -24,3 +24,20 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 }, {
 	urls: ['https://pbs.twimg.com/media/*']
 }, ['blocking']);
+
+/*---------------------------------*\
+	  # Req the access token #
+\*---------------------------------*/
+
+chrome.runtime.onMessage.addListener(
+	function (request, sender, sendResponse) {
+		var authCookie = {};
+		if (request.message == "reqAccessToken") {
+			const { url } = sender;
+			chrome.cookies.get({ url: "https://twitter.com", name: "auth_token" }, function (response) {
+				authCookie = { key: response.name, token: response.value  };
+				sendResponse(authCookie);
+			});
+		}
+		return true;
+	});
