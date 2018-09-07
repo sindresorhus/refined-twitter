@@ -217,6 +217,6 @@ code.refined-twitter_markdown {
 }
 
 /* Hide `Liked a reply to you` notifications */
-.stream-item-favorited_mention {
+.feature-notifications-hide-liked-reply-activity .stream-item-favorited_mention {
 	display: none;
 }
