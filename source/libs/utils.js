@@ -33,9 +33,9 @@ export const enableFeature = async ({fn, id: _featureId = fn.name}) => {
 		$('html').addClass(featureId);
 		await fn();
 		log('✅', featureId);
-	} catch (err) {
+	} catch (error) {
 		console.log('❌', featureId);
-		console.error(err);
+		console.error(error);
 	}
 };
 
