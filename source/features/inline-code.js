@@ -5,7 +5,7 @@ function styleInlineCode(md) {
 }
 
 function isElement(el) {
-	return el instanceof HTMLElement;
+	return el instanceof HTMLElement || el instanceof Text;
 }
 
 function splitTextReducer(frag, text, index) {
