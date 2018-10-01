@@ -30,10 +30,9 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 \*---------------------------------*/
 
 chrome.runtime.onMessage.addListener(
-	function (request, sender, sendResponse) {
+	function (request, _, sendResponse) {
 		var authCookie = {};
 		if (request.message == "reqAccessToken") {
-			const { url } = sender;
 			chrome.cookies.get({ url: "https://twitter.com", name: "auth_token" }, function (response) {
 				authCookie = { key: response.name, token: response.value  };
 				sendResponse(authCookie);
