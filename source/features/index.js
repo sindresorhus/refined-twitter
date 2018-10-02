@@ -145,6 +145,13 @@ export const features = {
 		label: 'Hide "Liked" tweets in the stream',
 		fn: require('./hide-like-tweets').default
 	},
+	hideRetweets: {
+		id: 'feature-hide-retweets',
+		category: 'timeline',
+		label: 'Hide retweets in the stream',
+		enabledByDefault: false,
+		fn: require('./hide-retweets').default
+	},
 	hidePromotedTweets: {
 		id: 'feature-hide-promoted-tweets',
 		category: 'timeline',
