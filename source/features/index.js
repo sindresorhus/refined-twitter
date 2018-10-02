@@ -148,7 +148,7 @@ export const features = {
 	hideRetweets: {
 		id: 'feature-hide-retweets',
 		category: 'timeline',
-		label: 'Hide Retweets in the stream',
+		label: 'Hide retweets in the stream',
 		enabledByDefault: false,
 		fn: require('./hide-retweets').default
 	},
