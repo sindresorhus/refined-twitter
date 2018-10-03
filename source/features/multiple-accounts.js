@@ -28,6 +28,11 @@ function setLocalStorage() {
 	const { sessionStorage } = window;
 
 	return createUserData().then(userData => {
+		console.log(userData)
+		/**
+		 * @todo diff different cookie after and beforee
+		 * the modifid data
+		 */
 		const existingAccounts = JSON.parse(sessionStorage.getItem("activeAccounts")) || {};
 		const updatedAccounts = Object.assign(existingAccounts, userData);
 		sessionStorage.setItem("activeAccounts", JSON.stringify(updatedAccounts));
@@ -48,10 +53,11 @@ const createAccountNode = function () {
 			const {key, token, image} = currentLocalStorage[user];
 			const profiles = (
 				<li class="RT-user"
-				onClick={
-					() => {
-						document.cookie = `${key}=${token}`;
-						window.location.reload()
+					onClick={() => {
+						chrome.runtime.sendMessage({
+							message: "setAccessToken",
+							cookieValue: token
+						});
 					}}>
 					<img className="RT-user__image" src={image} />
 					<span className="RT-user__name">{user}</span>

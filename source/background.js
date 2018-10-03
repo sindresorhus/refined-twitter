@@ -31,12 +31,45 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 
 chrome.runtime.onMessage.addListener(
 	function (request, _, sendResponse) {
-		var authCookie = {};
 		if (request.message == "reqAccessToken") {
-			chrome.cookies.get({ url: "https://twitter.com", name: "auth_token" }, function (response) {
-				authCookie = { key: response.name, token: response.value  };
-				sendResponse(authCookie);
+			const options = {
+				url: "https://twitter.com",
+				name: "auth_token"
+			}
+
+			chrome.cookies.get(options, function (response) {
+				sendResponse({
+					key: response.name,
+					token: response.value
+				});
 			});
 		}
 		return true;
-	});
+	}
+);
+
+/*---------------------------------*\
+	  # Set the access token #
+\*---------------------------------*/
+
+chrome.runtime.onMessage.addListener(
+	function (request, _, sendResponse) {
+		if (request.message == "setAccessToken") {
+			console.log(request.cookieValue)
+			const options = {
+				url: "https://twitter.com",
+				name: "auth_token",
+				value: request.cookieValue,
+				// expirationDate: 30000,
+				secure: true,
+				httpOnly: true
+			}
+			chrome.cookies.remove({url: "https://twitter.com", name: "auth_token"})
+			chrome.cookies.set(options, function () {
+				chrome.tabs.reload();
+				// sendResponse(authCookie);
+			});
+		}
+		return true;
+	}
+);
