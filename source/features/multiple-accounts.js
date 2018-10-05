@@ -4,8 +4,8 @@ import { getUsername, getUserImage } from '../libs/utils';
 function getAccessTokens() {
 	return new Promise((res, rej) => {
 		chrome.runtime.sendMessage({ message: "reqAccessToken" }, function (response) {
-			const { key, token } = response;
-			res({ key, token })
+			const { token } = response;
+			res({ token })
 			return true;
 		});
 	}).catch(e => e);
@@ -18,7 +18,6 @@ function createUserData() {
 	return getAccessTokens().then(data => ({
 		[userName]: {
 			image: userImage,
-			key: data.key,
 			token: data.token,
 		}
 	}))
@@ -29,10 +28,6 @@ function setLocalStorage() {
 
 	return createUserData().then(userData => {
 		console.log(userData)
-		/**
-		 * @todo diff different cookie after and beforee
-		 * the modifid data
-		 */
 		const existingAccounts = JSON.parse(sessionStorage.getItem("activeAccounts")) || {};
 		const updatedAccounts = Object.assign(existingAccounts, userData);
 		sessionStorage.setItem("activeAccounts", JSON.stringify(updatedAccounts));
@@ -50,17 +45,17 @@ const createAccountNode = function () {
 	setLocalStorage().then(_ => {
 		const currentLocalStorage = getLocalStorage();
 		for (let user in currentLocalStorage ) {
-			const {key, token, image} = currentLocalStorage[user];
+			const {token, image} = currentLocalStorage[user];
 			const profiles = (
 				<li class="RT-user"
 					onClick={() => {
 						chrome.runtime.sendMessage({
 							message: "setAccessToken",
-							cookieValue: token
+							token,
 						});
 					}}>
 					<img className="RT-user__image" src={image} />
-					<span className="RT-user__name">{user}</span>
+					<span token={token} className="RT-user__name">{user}</span>
 				</li>
 			)
 			dropDownMenu.appendChild(profiles)
