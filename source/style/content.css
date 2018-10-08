@@ -135,3 +135,17 @@ Dashboard
 		margin-left: -10px !important;
 	}
 }
+
+/*---------------------------------*\
+	# Multiple Account Section #
+\*---------------------------------*/
+.RT-user > a{
+	display: flex !important;
+	align-items: center;
+}
+
+.RT-user__image {
+	border-radius: 50%;
+	width: 2em;
+	margin-right: 5px;
+}

@@ -26,19 +26,25 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 }, ['blocking']);
 
 /*---------------------------------*\
-	  # Set the access token #
+	# Multiple Account Section #
 \*---------------------------------*/
+
 function getAccount(sendResponse) {
-	const options = {
+	chrome.cookies.get({
 		url: "https://twitter.com",
 		name: "auth_token"
-	}
-
-	chrome.cookies.get(options, function(cookie) {
-		console.log(cookie)
+	},
+	function(cookie) {
 		sendResponse({
 			token: cookie.value
 		});
+	});
+}
+
+function rmToken() {
+	chrome.cookies.remove({
+		url: 'https://twitter.com',
+		name: "auth_token"
 	});
 }
 
@@ -70,6 +76,9 @@ chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
 			break;
 		case "setAccessToken":
 			switchAccount(request.token)
+			break;
+		case "rmAccessToken":
+			rmToken()
 			break;
 		default:
 			break;
