@@ -25,16 +25,13 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 	urls: ['https://pbs.twimg.com/media/*']
 }, ['blocking']);
 
-/*---------------------------------*\
-	# Multiple Account Section #
-\*---------------------------------*/
+// Multiple Account Section
 
 function getAccount(sendResponse) {
 	chrome.cookies.get({
-		url: "https://twitter.com",
-		name: "auth_token"
-	},
-	function(cookie) {
+		url: 'https://twitter.com',
+		name: 'auth_token'
+	}, cookie => {
 		sendResponse({
 			token: cookie.value
 		});
@@ -44,14 +41,14 @@ function getAccount(sendResponse) {
 function rmToken() {
 	chrome.cookies.remove({
 		url: 'https://twitter.com',
-		name: "auth_token"
+		name: 'auth_token'
 	});
 }
 
 function switchAccount(token) {
 	chrome.cookies.set({
 		url: 'https://twitter.com',
-		name: "auth_token",
+		name: 'auth_token',
 		value: token,
 		domain: '.twitter.com',
 		path: '/',
@@ -61,24 +58,24 @@ function switchAccount(token) {
 
 	chrome.cookies.remove({
 		url: 'https://twitter.com',
-		name: "twid"
+		name: 'twid'
 	});
 
-	chrome.tabs.getSelected(null, function(tab) {
+	chrome.tabs.getSelected(null, tab => {
 		chrome.tabs.reload(tab.id);
 	});
 }
 
-chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
+chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
 	switch (request.message) {
-		case "reqAccessToken":
-			getAccount(sendResponse)
+		case 'reqAccessToken':
+			getAccount(sendResponse);
 			break;
-		case "setAccessToken":
-			switchAccount(request.token)
+		case 'setAccessToken':
+			switchAccount(request.token);
 			break;
-		case "rmAccessToken":
-			rmToken()
+		case 'rmAccessToken':
+			rmToken();
 			break;
 		default:
 			break;

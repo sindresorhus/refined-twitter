@@ -49,7 +49,7 @@ export const domify = html => {
 
 export const getUsername = () => document.querySelector('.DashUserDropdown-userInfo .username > b').textContent;
 
-export const getUserImage = _ => document.querySelector(".Avatar--size32").src;
+export const getUserImage = () => document.querySelector('.Avatar--size32').src;
 
 export const isModalOpen = () => {
 	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');

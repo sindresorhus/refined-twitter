@@ -1,14 +1,15 @@
-import { h } from 'dom-chef';
-import { getUsername, getUserImage } from '../libs/utils';
-const { sendMessage } = chrome.runtime;
+import {h} from 'dom-chef';
+import {getUsername, getUserImage} from '../libs/utils';
+
+const {sendMessage} = chrome.runtime;
 
 function getAccessTokens() {
-	return new Promise((res, rej) => {
-		sendMessage({ message: "reqAccessToken" }, response => {
-			res({token: response.token})
+	return new Promise(resolve => {
+		sendMessage({message: 'reqAccessToken'}, response => {
+			resolve({token: response.token});
 			return true;
 		});
-	}).catch(e => e);
+	}).catch(err => console.error(err));
 }
 
 function createUserData() {
@@ -18,31 +19,30 @@ function createUserData() {
 	return getAccessTokens().then(data => ({
 		[userName]: {
 			image: userImage,
-			token: data.token,
+			token: data.token
 		}
-	}))
+	}));
 }
 
 function setLocalStorage() {
-	const { localStorage } = window;
+	const {localStorage} = window;
 
 	return createUserData().then(userData => {
-		console.log(userData)
-		const existingAccounts = JSON.parse(localStorage.getItem("activeAccounts")) || {};
+		const existingAccounts = JSON.parse(localStorage.getItem('activeAccounts')) || {};
 		const updatedAccounts = Object.assign(existingAccounts, userData);
-		localStorage.setItem("activeAccounts", JSON.stringify(updatedAccounts));
-	})
+		localStorage.setItem('activeAccounts', JSON.stringify(updatedAccounts));
+	});
 }
 
 function getLocalStorage() {
-	const { localStorage } = window;
-	return JSON.parse(localStorage.getItem("activeAccounts"));
+	const {localStorage} = window;
+	return JSON.parse(localStorage.getItem('activeAccounts'));
 }
 
 const createAccountNode = function () {
 	const dropDownMenu = document.querySelector('.dropdown-menu > ul');
 
-	setLocalStorage().then(_ => {
+	setLocalStorage().then(() => {
 		const localStorage = getLocalStorage();
 		const addAccount = (
 			<li class="RT-addAccount">
@@ -50,7 +50,7 @@ const createAccountNode = function () {
 					class="dropdown-link"
 					onClick={() => {
 						sendMessage({
-							message: "rmAccessToken",
+							message: 'rmAccessToken'
 						});
 					}}>
 					+ Add Account
@@ -58,28 +58,25 @@ const createAccountNode = function () {
 			</li>
 		);
 
-		for (let user in localStorage ) {
+		for (const user in localStorage) {
 			const {token, image} = localStorage[user];
 			const profiles = (
 				<li class="RT-user">
 					<a
 					onClick={() => {
 						sendMessage({
-							message: "setAccessToken",
-							token,
+							message: 'setAccessToken',
+							token
 						});
 					}}>
 						<img className="RT-user__image" src={image} />
 						<span token={token} className="RT-user__name">{user}</span>
 					</a>
 				</li>
-			)
-			dropDownMenu.appendChild(profiles)
+			);
+			dropDownMenu.appendChild(profiles);
 		}
-		dropDownMenu.appendChild(addAccount)
+		dropDownMenu.appendChild(addAccount);
 	});
-
-
-}
-
+};
 export default createAccountNode;

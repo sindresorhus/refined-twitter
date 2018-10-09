@@ -48,7 +48,8 @@
 			]
 		},
 		"globals": [
-			"browser"
+			"browser",
+			"chrome"
 		]
 	},
 	"ava": {
