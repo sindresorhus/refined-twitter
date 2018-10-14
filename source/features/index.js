@@ -158,6 +158,13 @@ export const features = {
 		label: 'Hide promoted tweets',
 		fn: require('./hide-promoted-tweets').default
 	},
+	hideRetweetButtons: {
+		id: 'feature-hide-retweet-buttons',
+		category: 'timeline',
+		label: 'Hide retweet buttons',
+		enabledByDefault: false,
+		fn: require('./hide-retweet-buttons').default
+	},
 	imageAlternatives: {
 		id: 'feature-image-alternatives',
 		category: 'timeline',
