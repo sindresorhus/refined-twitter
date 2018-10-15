@@ -75,6 +75,7 @@ function onDomReady() {
 			enableFeature(features.hideFollowTweets);
 			enableFeature(features.hideLikeTweets);
 			enableFeature(features.hideRetweets);
+			enableFeature(features.hideRetweetButtons);
 			enableFeature(features.inlineInstagramPhotos);
 			enableFeature(features.hidePromotedTweets);
 			enableFeature(features.renderInlineCode);
@@ -88,6 +89,7 @@ function onDomReady() {
 		enableFeature(features.inlineInstagramPhotos);
 		enableFeature(features.renderInlineCode);
 		enableFeature(features.imageAlternatives);
+		enableFeature(features.hideRetweetButtons);
 	});
 
 	onGalleryItemOpen(() => {
