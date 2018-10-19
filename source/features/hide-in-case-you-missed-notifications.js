@@ -1,7 +1,5 @@
 export default function () {
 	$('.with-contextTweet')
-		.filter(function () {
-			return this.textContent.toLowerCase().indexOf('in case you missed') > -1;
-		})
+		.filter((index, tweet) => tweet.textContent.toLowerCase().includes('in case you missed'))
 		.hide();
 }
