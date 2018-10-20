@@ -119,7 +119,7 @@ Dashboard
 }
 @media screen and (max-width: 936px) {
 	.global-nav .container {
-		max-width: 590px !important;
+		justify-content: space-between;
 	}
 }
 
@@ -131,12 +131,12 @@ div[role=navigation] {
 /* Adjust pushstate spinner for the above nav max-width change */
 .pushstate-spinner {
 	position: absolute;
-	left: 0 !important;
-	margin-left: -40px !important;
+	left: 10% !important;
+	margin: 0.125rem 0 0 0.31rem !important;
 }
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
-		left: 43% !important;
+		left: 45% !important;
 		margin-left: -10px !important;
 	}
 }
