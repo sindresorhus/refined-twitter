@@ -15,8 +15,12 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - **Firefox** add-on: Use [this](https://addons.mozilla.org/en-US/firefox/addon/chrome-store-foxified/) to enable installing Chrome extensions and then install [Refined Twitter](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 - **Opera** extension: Use [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to enable installing Chrome extensions and then install [Refined Twitter](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 
+*Note: You **must** be logged in for this extension to work.*
+
 
 ## Highlights
+
+*You can configure many of these features in the extension settings.*
 
 - Simplified and improved UI.
 - Hides promoted tweets.
@@ -47,7 +51,11 @@ Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-tw
 
 ## Customization
 
-We're happy to receive suggestions and contributions, but be aware this is a highly opinionated project. There's a very high bar for adding options.
+See the extension settings for what can be configured.
+
+<img src="media/screenshot-settings.png" height="500">
+
+We're happy to receive suggestions and contributions, but be aware this is an opinionated project. There's a high bar for adding options.
 
 This doesn't necessarily limit you from manually disabling functionality that is not useful for you. Options include:
 
@@ -101,9 +109,13 @@ Once built, load it in the browser of your choice:
 
 ## FAQ
 
-### Don't you have another extension with the same name?
+#### Don't you have another extension with the same name?
 
 This is reusing the name from the [original Refined Twitter](https://github.com/sindresorhus/refined-twitter-old) extension, which tried to use the mobile Twitter version on the desktop. It was a good idea in theory, but not in practice. This extension instead improves upon the desktop version of Twitter.
+
+#### Will this extension work if I'm not logged in?
+
+[No](https://github.com/sindresorhus/refined-twitter/issues/126).
 
 
 ## Related
