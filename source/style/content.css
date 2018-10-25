@@ -60,6 +60,14 @@ Dashboard
 
 */
 
+
+/* Increase width of dashboard sidepanel in settings when in smaller viewport mode */
+@media screen and (max-width: 936px) {
+	#page-container .dashboard {
+		width: 18.75rem;
+	}
+}
+
 /* Remove the profile box */
 .module.DashboardProfileCard {
 	display: none !important;
@@ -91,9 +99,27 @@ Dashboard
 #page-container {
 	width: unset !important;
 }
+
 #page-container .content-main {
-	margin: 0 auto !important;
 	float: unset !important;
+	margin: 0 auto !important;
+}
+
+/* Adjust the main content into flex */
+div.AppContent.wrapper.wrapper-settings {
+	display: flex;
+	justify-content: center;
+}
+
+#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+	margin: 0 !important;
+	margin-right: 16rem !important;
+}
+
+@media screen and (max-width: 936px) {
+	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+		margin: 0 !important;
+	}
 }
 
 /* Custom inline image element */
@@ -114,24 +140,21 @@ Dashboard
 /* Center the nav widgets */
 .global-nav .container {
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 }
-@media screen and (max-width: 936px) {
-	.global-nav .container {
-		justify-content: space-between;
-	}
-}
+
 
 /* Add margin to have spacing between search-form and navigation */
 div[role=navigation] {
-	margin-right: 6rem;
+	margin-right: 0.5rem;
 }
+
 
 /* Adjust pushstate spinner for the above nav max-width change */
 .pushstate-spinner {
 	position: absolute;
-	left: 10% !important;
+	left: 9% !important;
 	margin: 0.125rem 0 0 0.31rem !important;
 }
 @media screen and (max-width: 936px) {
