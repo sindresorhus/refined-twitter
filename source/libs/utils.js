@@ -80,7 +80,7 @@ export const getUsername = () => document.querySelector('.DashUserDropdown-userI
 
 export const isModalOpen = () => {
 	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
-	const isDMModalOpen = $('#dm_dialog').is(':visible');
+	const isDMModalOpen = $('.modal').is(':visible');
 	return hasPermalinkOverlay || isDMModalOpen;
 };
 
