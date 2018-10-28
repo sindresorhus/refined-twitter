@@ -150,16 +150,17 @@ div.AppContent.wrapper.wrapper-settings {
 	align-items: center;
 }
 
+@media screen and (max-width: 936px) {
+	.global-nav .container {
+		justify-content: space-around;
+	}
+}
+
 
 .feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card.feature-likes-button-navbar:not(.feature-hide-moments-tab) #global-nav-search {
 	width: 180px !important;
 }
 
-@media screen and (max-width: 936px) {
-	.global-nav .container {
-		max-width: 590px !important;
-	}
-}
 
 /* Add margin to have spacing between search-form and navigation */
 div[role=navigation] {
@@ -169,13 +170,20 @@ div[role=navigation] {
 
 /* Adjust pushstate spinner for the above nav max-width change */
 .pushstate-spinner {
-	position: absolute;
-	left: 9% !important;
+	left: 0%;
 	margin: 0.125rem 0 0 0.31rem !important;
+	position: absolute;
 }
+
+@media screen and (min-width: 1236px) {
+	.pushstate-spinner {
+		left: 9% !important;
+	}
+}
+
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
-		left: 45% !important;
+		left: 10% !important;
 		margin-left: -10px !important;
 	}
 }
