@@ -118,10 +118,14 @@ div.AppContent.wrapper.wrapper-settings {
 }
 
 #page-container.AppContent.wrapper.wrapper-settings > .content-main {
-	margin: 0 !important;
-	margin-right: 16rem !important;
+	margin: 0 16rem 0 0 !important;
 }
 
+@media screen and (max-width: 1236px) {
+	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
+		margin: 0 3rem 0 0 !important;
+	}
+}
 @media screen and (max-width: 936px) {
 	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
 		margin: 0 !important;
