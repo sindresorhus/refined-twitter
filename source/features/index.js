@@ -105,6 +105,12 @@ export const features = {
 		label: 'Hide "Liked a reply to you" activity',
 		runOnInit: true
 	},
+	hideNotificationsInCaseYouMissed: {
+		id: 'feature-notifications-in-case-you-missed-activity',
+		category: 'notifications',
+		label: 'Hide "In case you missed" activity',
+		fn: require('./hide-in-case-you-missed-notifications').default
+	},
 
 	/* PROFILE */
 	hideProfileHeader: {

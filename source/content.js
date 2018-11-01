@@ -76,6 +76,7 @@ function onDomReady() {
 			enableFeature(features.hideLikeTweets);
 			enableFeature(features.hideRetweets);
 			enableFeature(features.hideRetweetButtons);
+			enableFeature(features.hideNotificationsInCaseYouMissed);
 			enableFeature(features.inlineInstagramPhotos);
 			enableFeature(features.hidePromotedTweets);
 			enableFeature(features.renderInlineCode);
