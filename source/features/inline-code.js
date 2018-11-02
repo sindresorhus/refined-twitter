@@ -34,7 +34,7 @@ export default function () {
 
 		const frag = text.map(val => {
 			// Style the single backticks while ignoring the already styled multiline code blocks
-			if (isElement(val) || typeof val === "object") {
+			if (isElement(val)) {
 				return val;
 			}
 			

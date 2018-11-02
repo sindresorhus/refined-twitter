@@ -159,7 +159,6 @@ div.AppContent.wrapper.wrapper-settings {
 		max-width: 65rem !important;
 	}
 }
-
 @media screen and (max-width: 936px) {
 	.global-nav .container {
 		justify-content: space-around;
@@ -187,7 +186,7 @@ div[role=navigation] {
 
 @media screen and (min-width: 1236px) {
 	.pushstate-spinner {
-		left: 9% !important;
+		left: 5% !important;
 	}
 }
 
