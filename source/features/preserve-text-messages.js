@@ -9,7 +9,7 @@ import {
 
 let isDMModalOpen = false;
 
-export default function preserveTextMessages() {
+export default function () {
 	onDMModalOpenAndClose(
 		handleConversationOpen,
 		handleDMModalClose
