@@ -43,4 +43,4 @@ export default function () {
 			img.classList.add('refined-twitter_image-alt_img');
 		}
 	}
-}
+};

@@ -116,6 +116,10 @@ This is reusing the name from the [original Refined Twitter](https://github.com/
 #### Will this extension work if I'm not logged in?
 
 [No](https://github.com/sindresorhus/refined-twitter/issues/126).
+#### Will this extension work if I'm not logged in?
+
+[No](https://github.com/sindresorhus/refined-twitter/issues/126).
+
 
 
 ## Related

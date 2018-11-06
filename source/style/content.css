@@ -101,7 +101,6 @@ Dashboard
 	width: unset !important;
 }
 
-
 .feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
 }
@@ -118,17 +117,17 @@ div.AppContent.wrapper.wrapper-settings {
 }
 
 #page-container.AppContent.wrapper.wrapper-settings > .content-main {
-	margin: 0 16rem 0 0 !important;
+	margin: 0 16rem 0 0.625rem !important;
 }
 
 @media screen and (max-width: 1236px) {
 	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
-		margin: 0 3rem 0 0 !important;
+		margin: 0 3rem 0 0.625rem !important;
 	}
 }
 @media screen and (max-width: 936px) {
 	#page-container.AppContent.wrapper.wrapper-settings > .content-main {
-		margin: 0 !important;
+		margin: 0 0 0 0.625rem !important;
 	}
 }
 
@@ -165,34 +164,46 @@ div.AppContent.wrapper.wrapper-settings {
 	}
 }
 
+.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card.feature-likes-button-navbar:not(.feature-hide-moments-tab) #global-nav-search {
+	width: 180px !important;
+}
+
+.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card .global-nav .container {
+	max-width: 880px !important;
+}
+
+@media screen and (max-width: 936px) {
+	.feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card .global-nav .container {
+		justify-content: space-between;
+		max-width: 48.125rem !important;
+	}
+}
+
+
+/* Add margin to have spacing between search-form and navigation */
+.container > div[role=navigation] {
+	margin-right: 6rem;
+}
 
 .feature-hide-twitter-logo.feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card.feature-likes-button-navbar:not(.feature-hide-moments-tab) #global-nav-search {
 	width: 180px !important;
 }
 
-
-/* Add margin to have spacing between search-form and navigation */
-div[role=navigation] {
-	margin-right: 0.5rem;
-}
-
-
 /* Adjust pushstate spinner for the above nav max-width change */
 .pushstate-spinner {
-	left: 0%;
+	left: -5% !important;
 	margin: 0.125rem 0 0 0.31rem !important;
 	position: absolute;
 }
 
-@media screen and (min-width: 1236px) {
+@media screen and (max-width: 1236px) {
 	.pushstate-spinner {
-		left: 5% !important;
+		left: -4% !important;
 	}
 }
-
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
-		left: 10% !important;
+		left: -3% !important;
 		margin-left: -10px !important;
 	}
 }
@@ -217,14 +228,18 @@ code.refined-twitter_markdown {
 	z-index: 3;
 }
 
-.feature-remove-profile-header .ProfileCanopy-navBar > .AppContainer {
-	position: relative;
+.feature-remove-profile-header .ProfileCanopy-navBar > .AppContainer {position: relative;
 }
 
 .feature-remove-profile-header .ProfileCanopy,
 .feature-remove-profile-header .ProfileCanopy-header,
 .feature-remove-profile-header .ProfileCanopy--large {
 	height: 0 !important;
+}
+
+/* Remove unnecessary profile card in header on profile page */
+.ProfileCanopy.is-locked .ProfileCanopy-card {
+	display: none;
 }
 
 /* Remove white border and add shadow to profile picture */
