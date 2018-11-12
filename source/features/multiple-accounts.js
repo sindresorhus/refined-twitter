@@ -5,33 +5,33 @@ const {sendMessage} = chrome.runtime;
 
 function getAccessTokens() {
 	return new Promise(resolve => {
-		sendMessage({message: 'reqAccessToken'}, response => {
+		sendMessage({message: 'requestAccessToken'}, response => {
 			resolve({token: response.token});
 			return true;
 		});
 	}).catch(err => console.error(err));
 }
 
-function createUserData() {
+async function createUserData() {
 	const userName = getUsername();
 	const userImage = getUserImage();
+	const data = await getAccessTokens();
 
-	return getAccessTokens().then(data => ({
+	return {
 		[userName]: {
 			image: userImage,
 			token: data.token
 		}
-	}));
+	};
 }
 
-function setLocalStorage() {
+async function setLocalStorage() {
 	const {localStorage} = window;
+	const userData = await createUserData();
+	const existingAccounts = JSON.parse(localStorage.getItem('activeAccounts')) || {};
+	const updatedAccounts = Object.assign(existingAccounts, userData);
 
-	return createUserData().then(userData => {
-		const existingAccounts = JSON.parse(localStorage.getItem('activeAccounts')) || {};
-		const updatedAccounts = Object.assign(existingAccounts, userData);
-		localStorage.setItem('activeAccounts', JSON.stringify(updatedAccounts));
-	});
+	localStorage.setItem('activeAccounts', JSON.stringify(updatedAccounts));
 }
 
 function getLocalStorage() {
@@ -39,44 +39,42 @@ function getLocalStorage() {
 	return JSON.parse(localStorage.getItem('activeAccounts'));
 }
 
-const createAccountNode = function () {
+const createAccountNode = async function () {
 	const dropDownMenu = document.querySelector('.dropdown-menu > ul');
+	await setLocalStorage();
+	const localStorage = getLocalStorage();
+	const addAccount = (
+		<li class="refined-twitter_addAccount">
+			<button
+				class="dropdown-link"
+				onClick={() => {
+					sendMessage({
+						message: 'removeAccessToken'
+					});
+				}}>
+				+ Add Account
+			</button>
+		</li>
+	);
 
-	setLocalStorage().then(() => {
-		const localStorage = getLocalStorage();
-		const addAccount = (
-			<li class="RT-addAccount">
-				<button
-					class="dropdown-link"
-					onClick={() => {
-						sendMessage({
-							message: 'rmAccessToken'
-						});
-					}}>
-					+ Add Account
-				</button>
+	for (const user in localStorage) {
+		const {token, image} = localStorage[user];
+		const profiles = (
+			<li class="refined-twitter_user">
+				<a
+				onClick={() => {
+					sendMessage({
+						message: 'setAccessToken',
+						token
+					});
+				}}>
+					<img class="refined-twitter_user__image" src={image} />
+					<span token={token} class="refined-twitter_user__name">{user}</span>
+				</a>
 			</li>
 		);
-
-		for (const user in localStorage) {
-			const {token, image} = localStorage[user];
-			const profiles = (
-				<li class="RT-user">
-					<a
-					onClick={() => {
-						sendMessage({
-							message: 'setAccessToken',
-							token
-						});
-					}}>
-						<img className="RT-user__image" src={image} />
-						<span token={token} className="RT-user__name">{user}</span>
-					</a>
-				</li>
-			);
-			dropDownMenu.appendChild(profiles);
-		}
-		dropDownMenu.appendChild(addAccount);
-	});
+		dropDownMenu.append(profiles);
+	}
+	dropDownMenu.append(addAccount);
 };
 export default createAccountNode;
