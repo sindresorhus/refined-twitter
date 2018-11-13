@@ -57,8 +57,9 @@ const createAccountNode = async function () {
 		</li>
 	);
 
-	for (const user in localStorage) {
-		const {token, image} = localStorage[user];
+	for (const user of Object.entries(localStorage)) {
+		const [username, data] = user;
+		const {token, image} = data;
 		const profiles = (
 			<li class="refined-twitter_user">
 				<a
@@ -69,7 +70,7 @@ const createAccountNode = async function () {
 					});
 				}}>
 					<img class="refined-twitter_user__image" src={image} />
-					<span token={token} class="refined-twitter_user__name">{user}</span>
+					<span token={token} class="refined-twitter_user__name">{username}</span>
 				</a>
 			</li>
 		);
