@@ -9,6 +9,7 @@
 		"update-version": "VERSION=$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
 	},
 	"dependencies": {
+		"ajv": "^6.5.5",
 		"dom-chef": "^3.0.0",
 		"dom-loaded": "^1.0.0",
 		"dompurify": "^1.0.4",
