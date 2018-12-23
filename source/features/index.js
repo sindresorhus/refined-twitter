@@ -99,6 +99,18 @@ export const features = {
 		label: 'Hide "Added you to a list" activity',
 		runOnInit: true
 	},
+	hideNotificationsLikedReplyActivity: {
+		id: 'feature-notifications-hide-liked-reply-activity',
+		category: 'notifications',
+		label: 'Hide "Liked a reply to you" activity',
+		runOnInit: true
+	},
+	hideNotificationsInCaseYouMissed: {
+		id: 'feature-notifications-in-case-you-missed-activity',
+		category: 'notifications',
+		label: 'Hide "In case you missed" activity',
+		fn: require('./hide-in-case-you-missed-notifications').default
+	},
 
 	/* PROFILE */
 	hideProfileHeader: {
@@ -133,11 +145,25 @@ export const features = {
 		label: 'Hide "Liked" tweets in the stream',
 		fn: require('./hide-like-tweets').default
 	},
+	hideRetweets: {
+		id: 'feature-hide-retweets',
+		category: 'timeline',
+		label: 'Hide retweets in the stream',
+		enabledByDefault: false,
+		fn: require('./hide-retweets').default
+	},
 	hidePromotedTweets: {
 		id: 'feature-hide-promoted-tweets',
 		category: 'timeline',
 		label: 'Hide promoted tweets',
 		fn: require('./hide-promoted-tweets').default
+	},
+	hideRetweetButtons: {
+		id: 'feature-hide-retweet-buttons',
+		category: 'timeline',
+		label: 'Hide retweet buttons',
+		enabledByDefault: false,
+		fn: require('./hide-retweet-buttons').default
 	},
 	imageAlternatives: {
 		id: 'feature-image-alternatives',

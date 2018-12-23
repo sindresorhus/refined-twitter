@@ -1,4 +1,4 @@
-export default async function () {
+export default function () {
 	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer, .Gallery-media');
 
 	for (const imgContainer of imgContainers) {

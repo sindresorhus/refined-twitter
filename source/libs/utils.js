@@ -33,9 +33,9 @@ export const enableFeature = async ({fn, id: _featureId = fn.name}) => {
 		$('html').addClass(featureId);
 		await fn();
 		log('✅', featureId);
-	} catch (err) {
+	} catch (error) {
 		console.log('❌', featureId);
-		console.error(err);
+		console.error(error);
 	}
 };
 
@@ -80,7 +80,7 @@ export const getUsername = () => document.querySelector('.DashUserDropdown-userI
 
 export const isModalOpen = () => {
 	const hasPermalinkOverlay = $('#permalink-overlay').is(':visible');
-	const isDMModalOpen = $('#dm_dialog').is(':visible');
+	const isDMModalOpen = $('.modal').is(':visible');
 	return hasPermalinkOverlay || isDMModalOpen;
 };
 

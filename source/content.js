@@ -73,6 +73,9 @@ function onDomReady() {
 			enableFeature(features.mentionHighlight);
 			enableFeature(features.hideFollowTweets);
 			enableFeature(features.hideLikeTweets);
+			enableFeature(features.hideRetweets);
+			enableFeature(features.hideRetweetButtons);
+			enableFeature(features.hideNotificationsInCaseYouMissed);
 			enableFeature(features.inlineInstagramPhotos);
 			enableFeature(features.hidePromotedTweets);
 			enableFeature(features.imageAlternatives);
@@ -85,6 +88,7 @@ function onDomReady() {
 		enableFeature(features.inlineInstagramPhotos);
 		enableFeature(features.imageAlternatives);
 		enableFeature(features.renderMarkdown);
+		enableFeature(features.hideRetweetButtons);
 	});
 
 	onGalleryItemOpen(() => {

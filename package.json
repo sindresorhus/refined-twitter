@@ -9,6 +9,7 @@
 		"update-version": "VERSION=$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
 	},
 	"dependencies": {
+		"ajv": "^6.5.5",
 		"dom-chef": "^3.0.0",
 		"dom-loaded": "^1.0.0",
 		"dompurify": "^1.0.4",
@@ -25,25 +26,28 @@
 		"twemoji": "^11.0.0",
 		"unified": "^7.0.0",
 		"webext-options-sync": "^0.15.0",
-		"webextension-polyfill": "^0.2.1"
+		"webextension-polyfill": "^0.3.1"
 	},
 	"devDependencies": {
-		"ava": "*",
-		"babel-core": "^6.26.0",
-		"babel-loader": "^7.1.2",
-		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"@babel/core": "^7.0.0",
+		"@babel/plugin-transform-react-jsx": "^7.0.0",
+		"@babel/register": "^7.0.0",
+		"ava": "1.0.0-rc.1",
+		"babel-eslint": "^10.0.1",
+		"babel-loader": "^8.0.0",
 		"chrome-webstore-upload-cli": "^1.1.1",
 		"copy-webpack-plugin": "^4.2.0",
 		"dot-json": "^1.0.3",
 		"npm-run-all": "^4.1.1",
 		"stylelint": "^9.1.1",
-		"stylelint-config-xo": "^0.10.0",
+		"stylelint-config-xo": "^0.11.0",
 		"utc-version": "^1.0.0",
 		"webpack": "^4.1.0",
 		"webpack-cli": "^3.0.8",
-		"xo": "*"
+		"xo": "^0.23.0"
 	},
 	"xo": {
+		"parser": "babel-eslint",
 		"envs": [
 			"browser",
 			"jquery"
@@ -67,13 +71,13 @@
 			"test/*.js"
 		],
 		"require": [
-			"babel-register"
+			"@babel/register"
 		]
 	},
 	"babel": {
 		"plugins": [
 			[
-				"transform-react-jsx",
+				"@babel/plugin-transform-react-jsx",
 				{
 					"pragma": "h",
 					"useBuiltIns": true
