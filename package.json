@@ -22,6 +22,8 @@
 		"prismjs": "^1.9.0",
 		"remark-html": "^7.0.0",
 		"remark-parse": "^5.0.0",
+		"retext": "^6.0.1",
+		"retext-smartypants": "^3.0.2",
 		"select-dom": "^4.1.1",
 		"twemoji": "^11.0.0",
 		"unified": "^7.0.0",

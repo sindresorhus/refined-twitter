@@ -2,6 +2,8 @@ import html from 'remark-html';
 import unified from 'unified';
 import markdown from 'remark-parse';
 import twemoji from 'twemoji';
+import retext from 'retext';
+import smartypants from 'retext-smartypants';
 
 import prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
@@ -64,11 +66,12 @@ function stripLinks(element) {
 }
 
 function highlightCodeBlocks(compiledElement) {
-	$(compiledElement).wrap('<div class="refined-twitter_highlight"></div>');
+	$(compiledElement).wrap('<div class="refined-twitter-highlight"></div>');
 
 	let selectedLang = pickLanguage(
 		$(compiledElement)
-			.find('code')[0]
+			.find('code')
+			.get(0)
 			.className.split('-')[1]
 	);
 
@@ -87,7 +90,7 @@ function highlightCodeBlocks(compiledElement) {
 
 	const languageBar = document.createElement('div');
 	languageBar.textContent = selectedLang || 'txt';
-	languageBar.classList.add('refined-twitter_highlight-lang');
+	languageBar.classList.add('refined-twitter-highlight-lang');
 
 	$(compiledElement)
 		.parent()
@@ -105,8 +108,8 @@ function highlightCodeBlocks(compiledElement) {
 }
 
 async function processTweet(index, element) {
-	const processed = 'refined-twitter_markdown-processed';
-	const styledClassName = 'refined-twitter_markdown';
+	const processed = 'refined-twitter-markdown-processed';
+	const styledClassName = 'refined-twitter-markdown';
 
 	// Ensure this only runs once per tweet
 	if ($(element).hasClass(processed)) {
@@ -122,7 +125,9 @@ async function processTweet(index, element) {
 			image.replaceWith(image.alt);
 		}
 
-		const preprocessed = rawElement.textContent;
+		const preprocessed = String(retext()
+			.use(smartypants)
+			.processSync(rawElement.textContent));
 
 		const file = await unified()
 			.use(markdown, {commonmark: true})
@@ -138,10 +143,10 @@ async function processTweet(index, element) {
 
 			if (preBlock.length > 0) {
 				// Format code blocks if they exist
-				highlightCodeBlocks(preBlock[0]);
+				highlightCodeBlocks(preBlock.get(0));
 			}
 
-			const inlineCode = $(compiledElement).find('code');
+			const inlineCode = $(compiledElement).find('code:not([class])');
 
 			if (inlineCode.length > 0) {
 				// Strip links from inline code if there are any
@@ -155,9 +160,13 @@ async function processTweet(index, element) {
 
 			$(element).html(twemoji.parse(compiledElement.innerHTML, {className: 'Emoji Emoji--forText'}));
 			$(element).addClass(styledClassName);
+		} else {
+			$(element).html(processedTweet);
 		}
 
-		$(element).addClass(processed);
+		$(element)
+			.addClass(processed)
+			.addClass('markdown-body');
 	} catch (error) {
 		throw error;
 	}

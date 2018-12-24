@@ -6,8 +6,8 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
  * @author ocodia
  */
 
-.refined-twitter_markdown code {
-	font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier,
+.refined-twitter-markdown code {
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
 		monospace;
 	background-color: rgba(27, 31, 35, 0.05);
 	padding: 0.1em 0.4em;
@@ -16,58 +16,59 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 }
 
 /* Fix for emojis in inline code */
-.refined-twitter_markdown code img {
+.refined-twitter-markdown code img {
 	height: 1.15em;
 	width: 1.15em;
 	padding: 0 0.2em;
 }
 
-.refined-twitter_markdown {
+.refined-twitter-markdown {
 	white-space: normal !important;
 }
 
-.refined-twitter_markdown h1,
-.refined-twitter_markdown h2,
-.refined-twitter_markdown h3,
-.refined-twitter_markdown h4 {
+.refined-twitter-markdown h1,
+.refined-twitter-markdown h2,
+.refined-twitter-markdown h3,
+.refined-twitter-markdown h4 {
 	color: #14171a;
 	display: inline-block;
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
 
-.refined-twitter_markdown blockquote {
+.refined-twitter-markdown blockquote {
 	color: #6a737d;
 	margin-top: 5px;
 	padding-left: 1em;
 	border-left: 0.25em solid #dfe2e5;
 }
 
-.refined-twitter_markdown blockquote p {
+.refined-twitter-markdown blockquote p {
 	height: 20px;
 }
 
-.refined-twitter_markdown ul,
-.refined-twitter_markdown ol {
-	margin-top: 5px;
-	margin-bottom: 5px;
+.refined-twitter-markdown ul,
+.refined-twitter-markdown ol {
+	padding-left: 1em;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-.refined-twitter_markdown ul {
+.refined-twitter-markdown ul {
 	list-style: inside;
 }
 
-.refined-twitter_markdown del {
+.refined-twitter-markdown del {
 	text-decoration: line-through;
 	color: #6a737d;
 }
 
-.refined-twitter_highlight code[class*='language-'],
-.refined-twitter_highlight pre[class*='language-'] {
+.refined-twitter-highlight code[class*="language-"],
+.refined-twitter-highlight pre[class*="language-"] {
 	font-size: 100%;
 	color: #c5c8c6;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-	font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+	font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
@@ -91,26 +92,26 @@ http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike
 	padding: 3em 1em 1em;
 }
 
-.refined-twitter_highlight code[class*='language-'] {
+.refined-twitter-highlight code[class*="language-"] {
 	padding: 0;
 }
 
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
 	background: #1d1f21;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em;
-	border-radius: .3em;
+	padding: 0.1em;
+	border-radius: 0.3em;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #7C7C7C;
+	color: #7c7c7c;
 }
 
 .token.punctuation {
@@ -118,23 +119,23 @@ pre[class*='language-'] {
 }
 
 .namespace {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 .token.property,
 .token.keyword,
 .token.tag {
-	color: #96CBFE;
+	color: #96cbfe;
 }
 
 .token.class-name {
-	color: #FFFFB6;
+	color: #ffffb6;
 	text-decoration: underline;
 }
 
 .token.boolean,
 .token.constant {
-	color: #99CC99;
+	color: #99cc99;
 }
 
 .token.symbol,
@@ -143,7 +144,7 @@ pre[class*='language-'] {
 }
 
 .token.number {
-	color: #FF73FD;
+	color: #ff73fd;
 }
 
 .token.selector,
@@ -152,42 +153,42 @@ pre[class*='language-'] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #A8FF60;
+	color: #a8ff60;
 }
 
 .token.variable {
-	color: #C6C5FE;
+	color: #c6c5fe;
 }
 
 .token.operator {
-	color: #EDEDED;
+	color: #ededed;
 }
 
 .token.entity {
-	color: #FFFFB6;
-/* text-decoration: underline; */
+	color: #ffffb6;
+	/* text-decoration: underline; */
 }
 
 .token.url {
-	color: #96CBFE;
+	color: #96cbfe;
 }
 
 .language-css .token.string,
 .style .token.string {
-	color: #87C38A;
+	color: #87c38a;
 }
 
 .token.atrule,
 .token.attr-value {
-	color: #F9EE98;
+	color: #f9ee98;
 }
 
 .token.function {
-	color: #DAD085;
+	color: #dad085;
 }
 
 .token.regex {
-	color: #E9C062;
+	color: #e9c062;
 }
 
 .token.important {
@@ -206,7 +207,7 @@ pre[class*='language-'] {
 	cursor: help;
 }
 
-.refined-twitter_highlight {
+.refined-twitter-highlight {
 	position: relative;
 	border-radius: 0.3em;
 	overflow: hidden;
@@ -215,7 +216,7 @@ pre[class*='language-'] {
 	margin-bottom: 6px;
 }
 
-.refined-twitter_highlight-lang {
+.refined-twitter-highlight-lang {
 	position: absolute;
 	right: 0;
 	top: 0;
