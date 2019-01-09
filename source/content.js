@@ -63,6 +63,7 @@ function onDomReady() {
 	enableFeature(features.cleanNavbarDropdown);
 	enableFeature(features.keyboardShortcuts);
 	enableFeature(features.preserveTextMessages);
+	enableFeature(features.expandUrlsRemoveUtms);
 
 	onRouteChange(() => {
 		enableFeature(features.autoLoadNewTweets);
@@ -81,6 +82,7 @@ function onDomReady() {
 			enableFeature(features.hidePromotedTweets);
 			enableFeature(features.renderInlineCode);
 			enableFeature(features.imageAlternatives);
+			enableFeature(features.expandUrlsRemoveUtms);
 		});
 	});
 

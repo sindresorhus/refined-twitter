@@ -16,6 +16,12 @@ export const features = {
 		label: 'Preserve unsent text in the Messages modal when it closes',
 		fn: require('./preserve-text-messages').default
 	},
+	expandUrlsRemoveUtms: {
+		id: 'expand-urls-remove-utms',
+		category: 'general',
+		label: 'Expand t.co to the real urls without UTMs',
+		fn: require('./expand-urls-remove-utms').default
+	},
 	useSystemFont: {
 		id: 'feature-use-system-font',
 		category: 'general',
