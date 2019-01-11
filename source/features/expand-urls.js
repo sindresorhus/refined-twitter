@@ -9,7 +9,7 @@ function removeUTMs(url) {
 export default function () {
 	const urls = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
 	for (const url of urls) {
-		let { expandedUrl: urlToExpand } = url.dataset;
+		const {expandedUrl: urlToExpand} = url.dataset;
 		const urlWithOutUtms = removeUTMs(urlToExpand);
 		url.setAttribute('href', urlWithOutUtms);
 		$(url).addClass(refinedTwitterClass);
