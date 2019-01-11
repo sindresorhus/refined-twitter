@@ -2,7 +2,8 @@ const refinedTwitterClass = 'refinedTwitterExpandedUrl'; //tag already expanded 
 
 function removeUTMs(url) {
   const parsedURL = new URL(url);
-  return parsedURL.origin + parsedURL.pathname;
+  const urlWithOutUtms = parsedURL.href.replace(/(\&|\?|#)utm([_A-Za-z0-9=]+)/g, '');
+  return urlWithOutUtms
 }
 
 export default function () {
