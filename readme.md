@@ -42,7 +42,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Keyboard shortcut to toggle Night Mode (<kbd>Alt</kbd><kbd>m</kbd>).
 - Uses your personal color theme on all profiles.
 - Hides the header image on profile pages.
-- Expand URLs and remove UTMs.
+- Expand URLs and remove tracking module AKA [UTMs](https://en.wikipedia.org/wiki/UTM_parameters) from URLs as in `https://www.example.com/page?utm_content=buffercf3b2&utm_medium=social&utm_source=facebook.com`
 - [Shows alternative image text below images when available.](https://user-images.githubusercontent.com/170270/40556400-b46c292c-6076-11e8-8241-f5c4e1a7a161.png)
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Alt</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
