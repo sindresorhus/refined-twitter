@@ -17,10 +17,10 @@ export const features = {
 		fn: require('./preserve-text-messages').default
 	},
 	expandUrlsRemoveUtms: {
-		id: 'expand-urls-remove-utms',
+		id: 'expand-urls',
 		category: 'general',
 		label: 'Expand t.co to the real urls without UTMs',
-		fn: require('./expand-urls-remove-utms').default
+		fn: require('./expand-urls').default
 	},
 	useSystemFont: {
 		id: 'feature-use-system-font',
