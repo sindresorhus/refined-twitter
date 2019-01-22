@@ -84,6 +84,6 @@ const createAccountNode = async function () {
 		}
 	}
 
-	dropDownMenu.insertAdjacentElement('afterend', divider)
+	dropDownMenu.insertAdjacentElement('afterend', divider);
 };
 export default createAccountNode;
