@@ -5,6 +5,4 @@ global.window = new Window();
 global.location = window.location;
 global.document = {};
 
-test(t => {
-	t.pass();
-});
+test.todo('main');

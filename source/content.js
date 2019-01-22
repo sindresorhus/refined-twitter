@@ -1,25 +1,12 @@
 import domLoaded from 'dom-loaded';
-import {observeEl, safeElementReady, safely} from './libs/utils';
-import autoLoadNewTweets from './features/auto-load-new-tweets';
-import inlineInstagramPhotos from './features/inline-instagram-photos';
-import userChoiceColor from './features/user-choice-color';
-import codeHighlight from './features/code-highlight';
-import addLikesButtonNavBar from './features/likes-button-navbar';
-import keyboardShortcuts from './features/keyboard-shortcuts';
-import mentionHighlight from './features/mentions-highlight';
-import multipleAccounts from './features/multiple-accounts';
 
-function cleanNavbarDropdown() {
-	$('#user-dropdown').find('[data-nav="all_moments"], [data-nav="ads"], [data-nav="promote-mode"], [data-nav="help_center"]').parent().hide();
-}
+import {
+	enableFeature,
+	observeEl,
+	safeElementReady
+} from './libs/utils';
 
-function hideLikeTweets() {
-	$('.tweet-context .Icon--heartBadge').parents('.js-stream-item').hide();
-}
-
-function hidePromotedTweets() {
-	$('.promoted-tweet').parent().remove();
-}
+import {autoInitFeatures, features} from './features';
 
 async function init() {
 	await safeElementReady('body');
@@ -30,7 +17,9 @@ async function init() {
 
 	document.documentElement.classList.add('refined-twitter');
 
-	safely(addLikesButtonNavBar);
+	for (const feature of autoInitFeatures) {
+		enableFeature(Object.assign({}, feature, {fn: feature.fn || (() => {})}));
+	}
 
 	await domLoaded;
 	onDomReady();
@@ -47,8 +36,23 @@ function onNewTweets(cb) {
 function onSingleTweetOpen(cb) {
 	observeEl('body', mutations => {
 		for (const mutation of mutations) {
-			if (mutation.target.classList.contains('overlay-enabled')) {
+			const {classList} = mutation.target;
+			if (classList.contains('overlay-enabled')) {
 				observeEl('#permalink-overlay', cb, {attributes: true, subtree: true});
+				break;
+			} else if (classList.contains('modal-enabled')) {
+				observeEl('#global-tweet-dialog', cb, {attributes: true, subtree: true});
+				break;
+			}
+		}
+	}, {attributes: true});
+}
+
+function onGalleryItemOpen(cb) {
+	observeEl('body', mutations => {
+		for (const mutation of mutations) {
+			if (mutation.target.classList.contains('gallery-enabled')) {
+				observeEl('.Gallery-media', cb, {attributes: true, subtree: true});
 				break;
 			}
 		}
@@ -56,27 +60,39 @@ function onSingleTweetOpen(cb) {
 }
 
 function onDomReady() {
-	safely(cleanNavbarDropdown);
-	safely(keyboardShortcuts);
-	safely(multipleAccounts);
+	enableFeature(features.cleanNavbarDropdown);
+	enableFeature(features.keyboardShortcuts);
+	enableFeature(features.preserveTextMessages);
+	enableFeature(features.multipleAccounts)
 
 	onRouteChange(() => {
-		safely(autoLoadNewTweets);
-		safely(userChoiceColor);
+		enableFeature(features.autoLoadNewTweets);
+		enableFeature(features.disableCustomColors);
+		enableFeature(features.hideProfileHeader);
 
 		onNewTweets(() => {
-			safely(codeHighlight);
-			safely(mentionHighlight);
-			safely(hideLikeTweets);
-			safely(inlineInstagramPhotos);
-			safely(hidePromotedTweets);
+			enableFeature(features.codeHighlight);
+			enableFeature(features.mentionHighlight);
+			enableFeature(features.hideFollowTweets);
+			enableFeature(features.hideLikeTweets);
+			enableFeature(features.hideRetweets);
+			enableFeature(features.inlineInstagramPhotos);
+			enableFeature(features.hidePromotedTweets);
+			enableFeature(features.renderInlineCode);
+			enableFeature(features.imageAlternatives);
 		});
 	});
 
 	onSingleTweetOpen(() => {
-		safely(codeHighlight);
-		safely(mentionHighlight);
-		safely(inlineInstagramPhotos);
+		enableFeature(features.codeHighlight);
+		enableFeature(features.mentionHighlight);
+		enableFeature(features.inlineInstagramPhotos);
+		enableFeature(features.renderInlineCode);
+		enableFeature(features.imageAlternatives);
+	});
+
+	onGalleryItemOpen(() => {
+		enableFeature(features.imageAlternatives);
 	});
 }
 

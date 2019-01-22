@@ -1,7 +1,7 @@
 import {h} from 'dom-chef';
 import {safeElementReady} from '../libs/utils';
 
-export default async () => {
+export default async function () {
 	const navBar = await safeElementReady('#global-actions');
 
 	// Exit if it already exists
@@ -17,4 +17,4 @@ export default async () => {
 			</a>
 		</li>
 	);
-};
+}
