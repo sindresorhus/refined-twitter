@@ -40,9 +40,10 @@ function getLocalStorage() {
 }
 
 const createAccountNode = async function () {
-	const dropDownMenu = document.querySelector('.dropdown-menu > ul');
 	await setLocalStorage();
 	const localStorage = getLocalStorage();
+	const dropDownMenu = document.querySelector('.dropdown-menu > ul .DashUserDropdown-userInfo');
+	const divider = document.querySelector('.dropdown-menu > ul .dropdown-divider').cloneNode();
 	const addAccount = (
 		<li class="refined-twitter_addAccount">
 			<button
@@ -57,10 +58,14 @@ const createAccountNode = async function () {
 		</li>
 	);
 
+	dropDownMenu.insertAdjacentElement('afterend', addAccount);
+
 	for (const user of Object.entries(localStorage)) {
 		const [username, data] = user;
 		const {token, image} = data;
-		const profiles = (
+		const currentUserName = getUsername();
+
+		const profile = (
 			<li class="refined-twitter_user">
 				<a
 				onClick={() => {
@@ -74,8 +79,11 @@ const createAccountNode = async function () {
 				</a>
 			</li>
 		);
-		dropDownMenu.append(profiles);
+		if (username !== currentUserName) {
+			dropDownMenu.insertAdjacentElement('afterend', profile);
+		}
 	}
-	dropDownMenu.append(addAccount);
+
+	dropDownMenu.insertAdjacentElement('afterend', divider)
 };
 export default createAccountNode;
