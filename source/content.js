@@ -63,7 +63,7 @@ function onDomReady() {
 	enableFeature(features.cleanNavbarDropdown);
 	enableFeature(features.keyboardShortcuts);
 	enableFeature(features.preserveTextMessages);
-	enableFeature(features.multipleAccounts)
+	enableFeature(features.multipleAccounts);
 
 	onRouteChange(() => {
 		enableFeature(features.autoLoadNewTweets);

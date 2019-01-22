@@ -9,7 +9,7 @@ function getAccessTokens() {
 			resolve({token: response.token});
 			return true;
 		});
-	}).catch(err => console.error(err));
+	}).catch(error => console.error(error));
 }
 
 async function createUserData() {
@@ -67,8 +67,7 @@ const createAccountNode = async function () {
 
 		const profile = (
 			<li class="refined-twitter_user">
-				<a
-				onClick={() => {
+				<a onClick={() => {
 					sendMessage({
 						message: 'setAccessToken',
 						token
