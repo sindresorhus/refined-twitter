@@ -1,13 +1,18 @@
 import {h} from 'dom-chef';
-import {getUsername, getUserImage} from '../libs/utils';
+import {
+	getUsername,
+	getUserImage,
+	getFromLocalStorage,
+	setToLocalStorage,
+	removeInLocalStorage
+} from '../libs/utils';
 
-const {sendMessage} = chrome.runtime;
+const {sendMessage} = browser.runtime;
 
 function getAccessTokens() {
 	return new Promise(resolve => {
-		sendMessage({message: 'requestAccessToken'}, response => {
+		sendMessage({message: 'requestAccessToken'}).then(response => {
 			resolve({token: response.token});
-			return true;
 		});
 	}).catch(error => console.error(error));
 }
@@ -25,23 +30,23 @@ async function createUserData() {
 	};
 }
 
-async function setLocalStorage() {
-	const {localStorage} = window;
+async function initStorage() {
 	const userData = await createUserData();
-	const existingAccounts = JSON.parse(localStorage.getItem('activeAccounts')) || {};
-	const updatedAccounts = Object.assign(existingAccounts, userData);
+	const usersStoredData = await getFromLocalStorage('activeAccounts');
+	let updatedAccounts = {};
 
-	localStorage.setItem('activeAccounts', JSON.stringify(updatedAccounts));
-}
-
-function getLocalStorage() {
-	const {localStorage} = window;
-	return JSON.parse(localStorage.getItem('activeAccounts'));
+	if (usersStoredData.activeAccounts) {
+		updatedAccounts = Object.assign(usersStoredData.activeAccounts, userData);
+		setToLocalStorage({activeAccounts: updatedAccounts});
+	} else {
+		updatedAccounts = {activeAccounts: userData};
+		setToLocalStorage(updatedAccounts);
+	}
 }
 
 const createAccountNode = async function () {
-	await setLocalStorage();
-	const localStorage = getLocalStorage();
+	await initStorage();
+	const {activeAccounts} = await getFromLocalStorage('activeAccounts');
 	const dropDownMenu = document.querySelector('.dropdown-menu > ul .DashUserDropdown-userInfo');
 	const divider = document.querySelector('.dropdown-menu > ul .dropdown-divider').cloneNode();
 	const addAccount = (
@@ -60,7 +65,7 @@ const createAccountNode = async function () {
 
 	dropDownMenu.insertAdjacentElement('afterend', addAccount);
 
-	for (const user of Object.entries(localStorage)) {
+	for (const user of Object.entries(activeAccounts)) {
 		const [username, data] = user;
 		const {token, image} = data;
 		const currentUserName = getUsername();
@@ -75,6 +80,14 @@ const createAccountNode = async function () {
 				}}>
 					<img class="refined-twitter_user__image" src={image} />
 					<span token={token} class="refined-twitter_user__name">{username}</span>
+					<span
+						onClick={e => {
+							e.stopPropagation();
+							e.target.parentNode.style = 'display: none !important';
+							removeInLocalStorage('activeAccounts', username);
+						}}
+						class="refined-twitter_user__delete"
+					/>
 				</a>
 			</li>
 		);

@@ -229,13 +229,55 @@ code.refined-twitter_markdown {
 /*---------------------------------*\
 	# Multiple Account Section #
 \*---------------------------------*/
-.refined-twitter_user > a{
+.refined-twitter_user > a {
 	display: flex !important;
 	align-items: center;
+	padding-right: 30px;
 }
 
 .refined-twitter_user__image {
 	border-radius: 50%;
 	width: 2em;
 	margin-right: 5px;
+}
+
+.refined-twitter_user__delete {
+	position: relative;
+	background: rgba(0, 0, 0, 0.1);
+    width: 20px;
+    height: 20px;
+	text-align: center;
+	border-radius: 50%;
+	margin-left: auto;
+}
+
+.refined-twitter_user__delete:hover {
+	background: tomato;
+}
+
+.refined-twitter_user__delete:before,
+.refined-twitter_user__delete:after {
+	content: "";
+	position: absolute;
+	background: rgba(0, 0, 0, 0.3);
+	width: 10px;
+	height: 2px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.refined-twitter_user__delete:before {
+	transform: rotate(45deg);
+}
+
+.refined-twitter_user__delete:after {
+	transform: rotate(-45deg);
+}
+
+.refined-twitter_user__delete:hover:before,
+.refined-twitter_user__delete:hover:after {
+	background: rgba(0, 0, 0, 0.6);
 }

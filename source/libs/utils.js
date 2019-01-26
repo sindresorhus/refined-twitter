@@ -105,3 +105,13 @@ export const setToLocalStorage = async value => {
 		console.error(`Error in storing ${JSON.stringify(value, null, '\t')} to local storage: ${error}`);
 	}
 };
+
+export const removeInLocalStorage = async (key, value) => {
+	try {
+		const currentLocalStorage = await getFromLocalStorage();
+		delete currentLocalStorage[key][value];
+		setToLocalStorage(currentLocalStorage);
+	} catch (error) {
+		console.error(`Error while removing ${value ? JSON.stringify(value, null, '\t') : 'everything'}: ${error}`);
+	}
+};

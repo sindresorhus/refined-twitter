@@ -39,19 +39,19 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 
 // Multiple Account Section
 
-function getAccount(sendResponse) {
-	chrome.cookies.get({
+async function getAccount(sendResponse) {
+	const authCookie = await browser.cookies.get({
 		url: 'https://twitter.com',
 		name: 'auth_token'
-	}, cookie => {
-		sendResponse({
-			token: cookie.value
-		});
+	});
+
+	sendResponse({
+		token: authCookie.value
 	});
 }
 
-function switchAccount(token) {
-	chrome.cookies.set({
+async function switchAccount(token) {
+	await browser.cookies.set({
 		url: 'https://twitter.com',
 		name: 'auth_token',
 		value: token,
@@ -61,18 +61,18 @@ function switchAccount(token) {
 		httpOnly: true
 	});
 
-	chrome.cookies.remove({
+	await browser.cookies.remove({
 		url: 'https://twitter.com',
 		name: 'twid'
 	});
 
-	chrome.tabs.getSelected(null, tab => {
+	browser.tabs.getSelected(null, tab => {
 		chrome.tabs.reload(tab.id);
 	});
 }
 
 function removeToken() {
-	chrome.cookies.remove({
+	browser.cookies.remove({
 		url: 'https://twitter.com',
 		name: 'auth_token'
 	});

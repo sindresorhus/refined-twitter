@@ -31,6 +31,13 @@ export const features = {
 		fn: require('./likes-button-navbar').default,
 		runOnInit: true
 	},
+	multipleAccounts: {
+		id: 'feature-multiple-account',
+		category: 'header',
+		label: 'Switch between multiple account with no time',
+		fn: require('./multiple-accounts').default,
+		hidden: true
+	},
 	cleanNavbarDropdown: {
 		id: 'feature-clean-navbar-dropdown',
 		category: 'header',
@@ -56,13 +63,6 @@ export const features = {
 		category: 'header',
 		label: 'Hide Twitter bird logo',
 		runOnInit: true,
-		hidden: true
-	},
-	multipleAccounts: {
-		id: 'feature-multiple-account',
-		category: 'header',
-		label: 'Switch between multiple account easily',
-		fn: require('./multiple-accounts').default,
 		hidden: true
 	},
 
