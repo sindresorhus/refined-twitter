@@ -83,7 +83,7 @@ const createAccountNode = async function () {
 					<span
 						onClick={e => {
 							e.stopPropagation();
-							e.target.parentNode.style = 'display: none !important';
+							e.target.parentNode.style = 'display: none';
 							removeInLocalStorage('activeAccounts', username);
 						}}
 						class="refined-twitter_user__delete"

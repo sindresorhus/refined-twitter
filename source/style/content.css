@@ -229,8 +229,8 @@ code.refined-twitter_markdown {
 /*---------------------------------*\
 	# Multiple Account Section #
 \*---------------------------------*/
-.refined-twitter_user > a {
-	display: flex !important;
+.dropdown-menu .refined-twitter_user > a {
+	display: flex;
 	align-items: center;
 	padding-right: 30px;
 }
