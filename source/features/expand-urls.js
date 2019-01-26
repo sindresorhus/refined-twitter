@@ -2,25 +2,31 @@ import ky from 'ky';
 
 const refinedTwitterClass = 'refinedTwitterExpandedUrl';
 
-async function getUnshortenUrl(shortURL) {
-	console.log("getUnshortenUrl " + shortURL);
+function getUnshortenUrl(element, shortURL) {
+	let xmlhttp = new XMLHttpRequest();
 
-	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url=' + shortURL + '&where=twitter.com&version=2.0.3',
-		{mode:'no-cors'});
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState === XMLHttpRequest.DONE ) {
+			if(xmlhttp.status === 200){
+				manageAPIResponse(element, xmlhttp.responseText);
+			}
+		}
+	}
 
-	return manageAPIResponse(json, shortURL);
+	xmlhttp.open('GET', 'https://linkpeelr.appspot.com/api?action=peel_all&url=' + shortURL + '&where=twitter.com&version=2.0.3', true);
+	xmlhttp.send();
 }
 
-//@TODO
 function parseAPIResponse(apiReponse) {
-	return ["TO", "DO"]
+	console.log("apiReponse", apiReponse)
+	return apiReponse;
 }
 
 function isAPIReponseValid(apiCode) {
 	return apiCode === '301';
 }
 
-async function manageAPIResponse(apiReponse, shortURL) {
+function manageAPIResponse(apiReponse, shortURL) {
 	console.log("ky response always status 0", apiReponse);
 	console.log("shortURL", shortURL);
 	if(isAPIReponseValid(apiReponse.status)) {
@@ -36,6 +42,7 @@ async function manageAPIResponse(apiReponse, shortURL) {
 }
 
 function removeUTMs(url) {
+	console.log("removeUTMS", url);
 	const parsedURL = new URL(url);
 	const urlWithOutUtms = parsedURL.href.replace(/[?&#]utm_.*/, '');
 	return urlWithOutUtms;
@@ -45,8 +52,9 @@ export default async function () {
 	const urls = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
 	for (const url of urls) {
 		const {expandedUrl: urlToExpand} = url.dataset;
-		const unshortenUrl = await getUnshortenUrl(urlToExpand)
-		const urlWithOutUtms = removeUTMs(unshortenUrl);
+		const unshortenUrl = await getUnshortenUrl(urlToExpand);
+//		const urlWithOutUtms = removeUTMs(unshortenUrl);
+		const urlWithOutUtms = "test"
 		url.setAttribute('href', urlWithOutUtms);
 		$(url).addClass(refinedTwitterClass);
 	}
