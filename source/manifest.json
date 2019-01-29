@@ -1,6 +1,6 @@
 {
 	"name": "Refined Twitter",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Simplifies the Twitter interface and adds useful features",
 	"homepage_url": "https://github.com/sindresorhus/refined-twitter",
 	"manifest_version": 2,
@@ -29,7 +29,8 @@
 		{
 			"run_at": "document_start",
 			"matches": [
-				"https://twitter.com/*"
+				"https://twitter.com/*",
+				"https://linkpeelr.appspot.com/*"
 			],
 			"css": [
 				"style/content.css",

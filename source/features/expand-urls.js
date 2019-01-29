@@ -2,60 +2,59 @@ import ky from 'ky';
 
 const refinedTwitterClass = 'refinedTwitterExpandedUrl';
 
-function getUnshortenUrl(element, shortURL) {
-	let xmlhttp = new XMLHttpRequest();
+async function getUnshortenUrl(shortURL) {
+	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url=' + shortURL + '&where=twitter.com&version=2.0.3')
+	.json();
 
-	xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState === XMLHttpRequest.DONE ) {
-			if(xmlhttp.status === 200){
-				manageAPIResponse(element, xmlhttp.responseText);
-			}
-		}
-	}
-
-	xmlhttp.open('GET', 'https://linkpeelr.appspot.com/api?action=peel_all&url=' + shortURL + '&where=twitter.com&version=2.0.3', true);
-	xmlhttp.send();
+	return manageAPIResponse(json, shortURL);
 }
 
-function parseAPIResponse(apiReponse) {
-	console.log("apiReponse", apiReponse)
-	return apiReponse;
+// linkpeelr API
+function parseAPIResponse(apiResponse) {
+	return apiResponse[1];
 }
 
-function isAPIReponseValid(apiCode) {
-	return apiCode === '301';
+// linkpeelr API
+function isAPIResponseValid(apiResponse) {
+	return apiResponse[0] === 301;
 }
 
-function manageAPIResponse(apiReponse, shortURL) {
-	console.log("ky response always status 0", apiReponse);
-	console.log("shortURL", shortURL);
-	if(isAPIReponseValid(apiReponse.status)) {
-		const apiReponseParsed = parseAPIResponse(apiReponse);
-		const apiURL = apiReponseParsed[1];
-		const apiCode = apiReponseParsed[0];
-		const realURL= cleanAPIURL(apiURL);
-		realURL = replaceBackSlash(realURL);
-		return realURL;
+function manageAPIResponse(apiResponse, shortURL) {
+	if (isAPIResponseValid(apiResponse)) {
+		const apiURL = parseAPIResponse(apiResponse);
+		return apiURL;
 	} else {
 		return shortURL;
 	}
 }
 
+/**
+ * remove http(s) and www from a URL
+ **/
+function removeHTTPAndWWW(string){
+  return string.replace('https://', '').replace('http://', '').replace('www.', '');
+}
+
+function setURL(url, htmlElement) {
+	let urlWithOutUTMs = removeUTMs(url);
+	htmlElement.setAttribute('href', urlWithOutUTMs);
+	htmlElement.innerHTML = removeHTTPAndWWW(urlWithOutUTMs);
+	$(htmlElement).addClass(refinedTwitterClass);
+}
+
 function removeUTMs(url) {
-	console.log("removeUTMS", url);
 	const parsedURL = new URL(url);
-	const urlWithOutUtms = parsedURL.href.replace(/[?&#]utm_.*/, '');
-	return urlWithOutUtms;
+	const urlWithOutUTMs = parsedURL.href.replace(/[?&#]utm_.*/, '');
+
+	return urlWithOutUTMs;
 }
 
 export default async function () {
-	const urls = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
-	for (const url of urls) {
-		const {expandedUrl: urlToExpand} = url.dataset;
-		const unshortenUrl = await getUnshortenUrl(urlToExpand);
-//		const urlWithOutUtms = removeUTMs(unshortenUrl);
-		const urlWithOutUtms = "test"
-		url.setAttribute('href', urlWithOutUtms);
-		$(url).addClass(refinedTwitterClass);
+	const aHTMLTags = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
+
+	for (const aHTMLTag of aHTMLTags) {
+		const {expandedUrl: urlToExpand} = aHTMLTag.dataset;
+		const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
+		setURL(unShortenURL, aHTMLTag);
 	}
 }
