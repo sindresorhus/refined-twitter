@@ -3,8 +3,8 @@ import ky from 'ky';
 const refinedTwitterClass = 'refinedTwitterExpandedUrl';
 
 async function getUnshortenUrl(shortURL) {
-	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url=' + shortURL + '&where=twitter.com&version=2.0.3')
-	.json();
+	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url='
+	+ shortURL + '&where=twitter.com&version=2.0.3').json();
 
 	return manageAPIResponse(json, shortURL);
 }
@@ -47,6 +47,11 @@ function removeUTMs(url) {
 	const urlWithOutUTMs = parsedURL.href.replace(/[?&#]utm_.*/, '');
 
 	return urlWithOutUTMs;
+}
+
+//@TODO
+function twitterCard(htmlElement) {
+	const urlToExpand = $('.card-type-summary_large_image iframe')[0].contentWindow.document.querySelector('a')
 }
 
 export default async function () {
