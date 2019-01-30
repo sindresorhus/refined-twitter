@@ -36,10 +36,7 @@ function removeHTTPAndWWW(string){
 }
 
 function setURL(url, htmlElement) {
-	let urlWithOutUTMs = removeUTMs(url);
-	htmlElement.setAttribute('href', urlWithOutUTMs);
-	htmlElement.innerHTML = removeHTTPAndWWW(urlWithOutUTMs);
-	$(htmlElement).addClass(refinedTwitterClass);
+	htmlElement.setAttribute('href', url);
 }
 
 function removeUTMs(url) {
@@ -49,17 +46,43 @@ function removeUTMs(url) {
 	return urlWithOutUTMs;
 }
 
-//@TODO
-function twitterCard(htmlElement) {
-	const urlToExpand = $('.card-type-summary_large_image iframe')[0].contentWindow.document.querySelector('a')
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export default async function () {
+// Example: https://twitter.com/polomarcus/status/955649699477950464
+async function twitterCardURLs() {
+	await sleep(2000); //iframes takes longer to load
+
+	const iframesToInspect = $('.js-macaw-cards-iframe-container iframe:not(.' + refinedTwitterClass + ')');
+	console.log("iframes", iframesToInspect);
+
+	for (const iframe of iframesToInspect) {
+		$(iframe).addClass(refinedTwitterClass);
+		const aHTMLTag = iframe.contentWindow.document.querySelector('a');
+		const urlToExpand = aHTMLTag.getAttribute('href');
+		const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
+		const urlWithOutUTMs = removeUTMs(unShortenURL);
+		setURL(urlWithOutUTMs, aHTMLTag);
+	}
+}
+
+// Example: https://twitter.com/polomarcus/status/1083063057742471169
+async function displayURLs() {
 	const aHTMLTags = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
 
 	for (const aHTMLTag of aHTMLTags) {
 		const {expandedUrl: urlToExpand} = aHTMLTag.dataset;
 		const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
-		setURL(unShortenURL, aHTMLTag);
+		const urlWithOutUTMs = removeUTMs(unShortenURL);
+		setURL(urlWithOutUTMs, aHTMLTag);
+		aHTMLTag.innerHTML = removeHTTPAndWWW(urlWithOutUTMs);
+		$(aHTMLTag).addClass(refinedTwitterClass);
 	}
+}
+
+export default function () {
+	displayURLs();
+	twitterCardURLs();
 }
