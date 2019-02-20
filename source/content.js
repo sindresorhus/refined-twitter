@@ -93,6 +93,7 @@ function onDomReady() {
 		enableFeature(features.renderInlineCode);
 		enableFeature(features.imageAlternatives);
 		enableFeature(features.hideRetweetButtons);
+		enableFeature(features.expandUrls);
 	});
 
 	onGalleryItemOpen(() => {

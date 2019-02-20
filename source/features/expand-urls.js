@@ -3,36 +3,37 @@ import ky from 'ky';
 const refinedTwitterClass = 'refinedTwitterExpandedUrl';
 
 async function getUnshortenUrl(shortURL) {
-	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url='
-	+ shortURL + '&where=twitter.com&version=2.0.3').json();
+	const json = await ky.get('https://linkpeelr.appspot.com/api?action=peel_all&url=' +
+	shortURL + '&where=twitter.com&version=2.0.3').json();
 
 	return manageAPIResponse(json, shortURL);
 }
 
-// linkpeelr API
+// Linkpeelr API
 function parseAPIResponse(apiResponse) {
 	return apiResponse[1];
 }
 
-// linkpeelr API
+// Linkpeelr API
 function isAPIResponseValid(apiResponse) {
 	return apiResponse[0] === 301;
 }
 
 function manageAPIResponse(apiResponse, shortURL) {
+	var output = shortURL;
 	if (isAPIResponseValid(apiResponse)) {
 		const apiURL = parseAPIResponse(apiResponse);
-		return apiURL;
-	} else {
-		return shortURL;
+		output = apiURL;
 	}
+
+	return output;
 }
 
 /**
- * remove http(s) and www from a URL
+ * Remove http(s) and www from a URL
  **/
-function removeHTTPAndWWW(string){
-  return string.replace('https://', '').replace('http://', '').replace('www.', '');
+function removeHTTPAndWWW(string) {
+	return string.replace('https://', '').replace('http://', '').replace('www.', '');
 }
 
 function setURL(url, htmlElement) {
@@ -46,39 +47,51 @@ function removeUTMs(url) {
 	return urlWithOutUTMs;
 }
 
-
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Example: https://twitter.com/polomarcus/status/955649699477950464
 async function twitterCardURLs() {
-	await sleep(2000); //iframes takes longer to load
-
+	await sleep(2000); //	Iframes' content takes longer to load...
+	//@TODO use jQuery load()
 	const iframesToInspect = $('.js-macaw-cards-iframe-container iframe:not(.' + refinedTwitterClass + ')');
-	console.log("iframes", iframesToInspect);
+	console.log('iframes detected', iframesToInspect);
 
 	for (const iframe of iframesToInspect) {
 		$(iframe).addClass(refinedTwitterClass);
 		const aHTMLTag = iframe.contentWindow.document.querySelector('a');
 		const urlToExpand = aHTMLTag.getAttribute('href');
-		const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
+		const unShortenURL = getUnshortenUrl(urlToExpand, aHTMLTag);
 		const urlWithOutUTMs = removeUTMs(unShortenURL);
 		setURL(urlWithOutUTMs, aHTMLTag);
 	}
 }
 
+async function getAllAPICall(aHTMLTags) {
+	const results = [];
+	for (const aHTMLTag of aHTMLTags) {
+
+	}
+
+	return Promise.all(results);
+}
+
+async function handleDisplayURL(aHTMLTag) {
+	const {expandedUrl: urlToExpand} = aHTMLTag.dataset;
+	const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
+	const urlWithOutUTMs = removeUTMs(unShortenURL);
+	setURL(urlWithOutUTMs, aHTMLTag);
+	aHTMLTag.innerHTML = removeHTTPAndWWW(urlWithOutUTMs);
+	$(aHTMLTag).addClass(refinedTwitterClass);
+}
+
 // Example: https://twitter.com/polomarcus/status/1083063057742471169
-async function displayURLs() {
+function displayURLs() {
 	const aHTMLTags = $('a[data-expanded-url]:not(.' + refinedTwitterClass + ')');
 
 	for (const aHTMLTag of aHTMLTags) {
-		const {expandedUrl: urlToExpand} = aHTMLTag.dataset;
-		const unShortenURL = await getUnshortenUrl(urlToExpand, aHTMLTag);
-		const urlWithOutUTMs = removeUTMs(unShortenURL);
-		setURL(urlWithOutUTMs, aHTMLTag);
-		aHTMLTag.innerHTML = removeHTTPAndWWW(urlWithOutUTMs);
-		$(aHTMLTag).addClass(refinedTwitterClass);
+		handleDisplayURL(aHTMLTag);
 	}
 }
 
