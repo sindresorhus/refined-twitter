@@ -38,19 +38,16 @@ function highlightCode(md) {
 		return (
 			<pre class="refined-twitter_highlight language-txt">
 				<code class="language-txt">
-					{code}
+					{code.trim()}
 				</code>
 			</pre>
 		);
 	}
 
-	const highlightedCode = prism.highlight(code, prism.languages[selectedLang]);
+	const highlightedCode = prism.highlight(code.trim(), prism.languages[selectedLang]);
 
 	return (
 		<div class="refined-twitter_highlight">
-			<div class="refined-twitter_highlight-lang">
-				{selectedLang}
-			</div>
 			<pre class={`language-${selectedLang}`}>
 				<code class={`language-${selectedLang}`}>
 					{domify(highlightedCode)}
