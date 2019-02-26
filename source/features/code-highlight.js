@@ -48,9 +48,6 @@ function highlightCode(md) {
 
 	return (
 		<div class="refined-twitter_highlight">
-			<div class="refined-twitter_highlight-lang">
-				{selectedLang}
-			</div>
 			<pre class={`language-${selectedLang}`}>
 				<code class={`language-${selectedLang}`}>
 					{domify(highlightedCode)}
