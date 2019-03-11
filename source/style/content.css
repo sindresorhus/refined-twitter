@@ -222,15 +222,15 @@ code.refined-twitter_markdown {
 }
 
 /* Alternative text for user avatars */
-.twitter_image-alt_profile-container {
+.refined-twitter_image-alt_profile-container {
 	border-radius: 0 !important;
 	background: transparent !important;
 	overflow: visible !important;
 }
-.twitter_image-alt_profile-container .refined-twitter_image-alt_img {
+.refined-twitter_image-alt_profile-container .refined-twitter_image-alt_img {
 	border-radius: 50%;
 }
-.twitter_image-alt_profile-container .refined-twitter_image-alt {
+.refined-twitter_image-alt_profile-container .refined-twitter_image-alt {
 	position: absolute;
 	top: 100%;
 	width: 100%;
