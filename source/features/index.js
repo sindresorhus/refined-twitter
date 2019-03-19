@@ -184,6 +184,13 @@ export const features = {
 		fn: require('./inline-instagram-photos').default,
 		hidden: true
 	},
+	janeDoeTweets: {
+		id: 'feature-anonymous-tweets',
+		category: 'timeline',
+		label: 'Transform your timeline in Jane Doe tweets timeline',
+		enabledByDefault: false,
+		fn: require('./anonymize-tweets').default
+	},
 	mentionHighlight: {
 		id: 'feature-mentions-highlight',
 		category: 'timeline',
