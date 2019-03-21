@@ -1,5 +1,6 @@
 export default function () {
 	const imgContainers = document.querySelectorAll('.AdaptiveMedia-photoContainer, .Gallery-media');
+	const imgAvatar = document.querySelector('.ProfileAvatar-image');
 
 	for (const imgContainer of imgContainers) {
 		// Exit if it already exists
@@ -17,6 +18,11 @@ export default function () {
 			}
 
 			imgContainer.classList.add('refined-twitter_image-alt_container');
+
+			// Current image equals the avatar on the current page
+			if (imgAvatar && img.src === imgAvatar.src) {
+				imgContainer.classList.add('refined-twitter_image-alt_profile-container');
+			}
 
 			if (imgContainer.classList.contains('AdaptiveMedia-photoContainer')) {
 				const ancestor1 = imgContainer.parentNode;

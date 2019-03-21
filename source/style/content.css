@@ -221,6 +221,27 @@ code.refined-twitter_markdown {
 	max-height: initial !important;
 }
 
+/* Alternative text for user avatars */
+.refined-twitter_image-alt_profile-container {
+	border-radius: 0 !important;
+	background: transparent !important;
+	overflow: visible !important;
+}
+.refined-twitter_image-alt_profile-container .refined-twitter_image-alt_img {
+	border-radius: 50%;
+}
+.refined-twitter_image-alt_profile-container .refined-twitter_image-alt {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	background: transparent;
+	color: white;
+	font-size: 1.5em;
+	font-weight: 300;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 /* Hide `Liked a reply to you` notifications */
 .feature-notifications-hide-liked-reply-activity .stream-item-favorited_mention {
 	display: none;
