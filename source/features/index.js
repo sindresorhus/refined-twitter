@@ -127,6 +127,13 @@ export const features = {
 	},
 
 	/* TIMELINE */
+	anonymizeTweets: {
+		id: 'feature-anonymous-tweets',
+		category: 'timeline',
+		label: 'Transform your timeline in Jane Doe tweets timeline',
+		enabledByDefault: false,
+		fn: require('./anonymize-tweets').default
+	},
 	autoLoadNewTweets: {
 		id: 'feature-auto-load-new-tweets',
 		category: 'timeline',
@@ -183,13 +190,6 @@ export const features = {
 		label: 'Embed the photo from Instagram links directly in the tweet',
 		fn: require('./inline-instagram-photos').default,
 		hidden: true
-	},
-	janeDoeTweets: {
-		id: 'feature-anonymous-tweets',
-		category: 'timeline',
-		label: 'Transform your timeline in Jane Doe tweets timeline',
-		enabledByDefault: false,
-		fn: require('./anonymize-tweets').default
 	},
 	mentionHighlight: {
 		id: 'feature-mentions-highlight',
