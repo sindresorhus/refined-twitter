@@ -18,8 +18,8 @@ function createPhotoContainer() {
 
 async function getInstagramPhotoUrl(instagramPostUrl) {
 	const imageRegex = /"display_url": ?"([^"]+)"/;
-	const instagramSuffixRegex = /instagram\.com\/p\/([^\/]+)/;
-	const [,postID] = instagramSuffixRegex.exec(instagramPostUrl) || [];
+	const instagramSuffixRegex = /instagram\.com\/p\/([^/]+)/;
+	const [, postID] = instagramSuffixRegex.exec(instagramPostUrl) || [];
 	const instagramHTMLContent = await browser.runtime.sendMessage({
 		contentScriptQuery: 'getInstagramPhotoUrl',
 		postID
