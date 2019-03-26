@@ -36,3 +36,10 @@ browser.webRequest.onBeforeRequest.addListener(({url}) => {
 }, {
 	urls: ['https://pbs.twimg.com/media/*']
 }, ['blocking']);
+
+browser.runtime.onMessage.addListener(request => {
+	if (request.contentScriptQuery === 'getInstagramPhotoUrl') {
+		const url = `https://instagram.com/p/${request.postID}`;
+		return fetch(url).then(response => response.text());
+	}
+});
