@@ -16,11 +16,15 @@ function createPhotoContainer() {
 	return <div class="AdaptiveMediaOuterContainer refined-twitter"></div>;
 }
 
-async function getInstagramPhotoUrl(postUrl) {
+async function getInstagramPhotoUrl(instagramPostUrl) {
 	const imageRegex = /"display_url": ?"([^"]+)"/;
-	const response = await fetch(postUrl);
-	const html = await response.text();
-	const [, instagramImageUrl] = imageRegex.exec(html) || [];
+	const instagramSuffixRegex = /instagram\.com\/p\/([^/]+)/;
+	const [, postID] = instagramSuffixRegex.exec(instagramPostUrl) || [];
+	const instagramHTMLContent = await browser.runtime.sendMessage({
+		contentScriptQuery: 'getInstagramPhotoUrl',
+		postID
+	});
+	const [, instagramImageUrl] = imageRegex.exec(instagramHTMLContent) || [];
 	return instagramImageUrl;
 }
 
