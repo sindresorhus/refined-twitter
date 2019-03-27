@@ -1,8 +1,10 @@
 'use strict';
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SizePlugin = require('size-plugin');
 
 module.exports = {
+	stats: 'errors-only',
 	entry: {
 		content: './source/content',
 		background: './source/background',
@@ -22,6 +24,7 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new SizePlugin(),
 		new CopyWebpackPlugin([
 			{
 				from: '*',

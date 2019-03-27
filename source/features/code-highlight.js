@@ -56,6 +56,7 @@ function highlightCode(md) {
 		</div>
 	);
 }
+
 function splitTextReducer(frag, text, index) {
 	if (index % 2) { // Code is always in odd positions
 		frag.append(highlightCode(text));
@@ -74,6 +75,7 @@ export default function () {
 		if (tweetWithCode.length === 1) {
 			return;
 		}
+
 		const frag = tweetWithCode.reduce(splitTextReducer, new DocumentFragment());
 		$(el).html(frag);
 	});

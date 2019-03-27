@@ -27,6 +27,7 @@ export default function () {
 		if ($(el).hasClass(styledClassName)) {
 			return;
 		}
+
 		// Get everything in tweet
 		const contents = Object.values($(el).contents());
 		const text = contents.map(node => node.nodeValue || node);
@@ -37,6 +38,7 @@ export default function () {
 			if (isElement(val)) {
 				return val;
 			}
+
 			return val
 				.split(splittingRegex)
 				.reduce(splitTextReducer, new DocumentFragment());

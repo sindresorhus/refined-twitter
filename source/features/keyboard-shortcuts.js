@@ -44,6 +44,7 @@ export default () => {
 				if (event.altKey) {
 					toggleNightMode();
 				}
+
 				break;
 			}
 
@@ -59,6 +60,7 @@ export default () => {
 		for (const [i, item] of updatedShortcuts.entries()) {
 			item.shortcuts = item.shortcuts.concat(customShortcuts[i].shortcuts);
 		}
+
 		initData.keyboardShortcuts = updatedShortcuts;
 		initDataElement.value = JSON.stringify(initData);
 	}

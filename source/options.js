@@ -1,8 +1,7 @@
 import OptionsSync from 'webext-options-sync';
-
 import {groupedFeatures} from './features';
 
-const el = document.querySelector('#features-placeholder');
+const element = document.querySelector('#features-placeholder');
 const _groupedFeaturesEntries = Object.entries(groupedFeatures);
 for (const [category, features] of _groupedFeaturesEntries) {
 	// Hide category if it has only hidden configurations
@@ -14,7 +13,7 @@ for (const [category, features] of _groupedFeaturesEntries) {
 
 	const h4 = document.createElement('h4');
 	h4.textContent = category.toUpperCase();
-	section.appendChild(h4);
+	section.append(h4);
 
 	for (const feature of features) {
 		const p = document.createElement('p');
@@ -28,16 +27,16 @@ for (const [category, features] of _groupedFeaturesEntries) {
 		const input = document.createElement('input');
 		input.setAttribute('type', 'checkbox');
 		input.setAttribute('name', feature.id);
-		label.appendChild(input);
+		label.append(input);
 
-		const labelText = document.createTextNode(' ' + feature.label);
-		label.appendChild(labelText);
+		const labelText = document.createTextNode(` ${feature.label}`);
+		label.append(labelText);
 
-		p.appendChild(label);
-		section.appendChild(p);
+		p.append(label);
+		section.append(p);
 	}
 
-	el.appendChild(section);
+	element.append(section);
 }
 
 new OptionsSync().syncForm('#options-form');
