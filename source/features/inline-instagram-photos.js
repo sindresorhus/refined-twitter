@@ -29,7 +29,7 @@ async function getInstagramPhotoUrl(instagramPostUrl) {
 }
 
 export default function () {
-	$('.twitter-timeline-link[data-expanded-url*="//www.instagram.com').each(async (idx, instagramAnchor) => {
+	$('.twitter-timeline-link[data-expanded-url*="//www.instagram.com/p/"]').each(async (idx, instagramAnchor) => {
 		const tweetElement = $(instagramAnchor).parents('.js-tweet-text-container');
 		const instagramPostUrl = instagramAnchor.dataset.expandedUrl;
 		const shouldInlinePhoto = tweetElement.siblings('.AdaptiveMediaOuterContainer').length < 1;
