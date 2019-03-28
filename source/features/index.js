@@ -127,13 +127,6 @@ export const features = {
 	},
 
 	/* TIMELINE */
-	anonymizeTweets: {
-		id: 'feature-anonymous-tweets',
-		category: 'timeline',
-		label: 'Transform your timeline in Jane Doe tweets timeline',
-		enabledByDefault: false,
-		fn: require('./anonymize-tweets').default
-	},
 	autoLoadNewTweets: {
 		id: 'feature-auto-load-new-tweets',
 		category: 'timeline',
@@ -202,6 +195,13 @@ export const features = {
 		category: 'timeline',
 		label: 'Adds Markdown-like styling of text wrapped in backticks',
 		fn: require('./inline-code').default
+	},
+	anonymizeTweets: {
+		id: 'feature-anonymize-tweets',
+		category: 'timeline',
+		label: 'Anonymize tweets by replacing real usernames with "John Doe" or "Jane Doe" to focus on tweets\' content',
+		enabledByDefault: false,
+		fn: require('./anonymize-tweets').default
 	}
 };
 

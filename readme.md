@@ -42,7 +42,7 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - Uses your personal color theme on all profiles.
 - Hides the header image on profile pages.
 - [Shows alternative image text below images when available.](https://user-images.githubusercontent.com/170270/40556400-b46c292c-6076-11e8-8241-f5c4e1a7a161.png)
-- Anonymizes tweets by replacing real usernames by "John Doe" or "Jane Doe"
+- Anonymizes tweets by replacing real usernames with "John Doe" or "Jane Doe"
 
 Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-twitter/issues/10) and you can toggle it using <kbd>Alt</kbd><kbd>m</kbd>. And press <kbd>Shift</kbd> <kbd>?</kbd> to see all keyboard shortcuts.
 
