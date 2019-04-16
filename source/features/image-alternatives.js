@@ -22,6 +22,9 @@ export default function () {
 			// Current image equals the avatar on the current page
 			if (imgAvatar && img.src === imgAvatar.src) {
 				imgContainer.classList.add('refined-twitter_image-alt_profile-container');
+			} else {
+				// Remove previouly added classname if container is not for the profile avatar
+				imgContainer.classList.remove('refined-twitter_image-alt_profile-container');
 			}
 
 			if (imgContainer.classList.contains('AdaptiveMedia-photoContainer')) {
