@@ -61,16 +61,6 @@ Dashboard
 	display: none !important;
 }
 
-/* Remove the "Trends for you" box */
-.feature-home-hide-trends-card .module.trends {
-	display: none !important;
-}
-
-/* Remove the "Who to follow" box */
-.feature-home-hide-who-to-follow-card .module.wtf-module {
-	display: none !important;
-}
-
 /* Remove the footer box */
 .feature-home-hide-footer-card .module.Footer {
 	display: none !important;
