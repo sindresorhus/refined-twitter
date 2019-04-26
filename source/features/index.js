@@ -73,12 +73,12 @@ export const features = {
 		label: 'Hide "Profile" Card',
 		runOnInit: true
 	},
-	hideHomeTrendsAndWhoToFollowCards: {
+	hideTrendsAndWhoToFollowCards: {
 		id: 'feature-home-hide-trends-and-who-to-follow-cards',
 		category: 'home',
 		label: 'Hide "Trends for you" and "Who to follow" Cards',
 		runOnInit: true,
-		fn: require('./hide-sidebar').default
+		fn: require('./hide-trends-and-who-to-follow').default
 	},
 
 	/* NOTIFICATIONS */
