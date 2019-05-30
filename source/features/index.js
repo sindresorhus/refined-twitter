@@ -85,6 +85,13 @@ export const features = {
 		label: 'Hide "Who to follow" Card',
 		runOnInit: true
 	},
+	hideTrendsAndWhoToFollowCards: {
+		id: 'feature-home-hide-trends-and-who-to-follow-cards',
+		category: 'home',
+		label: 'Hide "Trends for you" and "Who to follow" cards in the new Twitter UI',
+		runOnInit: true,
+		fn: require('./hide-trends-and-who-to-follow').default
+	},
 
 	/* NOTIFICATIONS */
 	hideNotificationsFollowActivity: {

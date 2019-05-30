@@ -68,6 +68,7 @@ function onDomReady() {
 		enableFeature(features.autoLoadNewTweets);
 		enableFeature(features.disableCustomColors);
 		enableFeature(features.hideProfileHeader);
+		enableFeature(features.hideTrendsAndWhoToFollowCards);
 
 		onNewTweets(() => {
 			enableFeature(features.codeHighlight);
