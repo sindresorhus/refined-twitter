@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"lint": "xo && stylelint source/*.css",
+		"lint": "xo && stylelint source/**/*.css",
 		"test": "npm run lint && ava && npm run build",
 		"build": "webpack --mode=production",
 		"watch": "webpack --mode=development --watch",
@@ -9,38 +9,38 @@
 		"update-version": "VERSION=$(utc-version); echo $VERSION; dot-json distribution/manifest.json version $VERSION"
 	},
 	"dependencies": {
-		"ajv": "^6.5.5",
-		"dom-chef": "^3.0.0",
-		"dom-loaded": "^1.0.0",
+		"ajv": "^6.10.0",
+		"dom-chef": "^3.6.0",
+		"dom-loaded": "^1.2.0",
 		"dompurify": "^1.0.10",
 		"element-ready": "^3.0.0",
-		"jquery": "^3.2.1",
+		"jquery": "^3.4.1",
 		"lodash.debounce": "^4.0.8",
 		"lodash.groupby": "^4.6.0",
 		"lodash.pick": "^4.4.0",
 		"lodash.sortby": "^4.7.0",
 		"prismjs": "^1.16.0",
-		"select-dom": "^4.1.1",
-		"webext-options-sync": "^0.15.0",
-		"webextension-polyfill": "^0.3.1"
+		"select-dom": "^5.1.0",
+		"webext-options-sync": "^0.16.0",
+		"webextension-polyfill": "^0.4.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.4.0",
+		"@babel/core": "^7.4.5",
 		"@babel/plugin-transform-react-jsx": "^7.3.0",
-		"@babel/register": "^7.4.0",
+		"@babel/register": "^7.4.4",
 		"ava": "^1.4.1",
 		"babel-eslint": "^10.0.1",
-		"babel-loader": "^8.0.5",
+		"babel-loader": "^8.0.6",
 		"chrome-webstore-upload-cli": "^1.1.1",
-		"copy-webpack-plugin": "^4.2.0",
-		"dot-json": "^1.0.3",
+		"copy-webpack-plugin": "^5.0.3",
+		"dot-json": "^1.1.0",
 		"npm-run-all": "^4.1.1",
 		"size-plugin": "^1.2.0",
-		"stylelint": "^9.10.1",
-		"stylelint-config-xo": "^0.13.0",
+		"stylelint": "^10.0.1",
+		"stylelint-config-xo": "^0.15.0",
 		"utc-version": "^1.0.0",
-		"webpack": "^4.29.6",
-		"webpack-cli": "^3.3.0",
+		"webpack": "^4.32.2",
+		"webpack-cli": "^3.3.2",
 		"xo": "^0.24.0"
 	},
 	"xo": {
@@ -84,7 +84,8 @@
 	"stylelint": {
 		"extends": "stylelint-config-xo",
 		"rules": {
-			"declaration-no-important": null
+			"declaration-no-important": null,
+			"selector-class-pattern": null
 		}
 	}
 }

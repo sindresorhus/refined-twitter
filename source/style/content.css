@@ -38,7 +38,7 @@ Global
 }
 
 .feature-cleanup-search-suggestions #global-nav-search .typeahead-topics + ul {
-	border: 0 !important;
+	border: none !important;
 }
 
 /* Highlight your mentions in the stream */
@@ -90,7 +90,7 @@ Dashboard
 
 .feature-home-hide-profile-card.feature-home-hide-trends-card.feature-home-hide-footer-card.feature-home-hide-who-to-follow-card #page-container:not(.wrapper-settings) .content-main {
 	margin: 0 auto !important;
-	float: unset !important;
+	float: unset !important; /* stylelint-disable property-blacklist */
 }
 
 /* Custom inline image element */
@@ -129,6 +129,7 @@ Dashboard
 	left: 0 !important;
 	margin-left: -40px !important;
 }
+
 @media screen and (max-width: 936px) {
 	.pushstate-spinner {
 		left: 43% !important;
@@ -143,11 +144,6 @@ code.refined-twitter_markdown {
 	padding: 0.1em 0.4em;
 	margin: 0;
 	font-size: 90%;
-}
-
-/* Remove big header from profile page */
-.feature-remove-profile-header .ProfileCanopy-avatar {
-	bottom: -160px !important;
 }
 
 .feature-remove-profile-header .ProfileSidebar--withLeftAlignment {
@@ -166,10 +162,13 @@ code.refined-twitter_markdown {
 	height: 0 !important;
 }
 
-/* Remove white border and add shadow to profile picture */
 .feature-remove-profile-header .ProfileCanopy-avatar {
+	/* Remove white border and add shadow to profile picture */
 	padding: 5px;
 	border-radius: 100%;
+
+	/* Remove big header from profile page */
+	bottom: -160px !important;
 }
 
 .feature-remove-profile-header .ProfileAvatar,
@@ -200,43 +199,51 @@ code.refined-twitter_markdown {
 	font-size: 0.9rem;
 	line-height: 1.5;
 }
+
 .refined-twitter_image-alt_top {
-	border-bottom: 1px solid rgba(0,0,0,0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .refined-twitter_image-alt_bottom {
-	border-top: 1px solid rgba(0,0,0,0.1);
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .refined-twitter_image-alt_img {
 	top: 0 !important;
 	margin-top: 0 !important;
 	position: relative !important;
 }
+
 .refined-twitter_image-alt_container {
 	position: relative !important;
 }
+
 .refined-twitter_image-alt_photocontainer {
 	padding-top: 0 !important;
 }
+
 .refined-twitter_image-alt_ancestor-not-square {
 	max-height: initial !important;
 }
 
 /* Alternative text for user avatars */
 .refined-twitter_image-alt_profile-container {
-	border-radius: 0 !important;
+	border-radius: none !important;
 	background: transparent !important;
 	overflow: visible !important;
 }
+
 .refined-twitter_image-alt_profile-container .refined-twitter_image-alt_img {
 	border-radius: 50%;
 }
+
 .refined-twitter_image-alt_profile-container .refined-twitter_image-alt {
 	position: absolute;
 	top: 100%;
 	width: 100%;
 	box-sizing: border-box;
 	background: transparent;
-	color: white;
+	color: #fff;
 	font-size: 1.5em;
 	font-weight: 300;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
