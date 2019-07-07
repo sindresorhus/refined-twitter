@@ -26,10 +26,13 @@ Global
 }
 
 /* Contain layout for better performance */
-.stream-item,
 .Gallery,
 .topbar {
 	contain: layout style; /* We don't contain `content` as it breaks fullscreening videos */
+}
+
+.stream-item {
+	contain: style; /* We don't contain `layout` as it hides tweet dropdown below next tweet */
 }
 
 /* Remove annoying suggestions in the Search popover */
