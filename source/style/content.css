@@ -256,3 +256,8 @@ code.refined-twitter_markdown {
 .feature-notifications-hide-liked-reply-activity .stream-item-favorited_mention {
 	display: none;
 }
+
+/* Avoid tooltip blinking #167 */
+.tooltip {
+	pointer-events: none;
+}
