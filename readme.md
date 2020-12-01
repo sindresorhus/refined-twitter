@@ -4,7 +4,7 @@
 
 **This project is not maintained anymore. Twitter rewrote their website and completely broke this extension. It's also much harder to reliably modify the new website. I also don't have time to fix these things and no one has stepped up to do so either. It had a great run. Thanks for all the love.**
 
-We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
+We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons
 
 ## Install
 
