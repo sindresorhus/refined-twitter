@@ -2,12 +2,9 @@
 
 > Browser extension that simplifies the Twitter interface and adds useful features
 
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo) [![Gitter](https://badges.gitter.im/join_chat.svg)](https://gitter.im/refined-twitter/Lobby)
+**This project is not maintained anymore. Twitter rewrote their website and completely broke this extension, and it's much harder to reliably modify the new website. I also don't have time to fix these things and no one has stepped up to do so either. It had a great run. Thanks for all the love.**
 
 We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here be dragons.
-
-**Read the [blog post](https://blog.sindresorhus.com/refined-twitter-74038424fe2a) and discuss it on [Product Hunt](https://www.producthunt.com/posts/refined-twitter)**
-
 
 ## Install
 
@@ -15,7 +12,6 @@ We use Twitter a lot and notice many dumb annoyances we'd like to fix. So here b
 - **Opera** extension: Use [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to enable installing Chrome extensions and then install [Refined Twitter](https://chrome.google.com/webstore/detail/refined-twitter/nlfgmdembofgodcemomfeimamihoknip)
 
 *Note: You **must** be logged in for this extension to work.*
-
 
 ## Highlights
 
@@ -47,7 +43,6 @@ Tip: Twitter has a native [dark mode](https://github.com/sindresorhus/refined-tw
 
 <img src="media/screenshot.gif" width="1272">
 
-
 ## Customization
 
 See the extension settings for what can be configured.
@@ -61,7 +56,6 @@ This doesn't necessarily limit you from manually disabling functionality that is
 1. *(CSS Only)* Use a Chrome extension that allows injecting custom styles into sites, based on a URL pattern. [Stylus](https://add0n.com/stylus.html) is one such tool. [Example](https://github.com/sindresorhus/refined-github/issues/136#issuecomment-204072018)
 
 2. Clone the repository, make the adjustments you need, and [load the unpacked extension in Chrome](https://developer.chrome.com/extensions/getstarted#unpacked), rather than installing from the Chrome Store.
-
 
 ## Contribute
 
@@ -105,7 +99,6 @@ Once built, load it in the browser of your choice:
 	</tr>
 </table>
 
-
 ## FAQ
 
 #### Don't you have another extension with the same name?
@@ -116,19 +109,11 @@ This is reusing the name from the [original Refined Twitter](https://github.com/
 
 [No](https://github.com/sindresorhus/refined-twitter/issues/126).
 
+## Links
+
+- [Blog post](https://blog.sindresorhus.com/refined-twitter-74038424fe2a)
+- [Product Hunt submission](https://www.producthunt.com/posts/refined-twitter)
 
 ## Related
 
 - [Refined GitHub](https://github.com/sindresorhus/refined-github) - GitHub version of this extension
-
-
-## Maintainers
-
-- [Sindre Sorhus](https://github.com/sindresorhus)
-- [Filipe Kiss](https://github.com/filipekiss)
-- [Jorge Gonzalez](https://github.com/jorgegonzalez)
-
-
-## License
-
-MIT
